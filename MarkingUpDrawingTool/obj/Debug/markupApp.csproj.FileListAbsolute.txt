@@ -1,0 +1,11 @@
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\markupApp.csproj.AssemblyReference.cache
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\markupApp.csproj.SuggestedBindingRedirects.cache
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\MarkingUpDrawingTool.Properties.Resources.resources
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\MarkingUpDrawingTool.View.MainForm.resources
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\markupApp.csproj.GenerateResource.cache
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\markupApp.csproj.CoreCompileInputs.cache
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\MarkingUpDrawingTool.exe
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\MarkingUpDrawingTool.pdb
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\MarkingUpDrawingTool.exe.config
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\MarkingUpDrawingTool.exe
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\MarkingUpDrawingTool.pdb
