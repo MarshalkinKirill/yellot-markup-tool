@@ -26,13 +26,12 @@ namespace MarkingUpDrawingTool.View
     public partial class MainForm : Form, IView
     {
         private string fileName = string.Empty;
-        private bool drawingMode;
         public Point startPoint;
         private Point endPoint;
         private Point previousPoint;
         private Projection currentProjection;
         private Hole currentHole;
-        private Image mainImage;
+        private Table currnetTable;
 
         private Layer projectionLayer;
         private Layer imageLayer;
@@ -41,6 +40,7 @@ namespace MarkingUpDrawingTool.View
 
         private ProjectionPresenter projectionPresenter;
         private HolePresenter holePresenter;
+        private TablePresenter tablePresenter;
 
         //Объявление событий 
         public event EventHandler<Point> PointMarked;
@@ -50,6 +50,10 @@ namespace MarkingUpDrawingTool.View
         public event EventHandler<Hole> AddHole;
         public event EventHandler SaveHole;
         public event EventHandler<Hole> DeleteHole;
+
+        public event EventHandler<Table> TableMarked;
+        public event EventHandler SaveTable;
+        public event EventHandler<Table> DeleteTable;
 
         public MainForm()
         {
@@ -68,9 +72,12 @@ namespace MarkingUpDrawingTool.View
             toolStripComboBoxHole.SelectedIndexChanged += comboBoxHole_SelectedIndexChange;
             this.KeyDown += mainForm_KeyDown;
             this.toolStripComboBoxHole.KeyDown += mainForm_KeyDown;
+
             //Презенторы
             projectionPresenter = new ProjectionPresenter(this);
             holePresenter = new HolePresenter(this);
+            tablePresenter = new TablePresenter(this);
+            
         }
         
         //Метод инициализации слоев для отображения графики

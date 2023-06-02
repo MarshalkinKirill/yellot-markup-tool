@@ -23,5 +23,10 @@ namespace MarkingUpDrawingTool.View.ViewInterface
         event EventHandler<Hole> AddHole;
         event EventHandler SaveHole;
         event EventHandler<Hole> DeleteHole;
+
+        //TableView
+        event EventHandler<Table> TableMarked;
+        event EventHandler SaveTable;
+        event EventHandler<Table> DeleteTable;
     }
 }
