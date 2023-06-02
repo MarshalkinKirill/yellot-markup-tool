@@ -31,6 +31,7 @@ namespace MarkingUpDrawingTool.View
         private Point endPoint;
         private Point previousPoint;
         private Projection currentProjection;
+        private Hole currentHole;
         private Image mainImage;
 
         private Layer projectionLayer;
@@ -47,7 +48,8 @@ namespace MarkingUpDrawingTool.View
         public event EventHandler<Projection> DeleteProjection;
 
         public event EventHandler<Hole> AddHole;
-        public event EventHandler<CircleSegment> SaveHole;
+        public event EventHandler SaveHole;
+        public event EventHandler<Hole> DeleteHole;
 
         public MainForm()
         {
@@ -62,8 +64,10 @@ namespace MarkingUpDrawingTool.View
             mainImage = null;
             
             //Подписка на глобальные события формы
-            toolStripComboBoxProjection.SelectedIndexChanged += comboBox_SelectedIndexChanged;
-
+            toolStripComboBoxProjection.SelectedIndexChanged += comboBoxProjection_SelectedIndexChanged;
+            toolStripComboBoxHole.SelectedIndexChanged += comboBoxHole_SelectedIndexChange;
+            this.KeyDown += mainForm_KeyDown;
+            this.toolStripComboBoxHole.KeyDown += mainForm_KeyDown;
             //Презенторы
             projectionPresenter = new ProjectionPresenter(this);
             holePresenter = new HolePresenter(this);
@@ -81,6 +85,32 @@ namespace MarkingUpDrawingTool.View
             layerService.AddLayer(holeLayer);
 
             panel1.Controls.Add(layerService);
+        }
+
+        private void mainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (layerService.DrawHoleMod)
+            {
+                if (e.Control && e.KeyCode == Keys.S)
+                {
+                    сохранитьОтверстиеToolStripMenuItem_Click(this, e);
+                }
+                if (e.Control && e.KeyCode == Keys.D)
+                {
+                    удалитьОтверстиеToolStripMenuItem_Click(this, e);
+                }
+            }
+            if (layerService.DrawProjectionMod)
+            {
+                if (e.Control && e.KeyCode == Keys.S)
+                {
+                    сохранитьПроекциюToolStripMenuItem_Click(this, e);
+                }
+                if (e.Control && e.KeyCode == Keys.D)
+                {
+                    удалитьПроекциюToolStripMenuItem_Click(this , e);
+                }
+            }
         }
 
         //Метод для подключения изображения на форму 
@@ -301,7 +331,7 @@ namespace MarkingUpDrawingTool.View
         }
 
         //Метод для выбора проекции из ComboBox'а
-        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxProjection_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Получение выбранного элемента
             ToolStripComboBox comboBox = (ToolStripComboBox)sender;
@@ -418,9 +448,72 @@ namespace MarkingUpDrawingTool.View
             List<CircleSegment> _circles = holePresenter.DetectHoles(imageLayer);
             foreach (var _circle in _circles)
             {
-                SaveHole?.Invoke(this, _circle);
+                Point _center = new Point((int)_circle.Center.X,(int)_circle.Center.Y);
+
+                AddHole?.Invoke(this, new Hole(_center, _circle.Radius));
+                SaveHole?.Invoke(this, e);
                 layerService.Invalidate();
+
+                toolStripComboBoxHole.Items.Clear();
+                List<Hole> _holes = holePresenter.GetHoles();
+                foreach (var _hole in _holes)
+                {
+                    toolStripComboBoxHole.Items.Add(_hole);
+                    Console.WriteLine(_hole.ToString());
+                }
+
+                toolStripComboBoxHole.ComboBox.DisplayMember = "name";
+                holePresenter.CleanMarkedHole();
             }
         }
+
+        private void comboBoxHole_SelectedIndexChange(object sender, EventArgs e)
+        {
+            // Получение выбранного элемента
+            ToolStripComboBox comboBox = (ToolStripComboBox)sender;
+            var selectedObject = (Hole)comboBox.SelectedItem;
+            currentHole = selectedObject;
+            // Обработка выбранного объекта
+            Console.WriteLine("Выбрана " + selectedObject.ToString());
+            Console.WriteLine("Center " + selectedObject.Center.ToString());
+            Console.WriteLine("Radius " + selectedObject.Radius.ToString());
+            //holePresenter
+            layerService.Invalidate();
+        }
+
+        private void сохранитьОтверстиеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (layerService.DrawHoleMod)
+            {
+                SaveHole?.Invoke(this, e);
+                toolStripComboBoxHole.Items.Clear();
+                List<Hole> _holes = holePresenter.GetHoles();
+                foreach (var _hole in _holes)
+                {
+                    toolStripComboBoxHole.Items.Add(_hole);
+                    Console.WriteLine(_hole.ToString());
+                }
+
+                toolStripComboBoxHole.ComboBox.DisplayMember = "name";
+                holePresenter.CleanMarkedHole();
+            }
+        }
+
+        private void удалитьОтверстиеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteHole?.Invoke(this, currentHole);
+
+            toolStripComboBoxHole.Items.Clear();
+            List<Hole> _holes = holePresenter.GetHoles();
+            foreach (var _hole in _holes)
+            {
+                toolStripComboBoxHole.Items.Add(_hole);
+                Console.WriteLine(_hole.ToString());
+            }
+
+            toolStripComboBoxHole.ComboBox.DisplayMember = "name";
+            holePresenter.CleanMarkedHole();
+            layerService.Invalidate()
+;        }
     }
 }

@@ -21,7 +21,7 @@ namespace MarkingUpDrawingTool.View.ViewInterface
 
         //HoleView
         event EventHandler<Hole> AddHole;
-        event EventHandler<CircleSegment> SaveHole;
-        //event EventHandler<Hole> DeleteHole;
+        event EventHandler SaveHole;
+        event EventHandler<Hole> DeleteHole;
     }
 }

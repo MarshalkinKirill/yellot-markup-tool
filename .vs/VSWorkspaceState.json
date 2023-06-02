@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MarkingUpDrawingTool",
+    "\\MarkingUpDrawingTool\\View",
+    "\\MarkingUpDrawingTool\\View\\ViewInteraface"
   ],
+  "SelectedNode": "\\MarkingUpDrawingTool\\View\\ViewInteraface\\IView.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -28,13 +28,16 @@ namespace MarkingUpDrawingTool.Presenter
             // Подписываемся на события
             view.AddHole += AddHole;
             view.SaveHole += SaveHole;
-            //view.DeleteHole += DeleteHole;
+            view.DeleteHole += DeleteHole;
         }
 
         public void AddHole(object sender, Hole _hole)
         {
             model.AddHole(_hole.Center, _hole.Radius);
+            Console.WriteLine("Center point and radius");
             Console.WriteLine(_hole.Center.ToString());
+            Console.WriteLine(_hole.Radius.ToString());
+            Console.WriteLine("////////////");
         }
 
         public void SaveHole(object sender, CircleSegment _circleSegment)
@@ -43,9 +46,15 @@ namespace MarkingUpDrawingTool.Presenter
             model.SaveHole(_hole);
         }
 
+        public void SaveHole(object sender, EventArgs e)
+        {
+            model.SaveHole();
+            Console.WriteLine("Кол-во отверстий: " + model.Holes.Count.ToString());
+        }
+
         public void DeleteHole(object sender, Hole _hole)
         {
-
+            model.Holes.Remove(_hole);
         }
 
         public List<Hole> GetHoles()
@@ -63,6 +72,21 @@ namespace MarkingUpDrawingTool.Presenter
             return new Hole(model.Center, model.Radius);
         }
 
+        public Point GetMarkedCenter()
+        {
+            return model.Center;
+        }
+
+        public float GetMarkedRadius()
+        {
+            return model.Radius;
+        }
+
+        public void CleanMarkedHole()
+        {
+            model.Center = Point.Empty;
+            model.Radius = 0;
+        }
         public List<CircleSegment> DetectHoles(Layer imageLayer)
         {
             Bitmap bm = new Bitmap(imageLayer.Image);

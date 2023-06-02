@@ -16,6 +16,12 @@ namespace MarkingUpDrawingTool.Model
         private float radius { get; set; }
         public float Radius { get => radius; set => radius = value; }
 
+        public Hole() 
+        {
+            name = string.Empty;
+            center = new Point();
+            radius = 0;
+        }
         public Hole(Point _center, float _radious) 
         {
             center = _center;
