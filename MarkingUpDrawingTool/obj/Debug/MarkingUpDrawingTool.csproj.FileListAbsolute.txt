@@ -40,3 +40,4 @@ C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\dll\x86\Ope
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\dll\x86\opencv_videoio_ffmpeg455.dll
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\dll\x64\OpenCvSharpExtern.dll
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\dll\x64\opencv_videoio_ffmpeg455_64.dll
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\MarkingUpDrawingTool.View.TableNoteForm.resources

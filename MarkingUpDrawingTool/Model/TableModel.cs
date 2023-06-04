@@ -4,9 +4,32 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Caching;
 
 namespace MarkingUpDrawingTool.Model
 {
+    public class TableNote
+    {
+        private string name { get; set; }
+        public string Name { get => name; set => name = value; }
+        private string mass { get; set; }
+        public string Mass { get => mass; set => mass = value; }
+        private string scale { get; set; }
+        public string Scale { get => scale; set => scale = value; }
+
+        public TableNote() 
+        {
+            name = string.Empty;
+            mass = string.Empty;
+            scale = string.Empty;
+        }
+        public TableNote(string _name, string _mass, string _scale)
+        {
+            name = _name;
+            mass = _mass;
+            scale = _scale;
+        }
+    }
     public class Table
     {
         private string name { get; set; }
@@ -15,38 +38,36 @@ namespace MarkingUpDrawingTool.Model
         public Point Start { get => start; set => start = value; }
         private Point end { get; set; }
         public Point End { get => end; set => end = value; }
-        private string mass { get; set; }
-        private string Mass { get => mass; set => mass = value; }    
-        private string scale { get; set; }
-        public string Scale { get => scale; set => scale = value; }
-        private string partName { get; set; }
-        public string PartName { get => partName; set => partName = value; }
+        private TableNote tableNote { get; set; }
+        public TableNote TableNote { get => tableNote; set => tableNote = value; }
         public Table()
         { 
             name = string.Empty;
             start = new Point();
             end = new Point();
-            mass = String.Empty;
-            scale = String.Empty;
-            partName = String.Empty;
+            tableNote = new TableNote();
         }
         public Table(Point _x, Point _y)
         {
-            name = string.Empty;
+            name = String.Empty;
             start = _x;
             end = _y;
-            mass = String.Empty;
-            scale = String.Empty;
-            partName = String.Empty;
+            tableNote = new TableNote();
         }
-        public Table (Point _x, Point _y, string _mass, string _scale, string _partName, string _name)
+        public Table (Point _x, Point _y, string _mass, string _scale, string _partName, int num)
         {
-            name = string.Empty;
+            name = "Таблица №" + num.ToString();
             start = _x;
             end = _y;
-            mass = _mass;
-            scale = _scale;
-            partName = _partName;
+            tableNote = new TableNote(_partName, _mass, _scale);
+        }
+
+        public Table(Point _x, Point _y, TableNote _tableNote, int num)
+        {
+            name = "Таблица №" + num.ToString();
+            start = _x;
+            end = _y;
+            tableNote = _tableNote;
         }
     }
     public class TableModel
@@ -59,6 +80,24 @@ namespace MarkingUpDrawingTool.Model
         {
             tables = new List<Table>();
             currentTable = new Table();
+        }
+
+        public void SaveTable()
+        {
+            Point x = new Point(currentTable.Start.X, currentTable.Start.Y);
+            Point y = new Point(currentTable.End.X, currentTable.End.Y);
+            TableNote note = currentTable.TableNote;
+            /*string name = (String)currentTable.TableNote.Name;
+            string mass = currentTable.TableNote.Mass;
+            string scale = currentTable.TableNote.Scale;*/
+            /*Table table = new Table(x, y, mass, scale, name, this.Tables.Count);*/
+            Table table = new Table(x, y, note, this.Tables.Count);
+            tables.Add(table);
+        }
+
+        public void DeleteTable(Table table)
+        {
+            this.Tables.Remove(table);
         }
     }
 }

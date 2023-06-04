@@ -37,6 +37,10 @@ namespace MarkingUpDrawingTool.View.UiService
         public Point StartPoint { get => startPoint; set => startPoint = value; }
         private Point endPoint { get; set; }
         public Point EndPoint { get => endPoint; set => endPoint = value; }
+        private bool drawTableMod { get; set; }
+        public bool DrawTableMod { get => drawTableMod; set => drawTableMod = value; }
+        private bool drawMainTableMod { get; set; }
+        public bool DrawMainTableMod { get => drawMainTableMod; set => drawMainTableMod = value; }
 
         public bool reDraw;
 
@@ -45,6 +49,9 @@ namespace MarkingUpDrawingTool.View.UiService
         {
             layers = new List<Layer>();
             drawProjectionMod = false;
+            drawHoleMod = false;
+            drawTableMod = false;
+            drawMainTableMod = false;
             startPoint = Point.Empty;
             endPoint = Point.Empty;
             reDraw = false;

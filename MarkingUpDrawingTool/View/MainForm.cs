@@ -20,6 +20,7 @@ using CvPoint = OpenCvSharp.Point;
 using Point = System.Drawing.Point;
 using System.Runtime.CompilerServices;
 using System.Reflection;
+using System.Drawing.Drawing2D;
 
 namespace MarkingUpDrawingTool.View
 {
@@ -31,11 +32,11 @@ namespace MarkingUpDrawingTool.View
         private Point previousPoint;
         private Projection currentProjection;
         private Hole currentHole;
-        private Table currnetTable;
+        private Table currentTable;
 
         private Layer projectionLayer;
         private Layer imageLayer;
-        private Layer holeLayer;
+        //private Layer holeLayer;
         LayerService layerService;
 
         private ProjectionPresenter projectionPresenter;
@@ -51,7 +52,8 @@ namespace MarkingUpDrawingTool.View
         public event EventHandler SaveHole;
         public event EventHandler<Hole> DeleteHole;
 
-        public event EventHandler<Table> TableMarked;
+        public event EventHandler<Table> AddTable;
+        public event EventHandler<TableNote> AddTableNote;
         public event EventHandler SaveTable;
         public event EventHandler<Table> DeleteTable;
 
@@ -62,16 +64,17 @@ namespace MarkingUpDrawingTool.View
             Controls.Add(menuStrip1);
             //Вспомогательные инструменты TODO: Вынести в отдельный класс
             layerService = new LayerService();
-            drawingMode = false;
             startPoint = Point.Empty;
             endPoint = Point.Empty;
-            mainImage = null;
             
             //Подписка на глобальные события формы
             toolStripComboBoxProjection.SelectedIndexChanged += comboBoxProjection_SelectedIndexChanged;
             toolStripComboBoxHole.SelectedIndexChanged += comboBoxHole_SelectedIndexChange;
+            toolStripComboBoxTable.SelectedIndexChanged += comboBoxTable_SelectIndexChange;
             this.KeyDown += mainForm_KeyDown;
             this.toolStripComboBoxHole.KeyDown += mainForm_KeyDown;
+            this.toolStripComboBoxProjection.KeyDown += mainForm_KeyDown;
+            this.toolStripComboBoxTable.KeyDown += mainForm_KeyDown;
 
             //Презенторы
             projectionPresenter = new ProjectionPresenter(this);
@@ -79,7 +82,8 @@ namespace MarkingUpDrawingTool.View
             tablePresenter = new TablePresenter(this);
             
         }
-        
+
+
         //Метод инициализации слоев для отображения графики
         private void InitDrawLayers()
         {
@@ -87,9 +91,13 @@ namespace MarkingUpDrawingTool.View
             projectionLayer.DrawActions = DrawLine;
             layerService.AddLayer(projectionLayer);
             
-            holeLayer = new Layer();
+            Layer holeLayer = new Layer();
             holeLayer.DrawActions = DrawCyrcle;
             layerService.AddLayer(holeLayer);
+
+            Layer tableLayer = new Layer();
+            tableLayer.DrawActions = DrawDotRectangle;
+            layerService.AddLayer(tableLayer);
 
             panel1.Controls.Add(layerService);
         }
@@ -116,6 +124,17 @@ namespace MarkingUpDrawingTool.View
                 if (e.Control && e.KeyCode == Keys.D)
                 {
                     удалитьПроекциюToolStripMenuItem_Click(this , e);
+                }
+            }
+            if (layerService.DrawMainTableMod || layerService.DrawTableMod)
+            {
+                if (e.Control && e.KeyCode == Keys.S)
+                {
+                    сохранитьТаблицуToolStripMenuItem_Click(this, e);
+                }
+                if (e.Control && e.KeyCode == Keys.D)
+                {
+                    удалитьТаблицуToolStripMenuItem_Click(this, e);
                 }
             }
         }
@@ -227,82 +246,6 @@ namespace MarkingUpDrawingTool.View
             }
         }
 
-        /*private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (drawingMode)
-            {
-                startPoint = e.Location;
-            }
-        }
-
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (drawingMode && startPoint != Point.Empty)
-            {
-                endPoint = e.Location;
-
-                // Обновление представления проекции
-                DrawLine(startPoint, endPoint);
-                PointMarked?.Invoke(this, e.Location);
-
-                startPoint = Point.Empty;
-                endPoint = Point.Empty;
-                Redraw();
-            }
-        }
-
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (drawingMode && startPoint != Point.Empty)
-            {
-                endPoint = e.Location;
-
-                // Обновление представления проекции
-                //DrawLine(startPoint, endPoint);
-                Redraw();
-            }
-        }
-
-        //Метод рисования линий по 2-м координатам
-        public void DrawLine(Point startPoint, Point endPoint)
-        {
-            using (Graphics g = pictureBox1.CreateGraphics())
-            {
-                g.Clear(Color.White);
-
-                // Отрисовка линии
-                Pen pen = new Pen(Color.Black);
-                g.DrawLine(pen, startPoint, endPoint);
-            }
-        }
-
-        //Метод отрисовки ранее наприсованных линий 
-        public void Redraw()
-        {
-            using (Graphics g = pictureBox1.CreateGraphics())
-            {
-                // Очистка холста
-                g.Clear(Color.White);
-
-                var points = projectionPresenter.GetPoints();
-                Pen pen = new Pen(Color.Black);
-                if (points.Count > 1)
-                {
-                    for (int i = 0; i < points.Count - 1; i++)
-                    {
-                        g.DrawLine(pen, points[i], points[i + 1]);
-                    }
-                }
-
-                // Отрисовка сохраненной линии
-                if (startPoint != Point.Empty && endPoint != Point.Empty)
-                {
-                    pen = new Pen(Color.Black);
-                    g.DrawLine(pen, startPoint, endPoint);
-                }
-            }
-        }*/
-
         //Метод для сохраннения отрисованной проекции
         private void сохранитьПроекциюToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -398,6 +341,7 @@ namespace MarkingUpDrawingTool.View
                 Console.WriteLine(dist.ToString());
                 AddHole?.Invoke(this, new Hole(layerService.StartPoint,dist));
                 layerService.Invalidate();
+                currentHole = holePresenter.GetMarkedHole();
                 layerService.StartPoint = Point.Empty;
                 layerService.EndPoint = Point.Empty;
             }
@@ -410,6 +354,7 @@ namespace MarkingUpDrawingTool.View
                 layerService.EndPoint = e.Location;
                 float dist = (float)Math.Sqrt(Math.Pow(layerService.EndPoint.X - layerService.StartPoint.X, 2) + Math.Pow(layerService.EndPoint.Y - layerService.StartPoint.Y, 2));
                 AddHole?.Invoke(this, new Hole(layerService.StartPoint, dist));
+                currentHole = holePresenter.GetMarkedHole();
                 layerService.Invalidate();
             }
         }
@@ -434,7 +379,7 @@ namespace MarkingUpDrawingTool.View
             }
             if (layerService.DrawHoleMod)
             {
-                Hole _markedHole = holePresenter.GetMarkedHole();
+                Hole _markedHole = currentHole;
                 //Console.WriteLine(_markedHole.Center.ToString());
                 //Console.WriteLine(_markedHole.Radius.ToString());
                 Point center = _markedHole.Center;
@@ -445,6 +390,7 @@ namespace MarkingUpDrawingTool.View
                 // Вычисляем ширину и высоту прямоугольника
                 int diameter = (int)(radius * 2);
 
+                pen.Color = Color.Purple;
                 // Рисуем окружность с использованием метода DrawEllipse объекта Graphics
                 g.DrawEllipse(pen, x, y, diameter, diameter);
             }
@@ -509,7 +455,7 @@ namespace MarkingUpDrawingTool.View
         private void удалитьОтверстиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DeleteHole?.Invoke(this, currentHole);
-
+            currentHole = new Hole();
             toolStripComboBoxHole.Items.Clear();
             List<Hole> _holes = holePresenter.GetHoles();
             foreach (var _hole in _holes)
@@ -522,5 +468,208 @@ namespace MarkingUpDrawingTool.View
             holePresenter.CleanMarkedHole();
             layerService.Invalidate()
 ;        }
+
+
+
+
+        //Перечень методов для выделения таблиц
+        private void выделитьГлавнуюТаблицуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            layerService.DrawMainTableMod = !layerService.DrawMainTableMod;
+            layerService.DrawTableMod = false;
+            saveDrawTableMode();
+        }
+
+        private void выделитьПобочнуюТаблицуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            layerService.DrawTableMod = !layerService.DrawTableMod;
+            layerService.DrawMainTableMod = false;
+            saveDrawTableMode();
+        }
+
+        private void saveDrawTableMode()
+        {
+            if (layerService.DrawTableMod || layerService.DrawMainTableMod)
+            {
+                if (layerService.DrawMainTableMod)
+                {
+                    выделитьГлавнуюТаблицуToolStripMenuItem.Checked = true;
+                    выделитьПобочнуюТаблицуToolStripMenuItem.Checked = false;
+                }
+                else
+                {
+                    выделитьПобочнуюТаблицуToolStripMenuItem.Checked = true;
+                    выделитьГлавнуюТаблицуToolStripMenuItem.Checked = false;
+                }
+                layerService.MouseMove += layerServiceTable_MouseMove;
+                layerService.MouseDown += layerServiceTable_MouseDown;
+                layerService.MouseUp += layerServiceTable_MouseUp;
+            }
+            else
+            {
+                выделитьГлавнуюТаблицуToolStripMenuItem.Checked = false;
+                выделитьПобочнуюТаблицуToolStripMenuItem.Checked = false;
+
+                layerService.MouseMove -= layerServiceTable_MouseMove;
+                layerService.MouseDown -= layerServiceTable_MouseDown;
+                layerService.MouseUp -= layerServiceTable_MouseUp;
+            }
+            //layerService.DrawTableMod = !layerService.DrawTableMod;
+
+            /*if (layerService.DrawTableMod || layerService.DrawMainTableMod)
+            {
+                if (layerService.DrawMainTableMod)
+                {
+                    выделитьГлавнуюТаблицуToolStripMenuItem.Checked = true;
+                }
+                else
+                {
+                    выделитьПобочнуюТаблицуToolStripMenuItem.Checked = true;
+                }
+                layerService.MouseMove += layerServiceTable_MouseMove;
+                layerService.MouseDown += layerServiceTable_MouseDown;
+                layerService.MouseUp += layerServiceTable_MouseUp;
+            }
+            else
+            {
+                выделитьГлавнуюТаблицуToolStripMenuItem.Checked = false;
+                выделитьПобочнуюТаблицуToolStripMenuItem.Checked = false;
+
+                layerService.MouseMove -= layerServiceTable_MouseMove;
+                layerService.MouseDown -= layerServiceTable_MouseDown;
+                layerService.MouseUp -= layerServiceTable_MouseUp;
+            }*/
+        }
+
+        private void layerServiceTable_MouseDown(object sender, MouseEventArgs e)
+        {
+            if ((layerService.DrawTableMod || layerService.DrawMainTableMod) && e.Button == MouseButtons.Left)
+            {
+                layerService.StartPoint = e.Location;
+            }
+            if ((layerService.DrawTableMod || layerService.DrawMainTableMod) && e.Button == MouseButtons.Right)
+            {
+                layerService.StartPoint = Point.Empty;
+                layerService.EndPoint = Point.Empty;
+            }
+        }
+
+        private void layerServiceTable_MouseUp(object sender, MouseEventArgs e)
+        {
+            if ((layerService.DrawTableMod || layerService.DrawMainTableMod) && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left)
+            {
+                layerService.EndPoint = e.Location;
+                AddTable?.Invoke(this, new Table(layerService.StartPoint, layerService.EndPoint));
+
+                if (layerService.DrawMainTableMod)
+                {
+                    TableNoteForm noteForm = new TableNoteForm(this);
+                    noteForm.ShowDialog();
+                }
+                currentTable = tablePresenter.GetMarkedTable();
+
+                layerService.Invalidate();
+                layerService.StartPoint = Point.Empty;
+                layerService.EndPoint = Point.Empty;
+            }
+        }
+
+        private void layerServiceTable_MouseMove(object sender, MouseEventArgs e)
+        {
+            if ((layerService.DrawTableMod || layerService.DrawMainTableMod) && layerService.StartPoint != Point.Empty)
+            {
+                layerService.EndPoint = e.Location;
+                AddTable?.Invoke(this, new Table(layerService.StartPoint, layerService.EndPoint));
+                currentTable = tablePresenter.GetMarkedTable();
+                layerService.Invalidate();
+            }
+        }
+
+        private void DrawDotRectangle(Graphics g)
+        {
+            List<Table> tables = tablePresenter.GetTables();
+
+            Pen pen = new Pen(Color.Red, 3);
+            pen.DashStyle = DashStyle.Dot;
+
+            foreach (Table table in tables)
+            {
+                Point start = table.Start;
+                Point end = table.End;
+                int width = Math.Abs(start.X - end.X);
+                int height = Math.Abs(start.Y - end.Y);
+                int x = Math.Min(start.X, end.X);
+                int y = Math.Min(start.Y, end.Y);
+
+                // Рисование прямоугольника с пунктирными границами
+                g.DrawRectangle(pen, x, y, width, height);
+            }
+            if ((layerService.DrawTableMod || layerService.DrawMainTableMod))
+            {
+                pen.Color = Color.Purple;
+                Table table = currentTable;
+
+                Point start = table.Start;
+                Point end = table.End;
+                int width = Math.Abs(start.X - end.X);
+                int height = Math.Abs(start.Y - end.Y);
+                int x = Math.Min(start.X, end.X);
+                int y = Math.Min(start.Y, end.Y);
+
+                // Рисование прямоугольника с пунктирными границами
+                g.DrawRectangle(pen, x, y, width, height);
+            }
+        }
+
+        public void SetTableNote(TableNote _tableNote)
+        {
+            AddTableNote?.Invoke(this, _tableNote);
+        }
+
+        private void сохранитьТаблицуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((layerService.DrawTableMod || layerService.DrawMainTableMod))
+            {
+                SaveTable?.Invoke(this, e);
+                toolStripComboBoxTable.Items.Clear();
+                List<Table> tables = tablePresenter.GetTables();
+                foreach (Table table in tables)
+                {
+                    toolStripComboBoxTable.Items.Add(table);
+                }
+
+                toolStripComboBoxTable.ComboBox.DisplayMember = "name";
+                tablePresenter.CleanMarkedTable();
+            }
+        }
+
+        private void удалитьТаблицуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteTable?.Invoke(this, currentTable);
+            currentTable = new Table();
+            toolStripComboBoxTable.Items.Clear();
+            List<Table> tables = tablePresenter.GetTables();
+            foreach (var table in tables)
+            {
+                Console.WriteLine(table.Name);
+                toolStripComboBoxTable.Items.Add(table);
+            }
+
+            toolStripComboBoxTable.ComboBox.DisplayMember = "name";
+            tablePresenter.CleanMarkedTable();
+            layerService.Invalidate();
+        }
+
+        private void comboBoxTable_SelectIndexChange(object sender, EventArgs e)
+        {
+            // Получение выбранного элемента
+            ToolStripComboBox comboBox = (ToolStripComboBox)sender;
+            var selectedObject = (Table)comboBox.SelectedItem;
+            currentTable = selectedObject;
+            // Обработка выбранного объекта
+            Console.WriteLine("Выбрана " + selectedObject.TableNote.Name);
+            //TablePresenter
+            layerService.Invalidate();
+        }
     }
 }
