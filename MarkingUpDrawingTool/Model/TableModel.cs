@@ -76,6 +76,7 @@ namespace MarkingUpDrawingTool.Model
         public List<Table> Tables { get => tables; set => tables = value; }
         private Table currentTable { get; set; }
         public Table CurrentTable { get => currentTable; set => currentTable = value; }
+
         public TableModel() 
         {
             tables = new List<Table>();
@@ -87,10 +88,6 @@ namespace MarkingUpDrawingTool.Model
             Point x = new Point(currentTable.Start.X, currentTable.Start.Y);
             Point y = new Point(currentTable.End.X, currentTable.End.Y);
             TableNote note = currentTable.TableNote;
-            /*string name = (String)currentTable.TableNote.Name;
-            string mass = currentTable.TableNote.Mass;
-            string scale = currentTable.TableNote.Scale;*/
-            /*Table table = new Table(x, y, mass, scale, name, this.Tables.Count);*/
             Table table = new Table(x, y, note, this.Tables.Count);
             tables.Add(table);
         }

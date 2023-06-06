@@ -33,7 +33,6 @@ namespace MarkingUpDrawingTool.Presenter
         public void SaveTable(object sender, EventArgs e)
         {
             model.SaveTable();
-            Console.WriteLine(model.Tables.Count);
         }
 
         public void DeleteTable(object sender, Table table)

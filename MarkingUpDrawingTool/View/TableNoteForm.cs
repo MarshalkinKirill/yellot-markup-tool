@@ -18,11 +18,23 @@ namespace MarkingUpDrawingTool.View
         {
             InitializeComponent();
             mainForm = _mainForm;
+            this.KeyDown += TableNoteForm_KeyDown;
+            this.nameTextBox.KeyDown += TableNoteForm_KeyDown;
+            this.massTextBox.KeyDown += TableNoteForm_KeyDown;
+            this.scaleTextBox.KeyDown += TableNoteForm_KeyDown;
         }
 
         private void ScaleLabel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void TableNoteForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SaveTableNoteButton_Click(sender, e);
+            }
         }
 
         private void SaveTableNoteButton_Click(object sender, EventArgs e)

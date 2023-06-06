@@ -92,7 +92,7 @@
             this.SaveTableNoteButton.Name = "SaveTableNoteButton";
             this.SaveTableNoteButton.Size = new System.Drawing.Size(75, 23);
             this.SaveTableNoteButton.TabIndex = 6;
-            this.SaveTableNoteButton.Text = "Сохранить";
+            this.SaveTableNoteButton.Text = "Применить";
             this.SaveTableNoteButton.UseVisualStyleBackColor = true;
             this.SaveTableNoteButton.Click += new System.EventHandler(this.SaveTableNoteButton_Click);
             // 

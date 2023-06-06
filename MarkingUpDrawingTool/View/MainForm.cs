@@ -21,29 +21,29 @@ using Point = System.Drawing.Point;
 using System.Runtime.CompilerServices;
 using System.Reflection;
 using System.Drawing.Drawing2D;
+using MarkingUpDrawingTool.View.ViewInteraface;
 
 namespace MarkingUpDrawingTool.View
 {
     public partial class MainForm : Form, IView
     {
         private string fileName = string.Empty;
-        public Point startPoint;
-        private Point endPoint;
-        private Point previousPoint;
         private Projection currentProjection;
         private Hole currentHole;
         private Table currentTable;
 
-        private Layer projectionLayer;
+        
         private Layer imageLayer;
-        //private Layer holeLayer;
-        LayerService layerService;
+        private LayerService layerService { get; set; }
+        public LayerService LayerService { get => layerService; set => layerService = value; }
 
         private ProjectionPresenter projectionPresenter;
         private HolePresenter holePresenter;
         private TablePresenter tablePresenter;
 
         //Объявление событий 
+        private ISizeView sizeView;
+
         public event EventHandler<Point> PointMarked;
         public event EventHandler SaveProjection;
         public event EventHandler<Projection> DeleteProjection;
@@ -64,8 +64,6 @@ namespace MarkingUpDrawingTool.View
             Controls.Add(menuStrip1);
             //Вспомогательные инструменты TODO: Вынести в отдельный класс
             layerService = new LayerService();
-            startPoint = Point.Empty;
-            endPoint = Point.Empty;
             
             //Подписка на глобальные события формы
             toolStripComboBoxProjection.SelectedIndexChanged += comboBoxProjection_SelectedIndexChanged;
@@ -77,6 +75,8 @@ namespace MarkingUpDrawingTool.View
             this.toolStripComboBoxTable.KeyDown += mainForm_KeyDown;
 
             //Презенторы
+            sizeView = new SizeView(this);
+
             projectionPresenter = new ProjectionPresenter(this);
             holePresenter = new HolePresenter(this);
             tablePresenter = new TablePresenter(this);
@@ -87,7 +87,7 @@ namespace MarkingUpDrawingTool.View
         //Метод инициализации слоев для отображения графики
         private void InitDrawLayers()
         {
-            projectionLayer = new Layer();
+            Layer projectionLayer = new Layer();
             projectionLayer.DrawActions = DrawLine;
             layerService.AddLayer(projectionLayer);
             
@@ -98,6 +98,10 @@ namespace MarkingUpDrawingTool.View
             Layer tableLayer = new Layer();
             tableLayer.DrawActions = DrawDotRectangle;
             layerService.AddLayer(tableLayer);
+
+            Layer sizeLayer = new Layer();
+            sizeLayer.DrawActions = DrawRectangle;
+            layerService.AddLayer(sizeLayer);
 
             panel1.Controls.Add(layerService);
         }
@@ -477,17 +481,17 @@ namespace MarkingUpDrawingTool.View
         {
             layerService.DrawMainTableMod = !layerService.DrawMainTableMod;
             layerService.DrawTableMod = false;
-            saveDrawTableMode();
+            SaveDrawTableMod();
         }
 
         private void выделитьПобочнуюТаблицуToolStripMenuItem_Click(object sender, EventArgs e)
         {
             layerService.DrawTableMod = !layerService.DrawTableMod;
             layerService.DrawMainTableMod = false;
-            saveDrawTableMode();
+            SaveDrawTableMod();
         }
 
-        private void saveDrawTableMode()
+        private void SaveDrawTableMod()
         {
             if (layerService.DrawTableMod || layerService.DrawMainTableMod)
             {
@@ -514,31 +518,6 @@ namespace MarkingUpDrawingTool.View
                 layerService.MouseDown -= layerServiceTable_MouseDown;
                 layerService.MouseUp -= layerServiceTable_MouseUp;
             }
-            //layerService.DrawTableMod = !layerService.DrawTableMod;
-
-            /*if (layerService.DrawTableMod || layerService.DrawMainTableMod)
-            {
-                if (layerService.DrawMainTableMod)
-                {
-                    выделитьГлавнуюТаблицуToolStripMenuItem.Checked = true;
-                }
-                else
-                {
-                    выделитьПобочнуюТаблицуToolStripMenuItem.Checked = true;
-                }
-                layerService.MouseMove += layerServiceTable_MouseMove;
-                layerService.MouseDown += layerServiceTable_MouseDown;
-                layerService.MouseUp += layerServiceTable_MouseUp;
-            }
-            else
-            {
-                выделитьГлавнуюТаблицуToolStripMenuItem.Checked = false;
-                выделитьПобочнуюТаблицуToolStripMenuItem.Checked = false;
-
-                layerService.MouseMove -= layerServiceTable_MouseMove;
-                layerService.MouseDown -= layerServiceTable_MouseDown;
-                layerService.MouseUp -= layerServiceTable_MouseUp;
-            }*/
         }
 
         private void layerServiceTable_MouseDown(object sender, MouseEventArgs e)
@@ -587,38 +566,7 @@ namespace MarkingUpDrawingTool.View
 
         private void DrawDotRectangle(Graphics g)
         {
-            List<Table> tables = tablePresenter.GetTables();
-
-            Pen pen = new Pen(Color.Red, 3);
-            pen.DashStyle = DashStyle.Dot;
-
-            foreach (Table table in tables)
-            {
-                Point start = table.Start;
-                Point end = table.End;
-                int width = Math.Abs(start.X - end.X);
-                int height = Math.Abs(start.Y - end.Y);
-                int x = Math.Min(start.X, end.X);
-                int y = Math.Min(start.Y, end.Y);
-
-                // Рисование прямоугольника с пунктирными границами
-                g.DrawRectangle(pen, x, y, width, height);
-            }
-            if ((layerService.DrawTableMod || layerService.DrawMainTableMod))
-            {
-                pen.Color = Color.Purple;
-                Table table = currentTable;
-
-                Point start = table.Start;
-                Point end = table.End;
-                int width = Math.Abs(start.X - end.X);
-                int height = Math.Abs(start.Y - end.Y);
-                int x = Math.Min(start.X, end.X);
-                int y = Math.Min(start.Y, end.Y);
-
-                // Рисование прямоугольника с пунктирными границами
-                g.DrawRectangle(pen, x, y, width, height);
-            }
+            layerService.DrawDotRectangle(g, tablePresenter, currentTable);
         }
 
         public void SetTableNote(TableNote _tableNote)
@@ -668,8 +616,45 @@ namespace MarkingUpDrawingTool.View
             currentTable = selectedObject;
             // Обработка выбранного объекта
             Console.WriteLine("Выбрана " + selectedObject.TableNote.Name);
+            Console.WriteLine(selectedObject.Start.ToString() + " - " + selectedObject.End.ToString());
             //TablePresenter
             layerService.Invalidate();
+        }
+
+
+        //Перечень методов для разметки Arrows
+        public ToolStripMenuItem GetSizeTool()
+        {
+            return this.ToolStripMenuSize;
+        }
+
+        public ToolStripMenuItem GetSizeAutoTool()
+        {
+            return this.ToolStripMenuSizeAuto;
+        }
+
+        public ToolStripMenuItem GetSizeSaveTool()
+        {
+            return this.ToolStripMenuSaveSize;
+        }
+
+        public ToolStripMenuItem GetSizeDeleteTool()
+        {
+            return this.ToolStripMenuDeleteSize;
+        }
+
+        public ToolStripComboBox GetSizeComboBox()
+        {
+            return this.toolStripComboBoxSize;
+        }
+
+        public Layer GetImageLayer()
+        {
+            return imageLayer;
+        }
+        public void DrawRectangle(Graphics g)
+        {
+            sizeView.DrawRectangle(g);
         }
     }
 }

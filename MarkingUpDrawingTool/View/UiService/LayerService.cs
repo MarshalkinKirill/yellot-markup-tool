@@ -1,6 +1,11 @@
-﻿using System;
+﻿using MarkingUpDrawingTool.Model;
+using MarkingUpDrawingTool.Presenter;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +46,10 @@ namespace MarkingUpDrawingTool.View.UiService
         public bool DrawTableMod { get => drawTableMod; set => drawTableMod = value; }
         private bool drawMainTableMod { get; set; }
         public bool DrawMainTableMod { get => drawMainTableMod; set => drawMainTableMod = value; }
+        private bool drawSizeMod { get; set; }
+        public bool DrawSizeMod { get => drawSizeMod; set => drawSizeMod = value; }
+        private bool drawSizeAutoMod { get; set; }
+        public bool DrawSizeAutoMod { get => drawSizeAutoMod; set => drawSizeAutoMod = value; }
 
         public bool reDraw;
 
@@ -104,6 +113,59 @@ namespace MarkingUpDrawingTool.View.UiService
             int imageY = (int)(point.Y * scaleY);
 
             return new Point(imageX, imageY);
+        }
+
+        public void DrawDotRectangle(Graphics g, TablePresenter tablePresenter, Table currentTable)
+        {
+            List<Table> tables = tablePresenter.GetTables();
+
+            Pen pen = new Pen(Color.Red, 3);
+            pen.DashStyle = DashStyle.Dot;
+
+            foreach (Table table in tables)
+            {
+                Point start = table.Start;
+                Point end = table.End;
+                int width = Math.Abs(start.X - end.X);
+                int height = Math.Abs(start.Y - end.Y);
+                int x = Math.Min(start.X, end.X);
+                int y = Math.Min(start.Y, end.Y);
+
+                // Рисование прямоугольника с пунктирными границами
+                g.DrawRectangle(pen, x, y, width, height);
+            }
+            if (DrawTableMod || DrawMainTableMod)
+            {
+                pen.Color = Color.Purple;
+                Table table = currentTable;
+
+                Point start = table.Start;
+                Point end = table.End;
+                int width = Math.Abs(start.X - end.X);
+                int height = Math.Abs(start.Y - end.Y);
+                int x = Math.Min(start.X, end.X);
+                int y = Math.Min(start.Y, end.Y);
+
+                // Рисование прямоугольника с пунктирными границами
+                g.DrawRectangle(pen, x, y, width, height);
+            }
+        }
+        public byte[] BitmapToBytes(Bitmap bitmap)
+        {
+            // Создаем пустой массив байтов
+            byte[] bytes;
+
+            // Используем блок using для гарантированного освобождения ресурсов
+            using (var stream = new MemoryStream())
+            {
+                // Сохраняем изображение в поток в формате PNG
+                bitmap.Save(stream, ImageFormat.Png);
+
+                // Получаем массив байтов из потока
+                bytes = stream.ToArray();
+            }
+
+            return bytes;
         }
     }
 }
