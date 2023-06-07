@@ -59,6 +59,20 @@ namespace MarkingUpDrawingTool.View
             sizeComboBox.SelectedIndexChanged += SizeComboBox_SelectedIndexChanged;
         }
 
+        public void Size_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (layerService.DrawSizeMod || layerService.DrawSizeAutoMod)
+            {
+                if (e.Control && e.KeyCode == Keys.S)
+                {
+                    SizeSaveTool_Click(this, e);
+                }
+                if (e.Control && e.KeyCode == Keys.D)
+                {
+                    SizeDeleteTool_Click(this, e);
+                }
+            }
+        }
         public void SizeTool_Click(object sender, EventArgs e)
         {
             layerService.DrawSizeMod = !layerService.DrawSizeMod;
@@ -88,18 +102,19 @@ namespace MarkingUpDrawingTool.View
                     sizeAutoTool.Checked = true;
                     sizeTool.Checked = false;
                 }
-                layerService.MouseMove += layerServiceSize_MouseMove;
+
                 layerService.MouseDown += layerServiceSize_MouseDown;
                 layerService.MouseUp += layerServiceSize_MouseUp;
+                layerService.MouseMove += layerServiceSize_MouseMove;
             }
             else
             {
                 sizeTool.Checked = false;
                 sizeAutoTool.Checked = false;
 
-                layerService.MouseMove -= layerServiceSize_MouseMove;
                 layerService.MouseDown -= layerServiceSize_MouseDown;
                 layerService.MouseUp -= layerServiceSize_MouseUp;
+                layerService.MouseMove -= layerServiceSize_MouseMove;
             }
         }
 

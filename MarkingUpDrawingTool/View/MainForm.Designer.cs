@@ -51,9 +51,6 @@
             this.сохранитьТаблицуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьТаблицуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBoxTable = new System.Windows.Forms.ToolStripComboBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripDropDownButton();
             this.ToolStripMenuSizeAuto = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuSize = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +58,14 @@
             this.ToolStripMenuSaveSize = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuDeleteSize = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBoxSize = new System.Windows.Forms.ToolStripComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.toolStripButtonArrow = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripComboBoxArrow = new System.Windows.Forms.ToolStripComboBox();
+            this.ToolStripMenuSaveArrow = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuDeleteArrow = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -108,7 +113,10 @@
             this.toolStripComboBoxTable,
             this.toolStripButton4,
             this.toolStripButton5,
-            this.toolStripComboBoxSize});
+            this.toolStripComboBoxSize,
+            this.toolStripButtonArrow,
+            this.toolStripButton7,
+            this.toolStripComboBoxArrow});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1443, 27);
@@ -265,29 +273,6 @@
             this.toolStripComboBoxTable.Name = "toolStripComboBoxTable";
             this.toolStripComboBoxTable.Size = new System.Drawing.Size(75, 27);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 51);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1443, 806);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 51);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1443, 806);
-            this.panel1.TabIndex = 3;
-            // 
             // toolStripButton4
             // 
             this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -340,6 +325,67 @@
             // 
             this.toolStripComboBoxSize.Name = "toolStripComboBoxSize";
             this.toolStripComboBoxSize.Size = new System.Drawing.Size(75, 27);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 51);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1443, 806);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 51);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1443, 806);
+            this.panel1.TabIndex = 3;
+            // 
+            // toolStripButtonArrow
+            // 
+            this.toolStripButtonArrow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonArrow.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonArrow.Image")));
+            this.toolStripButtonArrow.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonArrow.Name = "toolStripButtonArrow";
+            this.toolStripButtonArrow.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButtonArrow.Text = "Arrow";
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton7.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuSaveArrow,
+            this.ToolStripMenuDeleteArrow});
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(33, 24);
+            this.toolStripButton7.Text = "toolStripButton7";
+            // 
+            // toolStripComboBoxArrow
+            // 
+            this.toolStripComboBoxArrow.Name = "toolStripComboBoxArrow";
+            this.toolStripComboBoxArrow.Size = new System.Drawing.Size(75, 27);
+            // 
+            // ToolStripMenuSaveArrow
+            // 
+            this.ToolStripMenuSaveArrow.Name = "ToolStripMenuSaveArrow";
+            this.ToolStripMenuSaveArrow.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuSaveArrow.Text = "Сохранить срелку";
+            // 
+            // ToolStripMenuDeleteArrow
+            // 
+            this.ToolStripMenuDeleteArrow.Name = "ToolStripMenuDeleteArrow";
+            this.ToolStripMenuDeleteArrow.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuDeleteArrow.Text = "Удалить стрелку";
             // 
             // MainForm
             // 
@@ -397,5 +443,10 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveSize;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteSize;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxSize;
+        private System.Windows.Forms.ToolStripButton toolStripButtonArrow;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripButton7;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxArrow;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveArrow;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteArrow;
     }
 }

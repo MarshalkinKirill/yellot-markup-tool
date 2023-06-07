@@ -119,8 +119,10 @@ namespace MarkingUpDrawingTool.Presenter
                 Console.WriteLine("1");
                 roi = new Rect(end.X, end.Y - Math.Abs(end.Y - start.Y), Math.Abs(end.X - start.X), Math.Abs(end.Y - start.Y));
             }
+
             //Rect roi = new Rect(start.X, start.Y, Math.Abs(end.X - start.X), Math.Abs(end.Y - start.Y));
             Mat croppedImage = new Mat(image, roi);
+
             // Преобразование изображения в формат Pix для использования в Tesseract
             Pix pixImage = PixConverter.ToPix(OpenCvSharp.Extensions.BitmapConverter.ToBitmap(croppedImage));
             pixImage.Save("qwe.png");

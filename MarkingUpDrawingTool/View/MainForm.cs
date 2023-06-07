@@ -43,6 +43,7 @@ namespace MarkingUpDrawingTool.View
 
         //Объявление событий 
         private ISizeView sizeView;
+        private IArrowView arrowView;
 
         public event EventHandler<Point> PointMarked;
         public event EventHandler SaveProjection;
@@ -73,9 +74,11 @@ namespace MarkingUpDrawingTool.View
             this.toolStripComboBoxHole.KeyDown += mainForm_KeyDown;
             this.toolStripComboBoxProjection.KeyDown += mainForm_KeyDown;
             this.toolStripComboBoxTable.KeyDown += mainForm_KeyDown;
-
+            this.toolStripComboBoxArrow.KeyDown += mainForm_KeyDown;
+            this.toolStripComboBoxSize.KeyDown += mainForm_KeyDown;
             //Презенторы
             sizeView = new SizeView(this);
+            arrowView = new ArrowView(this);
 
             projectionPresenter = new ProjectionPresenter(this);
             holePresenter = new HolePresenter(this);
@@ -102,6 +105,10 @@ namespace MarkingUpDrawingTool.View
             Layer sizeLayer = new Layer();
             sizeLayer.DrawActions = DrawRectangle;
             layerService.AddLayer(sizeLayer);
+
+            Layer arrowLayer = new Layer();
+            arrowLayer.DrawActions = DrawArrow;
+            layerService.AddLayer(arrowLayer);
 
             panel1.Controls.Add(layerService);
         }
@@ -141,6 +148,8 @@ namespace MarkingUpDrawingTool.View
                     удалитьТаблицуToolStripMenuItem_Click(this, e);
                 }
             }
+            arrowView.Arrow_KeyDown(this, e);
+            sizeView.Size_KeyDown(this, e);
         }
 
         //Метод для подключения изображения на форму 
@@ -622,32 +631,27 @@ namespace MarkingUpDrawingTool.View
         }
 
 
-        //Перечень методов для разметки Arrows
+        //Перечень методов для разметки Size
         public ToolStripMenuItem GetSizeTool()
         {
             return this.ToolStripMenuSize;
         }
-
         public ToolStripMenuItem GetSizeAutoTool()
         {
             return this.ToolStripMenuSizeAuto;
         }
-
         public ToolStripMenuItem GetSizeSaveTool()
         {
             return this.ToolStripMenuSaveSize;
         }
-
         public ToolStripMenuItem GetSizeDeleteTool()
         {
             return this.ToolStripMenuDeleteSize;
         }
-
         public ToolStripComboBox GetSizeComboBox()
         {
             return this.toolStripComboBoxSize;
         }
-
         public Layer GetImageLayer()
         {
             return imageLayer;
@@ -655,6 +659,28 @@ namespace MarkingUpDrawingTool.View
         public void DrawRectangle(Graphics g)
         {
             sizeView.DrawRectangle(g);
+        }
+
+        //Перечень методов для раметки Arrow
+        public ToolStripButton GetArrowTool() 
+        {
+            return this.toolStripButtonArrow;
+        }
+        public ToolStripMenuItem GetArrowSaveTool()
+        {
+            return this.ToolStripMenuSaveArrow;
+        }
+        public ToolStripMenuItem GetArrowDeleteTool()
+        {
+            return this.ToolStripMenuDeleteArrow;
+        }
+        public ToolStripComboBox GetArrowComboBox()
+        {
+            return this.toolStripComboBoxArrow;
+        }
+        public void DrawArrow(Graphics g)
+        {
+            arrowView.DrawArrow(g);
         }
     }
 }

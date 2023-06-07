@@ -34,10 +34,17 @@ namespace MarkingUpDrawingTool.View.ViewInterface
         event EventHandler SaveTable;
         event EventHandler<Table> DeleteTable;
 
+        //SizeView
         ToolStripMenuItem GetSizeTool();
         ToolStripMenuItem GetSizeAutoTool();
         ToolStripMenuItem GetSizeDeleteTool();
         ToolStripMenuItem GetSizeSaveTool();
         ToolStripComboBox GetSizeComboBox();
+
+        //ArrowView
+        ToolStripButton GetArrowTool();
+        ToolStripMenuItem GetArrowDeleteTool();
+        ToolStripMenuItem GetArrowSaveTool();
+        ToolStripComboBox GetArrowComboBox();
     }
 }

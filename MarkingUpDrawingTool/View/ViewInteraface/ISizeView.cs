@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using DrSize = System.Drawing.Size;
 using Size = MarkingUpDrawingTool.Model.Size;
 
@@ -22,5 +23,6 @@ namespace MarkingUpDrawingTool.View.ViewInteraface
         event EventHandler<Size> DeleteSize;
         void SetSizeNote(string sizeNote);
         void DrawRectangle(Graphics g);
+        void Size_KeyDown(object sender, KeyEventArgs e);
     }
 }

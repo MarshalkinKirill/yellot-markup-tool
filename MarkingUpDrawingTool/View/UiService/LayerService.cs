@@ -34,14 +34,18 @@ namespace MarkingUpDrawingTool.View.UiService
     {
         List<Layer> layers;
 
-        private bool drawProjectionMod  { get; set; }
-        public bool DrawProjectionMod { get => drawProjectionMod; set => drawProjectionMod = value; }
-        private bool drawHoleMod { get; set; }
-        public bool DrawHoleMod { get => drawHoleMod; set => drawHoleMod = value; }
         private Point startPoint { get; set; }
         public Point StartPoint { get => startPoint; set => startPoint = value; }
         private Point endPoint { get; set; }
         public Point EndPoint { get => endPoint; set => endPoint = value; }
+        private Point startNote { get; set; }
+        public Point StartNote { get => startNote; set => startNote = value; }
+        private Point endNote { get; set; }
+        public Point EndNote { get => endNote; set => endNote = value; } 
+        private bool drawProjectionMod  { get; set; }
+        public bool DrawProjectionMod { get => drawProjectionMod; set => drawProjectionMod = value; }
+        private bool drawHoleMod { get; set; }
+        public bool DrawHoleMod { get => drawHoleMod; set => drawHoleMod = value; }
         private bool drawTableMod { get; set; }
         public bool DrawTableMod { get => drawTableMod; set => drawTableMod = value; }
         private bool drawMainTableMod { get; set; }
@@ -50,6 +54,8 @@ namespace MarkingUpDrawingTool.View.UiService
         public bool DrawSizeMod { get => drawSizeMod; set => drawSizeMod = value; }
         private bool drawSizeAutoMod { get; set; }
         public bool DrawSizeAutoMod { get => drawSizeAutoMod; set => drawSizeAutoMod = value; }
+        private bool drawArrowMod { get; set; }
+        public bool DrawArrowMod { get => drawArrowMod; set => drawArrowMod = value; }
 
         public bool reDraw;
 
