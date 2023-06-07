@@ -46,5 +46,11 @@ namespace MarkingUpDrawingTool.View.ViewInterface
         ToolStripMenuItem GetArrowDeleteTool();
         ToolStripMenuItem GetArrowSaveTool();
         ToolStripComboBox GetArrowComboBox();
+
+        //GapView
+        ToolStripButton GetGapTool();
+        ToolStripMenuItem GetGapSaveTool();
+        ToolStripMenuItem GetGapDeleteTool();
+        ToolStripComboBox GetGapComboBox();
     }
 }

@@ -47,6 +47,7 @@ namespace MarkingUpDrawingTool.View
             arrowDeleteTool.Click += ArrowDeleteTool_Click;
             arrowComboBox.SelectedIndexChanged += ArrowComboBox_SelectedIndexChanged;
             
+            arrowComboBox.KeyDown += Arrow_KeyDown;
         }
 
         public void Arrow_KeyDown(object sender, KeyEventArgs e)

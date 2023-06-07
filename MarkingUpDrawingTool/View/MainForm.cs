@@ -44,6 +44,7 @@ namespace MarkingUpDrawingTool.View
         //Объявление событий 
         private ISizeView sizeView;
         private IArrowView arrowView;
+        private IGapView gapView;
 
         public event EventHandler<Point> PointMarked;
         public event EventHandler SaveProjection;
@@ -76,9 +77,11 @@ namespace MarkingUpDrawingTool.View
             this.toolStripComboBoxTable.KeyDown += mainForm_KeyDown;
             this.toolStripComboBoxArrow.KeyDown += mainForm_KeyDown;
             this.toolStripComboBoxSize.KeyDown += mainForm_KeyDown;
+            this.ToolStripComboBoxGap.KeyDown += mainForm_KeyDown;
             //Презенторы
             sizeView = new SizeView(this);
             arrowView = new ArrowView(this);
+            gapView = new GapView(this);
 
             projectionPresenter = new ProjectionPresenter(this);
             holePresenter = new HolePresenter(this);
@@ -109,6 +112,10 @@ namespace MarkingUpDrawingTool.View
             Layer arrowLayer = new Layer();
             arrowLayer.DrawActions = DrawArrow;
             layerService.AddLayer(arrowLayer);
+
+            Layer gapLayer = new Layer();
+            gapLayer.DrawActions = DrawGap;
+            layerService.AddLayer(gapLayer);
 
             panel1.Controls.Add(layerService);
         }
@@ -150,6 +157,7 @@ namespace MarkingUpDrawingTool.View
             }
             arrowView.Arrow_KeyDown(this, e);
             sizeView.Size_KeyDown(this, e);
+            gapView.Gap_KeyDown(this, e);
         }
 
         //Метод для подключения изображения на форму 
@@ -681,6 +689,28 @@ namespace MarkingUpDrawingTool.View
         public void DrawArrow(Graphics g)
         {
             arrowView.DrawArrow(g);
+        }
+
+        //Перечень методов для разметки Gap
+        public ToolStripButton GetGapTool()
+        {
+            return this.ToolStripButtonGap;
+        }
+        public ToolStripMenuItem GetGapSaveTool()
+        {
+            return this.ToolStripMenuSaveGap;
+        }
+        public ToolStripMenuItem GetGapDeleteTool()
+        {
+            return this.ToolStripMenuDeleteGap;
+        }
+        public ToolStripComboBox GetGapComboBox()
+        {
+            return this.ToolStripComboBoxGap;
+        }
+        public void DrawGap(Graphics g)
+        {
+            gapView.DrawGap(g);
         }
     }
 }

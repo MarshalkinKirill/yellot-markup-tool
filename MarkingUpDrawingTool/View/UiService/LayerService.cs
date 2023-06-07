@@ -56,6 +56,8 @@ namespace MarkingUpDrawingTool.View.UiService
         public bool DrawSizeAutoMod { get => drawSizeAutoMod; set => drawSizeAutoMod = value; }
         private bool drawArrowMod { get; set; }
         public bool DrawArrowMod { get => drawArrowMod; set => drawArrowMod = value; }
+        private bool drawGapMod { get; set; }
+        public bool DrawGapMod { get => drawGapMod; set => drawGapMod = value; }
 
         public bool reDraw;
 

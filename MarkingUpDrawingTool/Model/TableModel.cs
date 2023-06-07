@@ -88,7 +88,7 @@ namespace MarkingUpDrawingTool.Model
             Point x = new Point(currentTable.Start.X, currentTable.Start.Y);
             Point y = new Point(currentTable.End.X, currentTable.End.Y);
             TableNote note = currentTable.TableNote;
-            Table table = new Table(x, y, note, this.Tables.Count);
+            Table table = new Table(x, y, note, this.Tables.Count + 1);
             tables.Add(table);
         }
 

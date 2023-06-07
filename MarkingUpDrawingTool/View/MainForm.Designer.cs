@@ -66,6 +66,11 @@
             this.toolStripComboBoxArrow = new System.Windows.Forms.ToolStripComboBox();
             this.ToolStripMenuSaveArrow = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuDeleteArrow = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripButtonGap = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton8 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.ToolStripComboBoxGap = new System.Windows.Forms.ToolStripComboBox();
+            this.ToolStripMenuSaveGap = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuDeleteGap = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -116,7 +121,10 @@
             this.toolStripComboBoxSize,
             this.toolStripButtonArrow,
             this.toolStripButton7,
-            this.toolStripComboBoxArrow});
+            this.toolStripComboBoxArrow,
+            this.ToolStripButtonGap,
+            this.toolStripButton8,
+            this.ToolStripComboBoxGap});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1443, 27);
@@ -387,6 +395,44 @@
             this.ToolStripMenuDeleteArrow.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuDeleteArrow.Text = "Удалить стрелку";
             // 
+            // ToolStripButtonGap
+            // 
+            this.ToolStripButtonGap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripButtonGap.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonGap.Image")));
+            this.ToolStripButtonGap.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripButtonGap.Name = "ToolStripButtonGap";
+            this.ToolStripButtonGap.Size = new System.Drawing.Size(24, 24);
+            this.ToolStripButtonGap.Text = "Gap";
+            // 
+            // toolStripButton8
+            // 
+            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton8.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuSaveGap,
+            this.ToolStripMenuDeleteGap});
+            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
+            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(33, 24);
+            this.toolStripButton8.Text = "toolStripButton8";
+            // 
+            // ToolStripComboBoxGap
+            // 
+            this.ToolStripComboBoxGap.Name = "ToolStripComboBoxGap";
+            this.ToolStripComboBoxGap.Size = new System.Drawing.Size(75, 27);
+            // 
+            // ToolStripMenuSaveGap
+            // 
+            this.ToolStripMenuSaveGap.Name = "ToolStripMenuSaveGap";
+            this.ToolStripMenuSaveGap.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuSaveGap.Text = "Сохранить разрыв";
+            // 
+            // ToolStripMenuDeleteGap
+            // 
+            this.ToolStripMenuDeleteGap.Name = "ToolStripMenuDeleteGap";
+            this.ToolStripMenuDeleteGap.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuDeleteGap.Text = "Удалить разрыв";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -448,5 +494,10 @@
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxArrow;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveArrow;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteArrow;
+        private System.Windows.Forms.ToolStripButton ToolStripButtonGap;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripButton8;
+        private System.Windows.Forms.ToolStripComboBox ToolStripComboBoxGap;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveGap;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteGap;
     }
 }
