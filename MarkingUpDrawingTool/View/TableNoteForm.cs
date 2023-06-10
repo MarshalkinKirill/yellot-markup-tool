@@ -1,4 +1,5 @@
 ﻿using MarkingUpDrawingTool.Model;
+using MarkingUpDrawingTool.View.ViewInteraface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,11 +14,11 @@ namespace MarkingUpDrawingTool.View
 {
     public partial class TableNoteForm : Form
     {
-        MainForm mainForm;
-        public TableNoteForm(MainForm _mainForm)
+        ITableView mainForm;
+        public TableNoteForm(ITableView mainForm)
         {
             InitializeComponent();
-            mainForm = _mainForm;
+            this.mainForm = mainForm;
             this.KeyDown += TableNoteForm_KeyDown;
             this.nameTextBox.KeyDown += TableNoteForm_KeyDown;
             this.massTextBox.KeyDown += TableNoteForm_KeyDown;

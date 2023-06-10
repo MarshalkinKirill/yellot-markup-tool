@@ -1,4 +1,5 @@
 ﻿using MarkingUpDrawingTool.Model;
+using MarkingUpDrawingTool.View.ViewInteraface;
 using MarkingUpDrawingTool.View.ViewInterface;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,12 @@ namespace MarkingUpDrawingTool.Presenter
 {
     public class TablePresenter
     {
-        private IView view;
+        private ITableView view;
         private TableModel model;
 
-        public TablePresenter(IView _view)
+        public TablePresenter(ITableView view)
         {
-            view = _view;
+            this.view = view;
             model = new TableModel();
 
             //Подписка на события в форме

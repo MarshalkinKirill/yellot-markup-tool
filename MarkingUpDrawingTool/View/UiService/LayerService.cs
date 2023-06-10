@@ -128,41 +128,6 @@ namespace MarkingUpDrawingTool.View.UiService
             return new Point(imageX, imageY);
         }
 
-        public void DrawDotRectangle(Graphics g, TablePresenter tablePresenter, Table currentTable)
-        {
-            List<Table> tables = tablePresenter.GetTables();
-
-            Pen pen = new Pen(Color.Red, 3);
-            pen.DashStyle = DashStyle.Dot;
-
-            foreach (Table table in tables)
-            {
-                Point start = table.Start;
-                Point end = table.End;
-                int width = Math.Abs(start.X - end.X);
-                int height = Math.Abs(start.Y - end.Y);
-                int x = Math.Min(start.X, end.X);
-                int y = Math.Min(start.Y, end.Y);
-
-                // Рисование прямоугольника с пунктирными границами
-                g.DrawRectangle(pen, x, y, width, height);
-            }
-            if (DrawTableMod || DrawMainTableMod)
-            {
-                pen.Color = Color.Purple;
-                Table table = currentTable;
-
-                Point start = table.Start;
-                Point end = table.End;
-                int width = Math.Abs(start.X - end.X);
-                int height = Math.Abs(start.Y - end.Y);
-                int x = Math.Min(start.X, end.X);
-                int y = Math.Min(start.Y, end.Y);
-
-                // Рисование прямоугольника с пунктирными границами
-                g.DrawRectangle(pen, x, y, width, height);
-            }
-        }
         public byte[] BitmapToBytes(Bitmap bitmap)
         {
             // Создаем пустой массив байтов

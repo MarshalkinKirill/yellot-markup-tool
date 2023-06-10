@@ -12,11 +12,13 @@ namespace MarkingUpDrawingTool.View.ViewInteraface
     public interface ITableView
     {
         event EventHandler<Table> AddTable;
+        event EventHandler<TableNote> AddTableNote;
         event EventHandler SaveTable;
         event EventHandler<Table> DeleteTable;
 
         void DrawTable(Graphics g);
         void Table_KeyDown(object sender, KeyEventArgs e);
+        void SetTableNote(TableNote note);
         List<Table> GetTables();
     }
 }

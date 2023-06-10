@@ -22,9 +22,6 @@ namespace MarkingUpDrawingTool.View.ViewInterface
         ToolStripMenuItem GetProjectionSaveTool();
         ToolStripMenuItem GetProjectionDeleteTool();
         ToolStripComboBox GetProjectionComboBox();
-        event EventHandler<Point> PointMarked;
-        event EventHandler SaveProjection;
-        event EventHandler<Projection> DeleteProjection;
 
         //HoleView
         ToolStripButton GetHoleTool();
@@ -32,15 +29,13 @@ namespace MarkingUpDrawingTool.View.ViewInterface
         ToolStripMenuItem GetHoleSaveTool();
         ToolStripMenuItem GetHoleDeleteTool();
         ToolStripComboBox GetHoleComboBox();
-        event EventHandler<Hole> AddHole;
-        event EventHandler SaveHole;
-        event EventHandler<Hole> DeleteHole;
 
         //TableView
-        event EventHandler<Table> AddTable;
-        event EventHandler<TableNote> AddTableNote;
-        event EventHandler SaveTable;
-        event EventHandler<Table> DeleteTable;
+        ToolStripMenuItem GetTableTool();
+        ToolStripMenuItem GetMainTableTool();
+        ToolStripMenuItem GetTableSaveTool();
+        ToolStripMenuItem GetTableDeleteTool();
+        ToolStripComboBox GetTableComboBox();
 
         //SizeView
         ToolStripMenuItem GetSizeTool();

@@ -48,10 +48,6 @@ namespace MarkingUpDrawingTool.Presenter
         public void AddSize(object sender, Size size) 
         {
             model.CurrentSize = size;
-            /*//{X=1452,Y=174} - {X=1566,Y=222}
-            //{X=598,Y=1026} - {X=728,Y=1109}
-            string text = DetectText(view.ImageLayer, new Point(1452, 174), new Point(1566, 222));
-            Console.WriteLine(text);*/
         }
 
         public void AddSizeNote(object sender, string note)
