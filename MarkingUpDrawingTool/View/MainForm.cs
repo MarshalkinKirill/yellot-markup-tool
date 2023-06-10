@@ -52,6 +52,8 @@ namespace MarkingUpDrawingTool.View
         private IGapView gapView;
         private IBorderView borderView;
         private IProjectionView projectionView;
+        private IHoleView holeView;
+        private ITableView tableView;
 
         public event EventHandler<Point> PointMarked;
         public event EventHandler SaveProjection;
@@ -75,7 +77,6 @@ namespace MarkingUpDrawingTool.View
             layerService = new LayerService();
             
             //Подписка на глобальные события формы
-            toolStripComboBoxHole.SelectedIndexChanged += comboBoxHole_SelectedIndexChange;
             toolStripComboBoxTable.SelectedIndexChanged += comboBoxTable_SelectIndexChange;
             this.KeyDown += mainForm_KeyDown;
             this.toolStripComboBoxHole.KeyDown += mainForm_KeyDown;
@@ -90,9 +91,10 @@ namespace MarkingUpDrawingTool.View
             gapView = new GapView(this);
             borderView = new BorderView(this);
             projectionView = new ProjectionView(this);
+            holeView = new HoleView(this);
 
             //projectionPresenter = new ProjectionPresenter(this);
-            holePresenter = new HolePresenter(this);
+            //holePresenter = new HolePresenter(this);
             tablePresenter = new TablePresenter(this);
             
         }
@@ -106,7 +108,7 @@ namespace MarkingUpDrawingTool.View
             layerService.AddLayer(projectionLayer);
             
             Layer holeLayer = new Layer();
-            holeLayer.DrawActions = DrawCyrcle;
+            holeLayer.DrawActions = DrawHole;
             layerService.AddLayer(holeLayer);
 
             Layer tableLayer = new Layer();
@@ -362,7 +364,7 @@ namespace MarkingUpDrawingTool.View
         }*/
 
 
-        //Перечень методов для обнаружения и работы с отверстиями
+        /*//Перечень методов для обнаружения и работы с отверстиями
         //Используется библиотека OpenCvSharp
         //Инструмент для обнаружения отверстий с помощью машинного зрения
         private void toolStripButtonHole_Click(object sender, EventArgs e)
@@ -371,14 +373,14 @@ namespace MarkingUpDrawingTool.View
 
             if (layerService.DrawHoleMod)
             {
-                toolStripButtonHole.Checked = true;
+                ToolStripButtonHole.Checked = true;
                 layerService.MouseMove += layerServiceHole_MouseMove;
                 layerService.MouseDown += layerServiceHole_MouseDown;
                 layerService.MouseUp += layerServiceHole_MouseUp;
             }
             else
             {
-                toolStripButtonHole.Checked = false;
+                ToolStripButtonHole.Checked = false;
                 layerService.MouseMove -= layerServiceHole_MouseMove;
                 layerService.MouseDown -= layerServiceHole_MouseDown;
                 layerService.MouseUp -= layerServiceHole_MouseUp;
@@ -532,8 +534,8 @@ namespace MarkingUpDrawingTool.View
 
             toolStripComboBoxHole.ComboBox.DisplayMember = "name";
             holePresenter.CleanMarkedHole();
-            layerService.Invalidate()
-;        }
+            layerService.Invalidate();
+;        }*/
 
 
 
@@ -703,6 +705,32 @@ namespace MarkingUpDrawingTool.View
         public void DrawProjection(Graphics g)
         {
             projectionView.DrawProjection(g);
+        }
+
+        //Методы для разметки Hole
+        public ToolStripButton GetHoleTool()
+        {
+            return ToolStripButtonHole;
+        }
+        public ToolStripMenuItem GetHoleSearchTool()
+        {
+            return ToolStripMenuHoleSearch;
+        }
+        public ToolStripMenuItem GetHoleSaveTool()
+        {
+            return ToolStripMenuHoleSave;
+        }
+        public ToolStripMenuItem GetHoleDeleteTool()
+        {
+            return ToolStripMenuHoleDelete;
+        }
+        public ToolStripComboBox GetHoleComboBox()
+        {
+            return toolStripComboBoxHole;
+        }
+        public void DrawHole(Graphics g)
+        {
+            holeView.DrawHole(g);
         }
         //Перечень методов для разметки Size
         public ToolStripMenuItem GetSizeTool()

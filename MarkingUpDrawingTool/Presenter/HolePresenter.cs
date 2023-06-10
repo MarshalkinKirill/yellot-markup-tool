@@ -13,15 +13,16 @@ using OpenCvSharp.Extensions;
 using CvPoint = OpenCvSharp.Point;
 using Point = System.Drawing.Point;
 using MarkingUpDrawingTool.View.UiService;
+using MarkingUpDrawingTool.View.ViewInteraface;
 
 namespace MarkingUpDrawingTool.Presenter
 {
     public class HolePresenter
     {
-        private IView view;
+        private IHoleView view;
         private HoleModel model;
 
-        public HolePresenter(IView view)
+        public HolePresenter(IHoleView view)
         {
             this.view = view;
             model = new HoleModel();

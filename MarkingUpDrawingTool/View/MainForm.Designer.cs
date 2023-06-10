@@ -40,11 +40,11 @@
             this.ToolStripMenuSaveProjection = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuDeleteProjection = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBoxProjection = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripButtonHole = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripButtonHole = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.сохранитьОтверстиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.удалитьОтверстиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.поискОтверстийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuHoleSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuHoleDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuHoleSearch = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBoxHole = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.выделитьГлавнуюТаблицуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,7 +122,7 @@
             this.toolStripButtonProjection,
             this.toolStripButtonProjectionSettings,
             this.toolStripComboBoxProjection,
-            this.toolStripButtonHole,
+            this.ToolStripButtonHole,
             this.toolStripButton2,
             this.toolStripComboBoxHole,
             this.toolStripButton1,
@@ -192,50 +192,46 @@
             this.toolStripComboBoxProjection.Name = "toolStripComboBoxProjection";
             this.toolStripComboBoxProjection.Size = new System.Drawing.Size(121, 27);
             // 
-            // toolStripButtonHole
+            // ToolStripButtonHole
             // 
-            this.toolStripButtonHole.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonHole.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonHole.Image")));
-            this.toolStripButtonHole.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonHole.Name = "toolStripButtonHole";
-            this.toolStripButtonHole.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButtonHole.Text = "toolStripButtonHole";
-            this.toolStripButtonHole.ToolTipText = "toolStripButtonHole";
-            this.toolStripButtonHole.Click += new System.EventHandler(this.toolStripButtonHole_Click);
+            this.ToolStripButtonHole.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripButtonHole.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonHole.Image")));
+            this.ToolStripButtonHole.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripButtonHole.Name = "ToolStripButtonHole";
+            this.ToolStripButtonHole.Size = new System.Drawing.Size(24, 24);
+            this.ToolStripButtonHole.Text = "Hole";
+            this.ToolStripButtonHole.ToolTipText = "ToolStripButtonHole";
             // 
             // toolStripButton2
             // 
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.сохранитьОтверстиеToolStripMenuItem,
-            this.удалитьОтверстиеToolStripMenuItem,
-            this.поискОтверстийToolStripMenuItem});
+            this.ToolStripMenuHoleSave,
+            this.ToolStripMenuHoleDelete,
+            this.ToolStripMenuHoleSearch});
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(33, 24);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
-            // сохранитьОтверстиеToolStripMenuItem
+            // ToolStripMenuHoleSave
             // 
-            this.сохранитьОтверстиеToolStripMenuItem.Name = "сохранитьОтверстиеToolStripMenuItem";
-            this.сохранитьОтверстиеToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.сохранитьОтверстиеToolStripMenuItem.Text = "Сохранить отверстие";
-            this.сохранитьОтверстиеToolStripMenuItem.Click += new System.EventHandler(this.сохранитьОтверстиеToolStripMenuItem_Click);
+            this.ToolStripMenuHoleSave.Name = "ToolStripMenuHoleSave";
+            this.ToolStripMenuHoleSave.Size = new System.Drawing.Size(191, 22);
+            this.ToolStripMenuHoleSave.Text = "Сохранить отверстие";
             // 
-            // удалитьОтверстиеToolStripMenuItem
+            // ToolStripMenuHoleDelete
             // 
-            this.удалитьОтверстиеToolStripMenuItem.Name = "удалитьОтверстиеToolStripMenuItem";
-            this.удалитьОтверстиеToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.удалитьОтверстиеToolStripMenuItem.Text = "Удалить отверстие";
-            this.удалитьОтверстиеToolStripMenuItem.Click += new System.EventHandler(this.удалитьОтверстиеToolStripMenuItem_Click);
+            this.ToolStripMenuHoleDelete.Name = "ToolStripMenuHoleDelete";
+            this.ToolStripMenuHoleDelete.Size = new System.Drawing.Size(191, 22);
+            this.ToolStripMenuHoleDelete.Text = "Удалить отверстие";
             // 
-            // поискОтверстийToolStripMenuItem
+            // ToolStripMenuHoleSearch
             // 
-            this.поискОтверстийToolStripMenuItem.Name = "поискОтверстийToolStripMenuItem";
-            this.поискОтверстийToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.поискОтверстийToolStripMenuItem.Text = "Поиск отверстий";
-            this.поискОтверстийToolStripMenuItem.Click += new System.EventHandler(this.поискОтверстийToolStripMenuItem_Click);
+            this.ToolStripMenuHoleSearch.Name = "ToolStripMenuHoleSearch";
+            this.ToolStripMenuHoleSearch.Size = new System.Drawing.Size(191, 22);
+            this.ToolStripMenuHoleSearch.Text = "Поиск отверстий";
             // 
             // toolStripComboBoxHole
             // 
@@ -487,12 +483,12 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteProjection;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxProjection;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStripButton toolStripButtonHole;
+        private System.Windows.Forms.ToolStripButton ToolStripButtonHole;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxHole;
         private System.Windows.Forms.ToolStripDropDownButton toolStripButton2;
-        private System.Windows.Forms.ToolStripMenuItem сохранитьОтверстиеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem удалитьОтверстиеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem поискОтверстийToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuHoleSave;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuHoleDelete;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuHoleSearch;
         private System.Windows.Forms.ToolStripDropDownButton toolStripButton1;
         private System.Windows.Forms.ToolStripMenuItem выделитьГлавнуюТаблицуToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выделитьПобочнуюТаблицуToolStripMenuItem;

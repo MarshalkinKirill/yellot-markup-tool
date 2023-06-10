@@ -27,6 +27,11 @@ namespace MarkingUpDrawingTool.View.ViewInterface
         event EventHandler<Projection> DeleteProjection;
 
         //HoleView
+        ToolStripButton GetHoleTool();
+        ToolStripMenuItem GetHoleSearchTool();
+        ToolStripMenuItem GetHoleSaveTool();
+        ToolStripMenuItem GetHoleDeleteTool();
+        ToolStripComboBox GetHoleComboBox();
         event EventHandler<Hole> AddHole;
         event EventHandler SaveHole;
         event EventHandler<Hole> DeleteHole;
