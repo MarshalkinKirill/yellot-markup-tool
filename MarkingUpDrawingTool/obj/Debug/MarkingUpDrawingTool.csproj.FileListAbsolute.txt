@@ -50,3 +50,5 @@ C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\Tesseract.d
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\Emgu.CV.xml
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\System.Drawing.Common.xml
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\MarkingUpDrawingTool.View.SizeNoteForm.resources
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\Newtonsoft.Json.dll
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\Newtonsoft.Json.xml

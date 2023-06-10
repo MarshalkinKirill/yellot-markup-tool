@@ -15,6 +15,8 @@ namespace MarkingUpDrawingTool.View.UiService
 {
     public class Layer
     {
+        private string name { get; set; }
+        public string Name { get => name; set => name = value; }
         private Image image { get; set; }
         public Image Image { get { return image; } }
         private Point location { get; set; }
@@ -23,10 +25,11 @@ namespace MarkingUpDrawingTool.View.UiService
         public Action<Graphics> DrawActions { get { return drawActions; } set { drawActions = value; } }
 
         public Layer() { }
-        public Layer(Image _image, Point _point) 
+        public Layer(Image image, Point point, string name) 
         {
-            image = _image;
-            location = _point;
+            this.image = image;
+            this.location = point;
+            this.name = name;
         }
     }
 
@@ -58,6 +61,8 @@ namespace MarkingUpDrawingTool.View.UiService
         public bool DrawArrowMod { get => drawArrowMod; set => drawArrowMod = value; }
         private bool drawGapMod { get; set; }
         public bool DrawGapMod { get => drawGapMod; set => drawGapMod = value; }
+        private bool drawBorderMod { get; set; }
+        public bool DrawBorderMod { get => drawBorderMod; set => drawBorderMod = value; }
 
         public bool reDraw;
 

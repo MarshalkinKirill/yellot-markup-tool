@@ -290,5 +290,10 @@ namespace MarkingUpDrawingTool.View
             path.AddPolygon(new PointF[] { end, arrowPoint1, arrowPoint2 });
             return path;
         }
+        
+        public List<Arrow> GetArrows()
+        {
+            return arrowPresenter.GetArrows();
+        }
     }
 }

@@ -258,5 +258,10 @@ namespace MarkingUpDrawingTool.View
                 g.DrawRectangle(pen, x, y, width, height);
             }
         }
+
+        public List<Size> GetSizes()
+        {
+            return sizePresenter.GetSizes();
+        }
     }
 }

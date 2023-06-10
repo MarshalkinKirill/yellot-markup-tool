@@ -17,5 +17,6 @@ namespace MarkingUpDrawingTool.View.ViewInteraface
 
         void DrawGap(Graphics g);
         void Gap_KeyDown(object sender, KeyEventArgs e);
+        List<Gap> GetGaps();
     }
 }

@@ -22,6 +22,11 @@ using System.Runtime.CompilerServices;
 using System.Reflection;
 using System.Drawing.Drawing2D;
 using MarkingUpDrawingTool.View.ViewInteraface;
+using System.IO;
+using DrSize = System.Drawing.Size;
+using Size = MarkingUpDrawingTool.Model.Size;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MarkingUpDrawingTool.View
 {
@@ -45,6 +50,7 @@ namespace MarkingUpDrawingTool.View
         private ISizeView sizeView;
         private IArrowView arrowView;
         private IGapView gapView;
+        private IBorderView borderView;
 
         public event EventHandler<Point> PointMarked;
         public event EventHandler SaveProjection;
@@ -82,6 +88,7 @@ namespace MarkingUpDrawingTool.View
             sizeView = new SizeView(this);
             arrowView = new ArrowView(this);
             gapView = new GapView(this);
+            borderView = new BorderView(this);
 
             projectionPresenter = new ProjectionPresenter(this);
             holePresenter = new HolePresenter(this);
@@ -116,6 +123,10 @@ namespace MarkingUpDrawingTool.View
             Layer gapLayer = new Layer();
             gapLayer.DrawActions = DrawGap;
             layerService.AddLayer(gapLayer);
+
+            Layer borderLayer = new Layer();
+            borderLayer.DrawActions = DrawBorder;
+            layerService.AddLayer(borderLayer);
 
             panel1.Controls.Add(layerService);
         }
@@ -169,7 +180,7 @@ namespace MarkingUpDrawingTool.View
             {
                 fileName = openFileDialog1.FileName;
 
-                imageLayer = new Layer(Image.FromFile(fileName), new Point(0,0));
+                imageLayer = new Layer(Image.FromFile(fileName), new Point(0,0), Path.GetFileNameWithoutExtension(fileName));
 
                 layerService.AddLayer(imageLayer);
                 layerService.Dock = DockStyle.Fill;
@@ -184,6 +195,60 @@ namespace MarkingUpDrawingTool.View
             } else
             {
                 MessageBox.Show("Выберите чертеж.","", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+        private void ToolStripMenuSaveAs_Click(object sender, EventArgs e)
+        {
+            this.saveFileDialog.Filter = "JSON файлы (*.json)|*.json|Все файлы (*.*)|*.*";
+            this.saveFileDialog.Title = "Сохранить JSON файл";
+            this.saveFileDialog.FileName = "Новый файл.json";
+
+            DialogResult saveResult = saveFileDialog.ShowDialog();
+            if (saveResult == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+                // Создание отдельной директории
+                string directoryPath = Path.GetDirectoryName(filePath);
+                if (imageLayer != null && imageLayer.Name != string.Empty)
+                {
+                    directoryPath += "\\" + imageLayer.Name;
+                    Console.WriteLine(directoryPath);
+                    Directory.CreateDirectory(directoryPath);
+                }
+                else
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
+                string sizesJson = JsonConvert.SerializeObject(sizeView.GetSizes(), Formatting.Indented);
+                string arrowsJson = JsonConvert.SerializeObject(arrowView.GetArrows(), Formatting.Indented);
+                string borderJson = JsonConvert.SerializeObject(borderView.GetBorder(), Formatting.Indented);
+                string gapsJson = JsonConvert.SerializeObject(gapView.GetGaps(), Formatting.Indented);
+                //string Json = JsonConvert.SerializeObject(sizeView.GetSizes(), Formatting.Indented);
+                //string sizesJson = JsonConvert.SerializeObject(sizeView.GetSizes(), Formatting.Indented);
+                //string sizesJson = JsonConvert.SerializeObject(sizeView.GetSizes(), Formatting.Indented);
+
+                var combinedJson = new JObject
+                {
+                    { "Sizes", JArray.Parse(sizesJson) },
+                    { "Arrows", JArray.Parse(arrowsJson) },
+                    { "Border", JArray.Parse(borderJson) },
+                    { "Gaps", JArray.Parse(gapsJson) },
+                    //{ "Object2", JObject.Parse(arrowsJson) },
+                    //{ "Object2", JObject.Parse(arrowsJson) },
+                    //{ "Object2", JObject.Parse(arrowsJson) }
+                };
+                // Сохранение JSON-строки в файл
+                string fileName = Path.GetFileName(filePath);
+                string fullPath = Path.Combine(directoryPath, fileName);
+                File.WriteAllText(fullPath, combinedJson.ToString());
+
+                // Оповещение пользователя об успешном сохранении файла
+                MessageBox.Show("JSON файл успешно сохранен.", "Сохранение файла", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("выберите путь сохранения", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -712,5 +777,16 @@ namespace MarkingUpDrawingTool.View
         {
             gapView.DrawGap(g);
         }
+
+        //перечень методов для разметки Border
+        public ToolStripButton GetBorderTool()
+        {
+            return this.ToolStripButtonBorder;
+        }
+        public void DrawBorder(Graphics g)
+        {
+            borderView.DrawBorder(g);
+        }
+
     }
 }

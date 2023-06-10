@@ -24,5 +24,6 @@ namespace MarkingUpDrawingTool.View.ViewInteraface
         void SetSizeNote(string sizeNote);
         void DrawRectangle(Graphics g);
         void Size_KeyDown(object sender, KeyEventArgs e);
+        List<Size> GetSizes();
     }
 }

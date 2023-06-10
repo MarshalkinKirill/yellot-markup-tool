@@ -315,5 +315,10 @@ namespace MarkingUpDrawingTool.View
                 g.DrawLine(pen, bend2, end);
             }
         }
+
+        public List<Gap> GetGaps()
+        {
+            return gapPresenter.GetGaps();
+        }
     }
 }
