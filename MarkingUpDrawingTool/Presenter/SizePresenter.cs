@@ -3,11 +3,6 @@ using MarkingUpDrawingTool.View.UiService;
 using MarkingUpDrawingTool.View.ViewInteraface;
 using System;
 using System.Collections.Generic;
-//using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
 using DrSize = System.Drawing.Size;
 using Size = MarkingUpDrawingTool.Model.Size;
 using OpenCvSharp;
@@ -53,8 +48,7 @@ namespace MarkingUpDrawingTool.Presenter
         public void AddSizeNote(object sender, string note)
         {
             model.CurrentSize.Note = note;
-            Console.WriteLine(model.CurrentSize.Note + " " + model.CurrentSize.Start.ToString() + " " + model.CurrentSize.End.ToString());
-        }
+            }
 
         public void DetectSizeNote(object sender, EventArgs e)
         {
@@ -102,17 +96,14 @@ namespace MarkingUpDrawingTool.Presenter
             }
             if (start.X < end.X && start.Y > end.Y)
             {
-                Console.WriteLine("-1");
                 roi = new Rect(start.X, start.Y - Math.Abs(end.Y - start.Y), Math.Abs(end.X - start.X), Math.Abs(end.Y - start.Y));
             }
             if (start.X > end.X && start.Y > end.Y)
             {
-                Console.WriteLine("0");
                 roi = new Rect(end.X, end.Y, Math.Abs(end.X - start.X), Math.Abs(end.Y - start.Y));
             }
             if (start.X > end.X && start.Y < end.Y)
             {
-                Console.WriteLine("1");
                 roi = new Rect(end.X, end.Y - Math.Abs(end.Y - start.Y), Math.Abs(end.X - start.X), Math.Abs(end.Y - start.Y));
             }
 
@@ -121,7 +112,7 @@ namespace MarkingUpDrawingTool.Presenter
 
             // Преобразование изображения в формат Pix для использования в Tesseract
             Pix pixImage = PixConverter.ToPix(OpenCvSharp.Extensions.BitmapConverter.ToBitmap(croppedImage));
-            pixImage.Save("qwe.png");
+            
             using (var engine = new TesseractEngine("./tessdata", "rus+osd+equ", EngineMode.Default))
             {
                 //engine.SetVariable("tessedit_char_whitelist", "0123456789");
