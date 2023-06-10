@@ -1,4 +1,5 @@
 ﻿using MarkingUpDrawingTool.Model;
+using MarkingUpDrawingTool.View.ViewInteraface;
 using MarkingUpDrawingTool.View.ViewInterface;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,10 @@ namespace MarkingUpDrawingTool.Presenter
 {
     public class ProjectionPresenter
     {
-        private IView view { get; set; }
+        private IProjectionView view { get; set; }
         private ProjectionModel model;
 
-        public ProjectionPresenter(IView view)
+        public ProjectionPresenter(IProjectionView view)
         {
             this.view = view;
             model = new ProjectionModel();

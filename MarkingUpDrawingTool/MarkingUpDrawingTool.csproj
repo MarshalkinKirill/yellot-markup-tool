@@ -121,6 +121,8 @@
     <Compile Include="View\ArrowView.cs" />
     <Compile Include="View\BorderView.cs" />
     <Compile Include="View\GapView.cs" />
+    <Compile Include="View\HoleView.cs" />
+    <Compile Include="View\ProjectionView.cs" />
     <Compile Include="View\SizeNoteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,11 +136,15 @@
     <Compile Include="View\TableNoteForm.Designer.cs">
       <DependentUpon>TableNoteForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\TableView.cs" />
     <Compile Include="View\UiService\LayerService.cs" />
     <Compile Include="View\ViewInteraface\IArrowView.cs" />
     <Compile Include="View\ViewInteraface\IBorderView.cs" />
     <Compile Include="View\ViewInteraface\IGapView.cs" />
+    <Compile Include="View\ViewInteraface\IHoleView.cs" />
+    <Compile Include="View\ViewInteraface\IProjectionView.cs" />
     <Compile Include="View\ViewInteraface\ISizeView.cs" />
+    <Compile Include="View\ViewInteraface\ITableView.cs" />
     <Compile Include="View\ViewInteraface\IView.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>

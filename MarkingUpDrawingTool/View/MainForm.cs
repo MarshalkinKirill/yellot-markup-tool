@@ -51,6 +51,7 @@ namespace MarkingUpDrawingTool.View
         private IArrowView arrowView;
         private IGapView gapView;
         private IBorderView borderView;
+        private IProjectionView projectionView;
 
         public event EventHandler<Point> PointMarked;
         public event EventHandler SaveProjection;
@@ -74,7 +75,6 @@ namespace MarkingUpDrawingTool.View
             layerService = new LayerService();
             
             //Подписка на глобальные события формы
-            toolStripComboBoxProjection.SelectedIndexChanged += comboBoxProjection_SelectedIndexChanged;
             toolStripComboBoxHole.SelectedIndexChanged += comboBoxHole_SelectedIndexChange;
             toolStripComboBoxTable.SelectedIndexChanged += comboBoxTable_SelectIndexChange;
             this.KeyDown += mainForm_KeyDown;
@@ -89,8 +89,9 @@ namespace MarkingUpDrawingTool.View
             arrowView = new ArrowView(this);
             gapView = new GapView(this);
             borderView = new BorderView(this);
+            projectionView = new ProjectionView(this);
 
-            projectionPresenter = new ProjectionPresenter(this);
+            //projectionPresenter = new ProjectionPresenter(this);
             holePresenter = new HolePresenter(this);
             tablePresenter = new TablePresenter(this);
             
@@ -101,7 +102,7 @@ namespace MarkingUpDrawingTool.View
         private void InitDrawLayers()
         {
             Layer projectionLayer = new Layer();
-            projectionLayer.DrawActions = DrawLine;
+            projectionLayer.DrawActions = DrawProjection;
             layerService.AddLayer(projectionLayer);
             
             Layer holeLayer = new Layer();
@@ -133,28 +134,7 @@ namespace MarkingUpDrawingTool.View
 
         private void mainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (layerService.DrawHoleMod)
-            {
-                if (e.Control && e.KeyCode == Keys.S)
-                {
-                    сохранитьОтверстиеToolStripMenuItem_Click(this, e);
-                }
-                if (e.Control && e.KeyCode == Keys.D)
-                {
-                    удалитьОтверстиеToolStripMenuItem_Click(this, e);
-                }
-            }
-            if (layerService.DrawProjectionMod)
-            {
-                if (e.Control && e.KeyCode == Keys.S)
-                {
-                    сохранитьПроекциюToolStripMenuItem_Click(this, e);
-                }
-                if (e.Control && e.KeyCode == Keys.D)
-                {
-                    удалитьПроекциюToolStripMenuItem_Click(this , e);
-                }
-            }
+            projectionView.Projection_KeyDown(sender, e);
             if (layerService.DrawMainTableMod || layerService.DrawTableMod)
             {
                 if (e.Control && e.KeyCode == Keys.S)
@@ -166,9 +146,9 @@ namespace MarkingUpDrawingTool.View
                     удалитьТаблицуToolStripMenuItem_Click(this, e);
                 }
             }
-            arrowView.Arrow_KeyDown(this, e);
-            sizeView.Size_KeyDown(this, e);
-            gapView.Gap_KeyDown(this, e);
+            arrowView.Arrow_KeyDown(sender, e);
+            sizeView.Size_KeyDown(sender, e);
+            gapView.Gap_KeyDown(sender, e);
         }
 
         //Метод для подключения изображения на форму 
@@ -252,7 +232,7 @@ namespace MarkingUpDrawingTool.View
             }
         }
 
-        //Перечень методов для работы интрумента "Projection"
+        /*//Перечень методов для работы интрумента "Projection"
         //Подписка других методов на событие используемого инструмента 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
@@ -379,7 +359,7 @@ namespace MarkingUpDrawingTool.View
             Console.WriteLine("Кол-во точек " + selectedObject.Points.Count);
             projectionPresenter.SetPoints(selectedObject.Points);
             layerService.Invalidate();
-        }
+        }*/
 
 
         //Перечень методов для обнаружения и работы с отверстиями
@@ -703,7 +683,27 @@ namespace MarkingUpDrawingTool.View
             layerService.Invalidate();
         }
 
-
+        //Методы для разметки Projection
+        public ToolStripButton GetProjectionTool()
+        {
+            return toolStripButtonProjection;
+        }
+        public ToolStripMenuItem GetProjectionSaveTool()
+        {
+            return ToolStripMenuSaveProjection;
+        }
+        public ToolStripMenuItem GetProjectionDeleteTool()
+        {
+            return ToolStripMenuDeleteProjection;
+        }
+        public ToolStripComboBox GetProjectionComboBox()
+        {
+            return toolStripComboBoxProjection;
+        }
+        public void DrawProjection(Graphics g)
+        {
+            projectionView.DrawProjection(g);
+        }
         //Перечень методов для разметки Size
         public ToolStripMenuItem GetSizeTool()
         {

@@ -32,11 +32,13 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ToolStripButtonBorder = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonProjection = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonProjectionSettings = new System.Windows.Forms.ToolStripDropDownButton();
-            this.сохранитьПроекциюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.удалитьПроекциюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuSaveProjection = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuDeleteProjection = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBoxProjection = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButtonHole = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -71,8 +73,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ToolStripButtonBorder = new System.Windows.Forms.ToolStripButton();
-            this.ToolStripMenuSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -103,9 +103,16 @@
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
+            // 
+            // ToolStripMenuSaveAs
+            // 
+            this.ToolStripMenuSaveAs.Name = "ToolStripMenuSaveAs";
+            this.ToolStripMenuSaveAs.Size = new System.Drawing.Size(157, 22);
+            this.ToolStripMenuSaveAs.Text = "Сохранить как ";
+            this.ToolStripMenuSaveAs.Click += new System.EventHandler(this.ToolStripMenuSaveAs_Click);
             // 
             // toolStrip1
             // 
@@ -136,6 +143,15 @@
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // ToolStripButtonBorder
+            // 
+            this.ToolStripButtonBorder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripButtonBorder.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonBorder.Image")));
+            this.ToolStripButtonBorder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripButtonBorder.Name = "ToolStripButtonBorder";
+            this.ToolStripButtonBorder.Size = new System.Drawing.Size(24, 24);
+            this.ToolStripButtonBorder.Text = "Border";
+            // 
             // toolStripButtonProjection
             // 
             this.toolStripButtonProjection.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -143,16 +159,15 @@
             this.toolStripButtonProjection.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonProjection.Name = "toolStripButtonProjection";
             this.toolStripButtonProjection.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButtonProjection.Text = "toolStripButtonProjection";
+            this.toolStripButtonProjection.Text = "Projection";
             this.toolStripButtonProjection.ToolTipText = "toolStripButtonProjection";
-            this.toolStripButtonProjection.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButtonProjectionSettings
             // 
             this.toolStripButtonProjectionSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonProjectionSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.сохранитьПроекциюToolStripMenuItem,
-            this.удалитьПроекциюToolStripMenuItem});
+            this.ToolStripMenuSaveProjection,
+            this.ToolStripMenuDeleteProjection});
             this.toolStripButtonProjectionSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonProjectionSettings.Image")));
             this.toolStripButtonProjectionSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonProjectionSettings.Name = "toolStripButtonProjectionSettings";
@@ -160,19 +175,17 @@
             this.toolStripButtonProjectionSettings.Text = "toolStripButtonProjectionSettings";
             this.toolStripButtonProjectionSettings.ToolTipText = "toolStripButtonProjectionSettings";
             // 
-            // сохранитьПроекциюToolStripMenuItem
+            // ToolStripMenuSaveProjection
             // 
-            this.сохранитьПроекциюToolStripMenuItem.Name = "сохранитьПроекциюToolStripMenuItem";
-            this.сохранитьПроекциюToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.сохранитьПроекциюToolStripMenuItem.Text = "Сохранить проекцию";
-            this.сохранитьПроекциюToolStripMenuItem.Click += new System.EventHandler(this.сохранитьПроекциюToolStripMenuItem_Click);
+            this.ToolStripMenuSaveProjection.Name = "ToolStripMenuSaveProjection";
+            this.ToolStripMenuSaveProjection.Size = new System.Drawing.Size(193, 22);
+            this.ToolStripMenuSaveProjection.Text = "Сохранить проекцию";
             // 
-            // удалитьПроекциюToolStripMenuItem
+            // ToolStripMenuDeleteProjection
             // 
-            this.удалитьПроекциюToolStripMenuItem.Name = "удалитьПроекциюToolStripMenuItem";
-            this.удалитьПроекциюToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.удалитьПроекциюToolStripMenuItem.Text = "Удалить проекцию";
-            this.удалитьПроекциюToolStripMenuItem.Click += new System.EventHandler(this.удалитьПроекциюToolStripMenuItem_Click);
+            this.ToolStripMenuDeleteProjection.Name = "ToolStripMenuDeleteProjection";
+            this.ToolStripMenuDeleteProjection.Size = new System.Drawing.Size(193, 22);
+            this.ToolStripMenuDeleteProjection.Text = "Удалить проекцию";
             // 
             // toolStripComboBoxProjection
             // 
@@ -438,22 +451,6 @@
             this.panel1.Size = new System.Drawing.Size(1443, 806);
             this.panel1.TabIndex = 3;
             // 
-            // ToolStripButtonBorder
-            // 
-            this.ToolStripButtonBorder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripButtonBorder.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonBorder.Image")));
-            this.ToolStripButtonBorder.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripButtonBorder.Name = "ToolStripButtonBorder";
-            this.ToolStripButtonBorder.Size = new System.Drawing.Size(24, 24);
-            this.ToolStripButtonBorder.Text = "Border";
-            // 
-            // ToolStripMenuSaveAs
-            // 
-            this.ToolStripMenuSaveAs.Name = "ToolStripMenuSaveAs";
-            this.ToolStripMenuSaveAs.Size = new System.Drawing.Size(180, 22);
-            this.ToolStripMenuSaveAs.Text = "Сохранить как ";
-            this.ToolStripMenuSaveAs.Click += new System.EventHandler(this.ToolStripMenuSaveAs_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -486,8 +483,8 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripButton toolStripButtonProjection;
         private System.Windows.Forms.ToolStripDropDownButton toolStripButtonProjectionSettings;
-        private System.Windows.Forms.ToolStripMenuItem сохранитьПроекциюToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem удалитьПроекциюToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveProjection;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteProjection;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxProjection;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripButton toolStripButtonHole;

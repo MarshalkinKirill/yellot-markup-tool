@@ -1,12 +1,22 @@
-﻿using System;
+﻿using MarkingUpDrawingTool.Model;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MarkingUpDrawingTool.View.ViewInteraface
 {
-    internal interface Interface1
+    public interface IProjectionView
     {
+        event EventHandler<Point> PointMarked;
+        event EventHandler SaveProjection;
+        event EventHandler<Projection> DeleteProjection;
+
+        void DrawProjection(Graphics g);
+        void Projection_KeyDown(object sender, KeyEventArgs e);
+        List<Projection> GetProjections();
     }
 }

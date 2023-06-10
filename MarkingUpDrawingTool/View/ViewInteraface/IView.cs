@@ -18,10 +18,13 @@ namespace MarkingUpDrawingTool.View.ViewInterface
         LayerService LayerService { get; set; }
         Layer GetImageLayer();
         //Prjection view
+        ToolStripButton GetProjectionTool();
+        ToolStripMenuItem GetProjectionSaveTool();
+        ToolStripMenuItem GetProjectionDeleteTool();
+        ToolStripComboBox GetProjectionComboBox();
         event EventHandler<Point> PointMarked;
         event EventHandler SaveProjection;
         event EventHandler<Projection> DeleteProjection;
-        void DrawLine(Graphics g);
 
         //HoleView
         event EventHandler<Hole> AddHole;
