@@ -47,8 +47,6 @@ namespace MarkingUpDrawingTool.View
             arrowSaveTool.Click += ArrowSaveTool_Click;
             arrowDeleteTool.Click += ArrowDeleteTool_Click;
             arrowComboBox.SelectedIndexChanged += ArrowComboBox_SelectedIndexChanged;
-            
-            arrowComboBox.KeyDown += Arrow_KeyDown;
         }
 
         public void Arrow_KeyDown(object sender, KeyEventArgs e)
@@ -238,7 +236,7 @@ namespace MarkingUpDrawingTool.View
 
                 g.TranslateTransform(-arrow.Origin.X, -arrow.Origin.Y);
             }
-            if (layerService.DrawArrowMod)
+            if (layerService.DrawArrowMod && arrowPresenter.GetMarkedArrow() != null)
             {
                 pen.Color = Color.Purple;
                 Arrow _currentArrow = arrowPresenter.GetMarkedArrow();

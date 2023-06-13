@@ -146,6 +146,7 @@
             // ToolStripButtonBorder
             // 
             this.ToolStripButtonBorder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripButtonBorder.Enabled = false;
             this.ToolStripButtonBorder.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonBorder.Image")));
             this.ToolStripButtonBorder.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripButtonBorder.Name = "ToolStripButtonBorder";
@@ -155,6 +156,7 @@
             // toolStripButtonProjection
             // 
             this.toolStripButtonProjection.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonProjection.Enabled = false;
             this.toolStripButtonProjection.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonProjection.Image")));
             this.toolStripButtonProjection.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonProjection.Name = "toolStripButtonProjection";
@@ -168,11 +170,12 @@
             this.toolStripButtonProjectionSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuSaveProjection,
             this.ToolStripMenuDeleteProjection});
+            this.toolStripButtonProjectionSettings.Enabled = false;
             this.toolStripButtonProjectionSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonProjectionSettings.Image")));
             this.toolStripButtonProjectionSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonProjectionSettings.Name = "toolStripButtonProjectionSettings";
             this.toolStripButtonProjectionSettings.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButtonProjectionSettings.Text = "toolStripButtonProjectionSettings";
+            this.toolStripButtonProjectionSettings.Text = "ProjectionSettings";
             this.toolStripButtonProjectionSettings.ToolTipText = "toolStripButtonProjectionSettings";
             // 
             // ToolStripMenuSaveProjection
@@ -189,12 +192,14 @@
             // 
             // toolStripComboBoxProjection
             // 
+            this.toolStripComboBoxProjection.Enabled = false;
             this.toolStripComboBoxProjection.Name = "toolStripComboBoxProjection";
             this.toolStripComboBoxProjection.Size = new System.Drawing.Size(121, 27);
             // 
             // ToolStripButtonHole
             // 
             this.ToolStripButtonHole.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripButtonHole.Enabled = false;
             this.ToolStripButtonHole.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonHole.Image")));
             this.ToolStripButtonHole.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripButtonHole.Name = "ToolStripButtonHole";
@@ -209,11 +214,12 @@
             this.ToolStripMenuHoleSave,
             this.ToolStripMenuHoleDelete,
             this.ToolStripMenuHoleSearch});
+            this.toolStripButton2.Enabled = false;
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButton2.Text = "toolStripButton2";
+            this.toolStripButton2.Text = "HoleSettings";
             // 
             // ToolStripMenuHoleSave
             // 
@@ -235,6 +241,7 @@
             // 
             // toolStripComboBoxHole
             // 
+            this.toolStripComboBoxHole.Enabled = false;
             this.toolStripComboBoxHole.Name = "toolStripComboBoxHole";
             this.toolStripComboBoxHole.Size = new System.Drawing.Size(75, 27);
             // 
@@ -244,11 +251,12 @@
             this.toolStripButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuMainTable,
             this.ToolStripMenuTable});
+            this.toolStripButton1.Enabled = false;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Text = "Table";
             // 
             // ToolStripMenuMainTable
             // 
@@ -268,11 +276,12 @@
             this.toolStripButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuTableSave,
             this.ToolStripMenuTableDelete});
+            this.toolStripButton3.Enabled = false;
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButton3.Text = "toolStripButton3";
+            this.toolStripButton3.Text = "TableSettings";
             // 
             // ToolStripMenuTableSave
             // 
@@ -288,6 +297,7 @@
             // 
             // toolStripComboBoxTable
             // 
+            this.toolStripComboBoxTable.Enabled = false;
             this.toolStripComboBoxTable.Name = "toolStripComboBoxTable";
             this.toolStripComboBoxTable.Size = new System.Drawing.Size(75, 27);
             // 
@@ -297,11 +307,12 @@
             this.toolStripButton4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuSizeAuto,
             this.ToolStripMenuSize});
+            this.toolStripButton4.Enabled = false;
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButton4.Text = "toolStripButton4";
+            this.toolStripButton4.Text = "Size";
             // 
             // ToolStripMenuSizeAuto
             // 
@@ -321,32 +332,35 @@
             this.toolStripButton5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuSaveSize,
             this.ToolStripMenuDeleteSize});
+            this.toolStripButton5.Enabled = false;
             this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButton5.Text = "toolStripButton5";
+            this.toolStripButton5.Text = "SizeSetting";
             // 
             // ToolStripMenuSaveSize
             // 
             this.ToolStripMenuSaveSize.Name = "ToolStripMenuSaveSize";
-            this.ToolStripMenuSaveSize.Size = new System.Drawing.Size(176, 22);
+            this.ToolStripMenuSaveSize.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuSaveSize.Text = "Сохранить размер";
             // 
             // ToolStripMenuDeleteSize
             // 
             this.ToolStripMenuDeleteSize.Name = "ToolStripMenuDeleteSize";
-            this.ToolStripMenuDeleteSize.Size = new System.Drawing.Size(176, 22);
+            this.ToolStripMenuDeleteSize.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuDeleteSize.Text = "Удалить размер";
             // 
             // toolStripComboBoxSize
             // 
+            this.toolStripComboBoxSize.Enabled = false;
             this.toolStripComboBoxSize.Name = "toolStripComboBoxSize";
             this.toolStripComboBoxSize.Size = new System.Drawing.Size(75, 27);
             // 
             // toolStripButtonArrow
             // 
             this.toolStripButtonArrow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonArrow.Enabled = false;
             this.toolStripButtonArrow.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonArrow.Image")));
             this.toolStripButtonArrow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonArrow.Name = "toolStripButtonArrow";
@@ -359,32 +373,35 @@
             this.toolStripButton7.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuSaveArrow,
             this.ToolStripMenuDeleteArrow});
+            this.toolStripButton7.Enabled = false;
             this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
             this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton7.Name = "toolStripButton7";
             this.toolStripButton7.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButton7.Text = "toolStripButton7";
+            this.toolStripButton7.Text = "ArrowSettings";
             // 
             // ToolStripMenuSaveArrow
             // 
             this.ToolStripMenuSaveArrow.Name = "ToolStripMenuSaveArrow";
-            this.ToolStripMenuSaveArrow.Size = new System.Drawing.Size(174, 22);
+            this.ToolStripMenuSaveArrow.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuSaveArrow.Text = "Сохранить срелку";
             // 
             // ToolStripMenuDeleteArrow
             // 
             this.ToolStripMenuDeleteArrow.Name = "ToolStripMenuDeleteArrow";
-            this.ToolStripMenuDeleteArrow.Size = new System.Drawing.Size(174, 22);
+            this.ToolStripMenuDeleteArrow.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuDeleteArrow.Text = "Удалить стрелку";
             // 
             // toolStripComboBoxArrow
             // 
+            this.toolStripComboBoxArrow.Enabled = false;
             this.toolStripComboBoxArrow.Name = "toolStripComboBoxArrow";
             this.toolStripComboBoxArrow.Size = new System.Drawing.Size(75, 27);
             // 
             // ToolStripButtonGap
             // 
             this.ToolStripButtonGap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripButtonGap.Enabled = false;
             this.ToolStripButtonGap.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonGap.Image")));
             this.ToolStripButtonGap.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripButtonGap.Name = "ToolStripButtonGap";
@@ -397,6 +414,7 @@
             this.toolStripButton8.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuSaveGap,
             this.ToolStripMenuDeleteGap});
+            this.toolStripButton8.Enabled = false;
             this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
             this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton8.Name = "toolStripButton8";
@@ -406,17 +424,18 @@
             // ToolStripMenuSaveGap
             // 
             this.ToolStripMenuSaveGap.Name = "ToolStripMenuSaveGap";
-            this.ToolStripMenuSaveGap.Size = new System.Drawing.Size(176, 22);
+            this.ToolStripMenuSaveGap.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuSaveGap.Text = "Сохранить разрыв";
             // 
             // ToolStripMenuDeleteGap
             // 
             this.ToolStripMenuDeleteGap.Name = "ToolStripMenuDeleteGap";
-            this.ToolStripMenuDeleteGap.Size = new System.Drawing.Size(176, 22);
+            this.ToolStripMenuDeleteGap.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuDeleteGap.Text = "Удалить разрыв";
             // 
             // ToolStripComboBoxGap
             // 
+            this.ToolStripComboBoxGap.Enabled = false;
             this.ToolStripComboBoxGap.Name = "ToolStripComboBoxGap";
             this.ToolStripComboBoxGap.Size = new System.Drawing.Size(75, 27);
             // 
@@ -434,6 +453,7 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Image Files (*.img;*.jpg)|*.img;*.jpg|All Files (*.*)|*.*";
             // 
             // panel1
             // 

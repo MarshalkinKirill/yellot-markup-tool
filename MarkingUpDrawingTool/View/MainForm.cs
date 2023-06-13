@@ -60,7 +60,6 @@ namespace MarkingUpDrawingTool.View
             holeView = new HoleView(this);
             tableView = new TableView(this);
 
-            layerServiceControl = new LayerServiceControl();
         }
 
 
@@ -176,6 +175,7 @@ namespace MarkingUpDrawingTool.View
 
             if (result == DialogResult.OK)
             {
+                Refresh();
                 fileName = openFileDialog1.FileName;
 
                 imageLayer = new Layer(Image.FromFile(fileName), new Point(0,0), Path.GetFileNameWithoutExtension(fileName));
@@ -196,11 +196,55 @@ namespace MarkingUpDrawingTool.View
                 panel1.Controls.Add(layerService);
 
                 Console.WriteLine(imageLayer.Image.Size.ToString());
-                Layer drawLayer = new Layer();
+
             } else
             {
                 MessageBox.Show("Выберите чертеж.","", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+        private void Refresh()
+        {
+            ToolStripButtonBorder.Enabled = true;
+
+            toolStripButtonProjection.Enabled = true;
+            toolStripButtonProjectionSettings.Enabled = true;
+            toolStripComboBoxProjection.Enabled = true;
+            toolStripComboBoxProjection.Items.Clear();
+
+            ToolStripButtonHole.Enabled = true;
+            toolStripButton2.Enabled = true;
+            toolStripComboBoxHole.Enabled = true;
+            toolStripComboBoxHole.Items.Clear();
+
+            toolStripButton1.Enabled = true;
+            toolStripButton3.Enabled = true;
+            toolStripComboBoxTable.Enabled = true;
+            toolStripComboBoxTable.Items.Clear();
+
+            toolStripButton4.Enabled = true;
+            toolStripButton5.Enabled = true;
+            toolStripComboBoxSize.Enabled = true;
+            toolStripComboBoxSize.Items.Clear();
+
+            toolStripButtonArrow.Enabled = true;
+            toolStripButton7.Enabled = true;
+            toolStripComboBoxArrow.Enabled = true;
+            toolStripComboBoxArrow.Items.Clear();
+
+            ToolStripButtonGap.Enabled = true;
+            toolStripButton8.Enabled = true;
+            ToolStripComboBoxGap.Enabled = true;
+            ToolStripComboBoxGap.Items.Clear();
+
+            layerService = new LayerService();
+            sizeView = new SizeView(this);
+            arrowView = new ArrowView(this);
+            gapView = new GapView(this);
+            borderView = new BorderView(this);
+            projectionView = new ProjectionView(this);
+            holeView = new HoleView(this);
+            tableView = new TableView(this);
+            panel1.Controls.Clear();
         }
         private void ToolStripMenuSaveAs_Click(object sender, EventArgs e)
         {

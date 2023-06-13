@@ -52,3 +52,6 @@ C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\System.Draw
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\MarkingUpDrawingTool.View.SizeNoteForm.resources
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\Newtonsoft.Json.dll
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\Newtonsoft.Json.xml
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\itextsharp.dll
+C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\itextsharp.xml

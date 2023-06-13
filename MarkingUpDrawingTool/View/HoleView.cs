@@ -11,6 +11,7 @@ using OpenCvSharp;
 using System.Collections.Generic;
 using System.Drawing;
 using Emgu.CV;
+using System.Web.Caching;
 
 namespace MarkingUpDrawingTool.View
 {
@@ -52,8 +53,6 @@ namespace MarkingUpDrawingTool.View
             holeSaveTool.Click += HoleSaveTool_Click;
             holeDeleteTool.Click += HoleDeleteTool_Click;
             holeComboBox.SelectedIndexChanged += HoleComboBox_SelectedIndexChanged;
-
-            holeComboBox.KeyDown += Hole_KeyDown;
         }
 
         public void Hole_KeyDown(object sender, KeyEventArgs e)
@@ -223,7 +222,7 @@ namespace MarkingUpDrawingTool.View
                 g.DrawEllipse(pen, x, y, diameter, diameter);
                 g.TranslateTransform(-hole.Origin.X, -hole.Origin.Y);
             }
-            if (layerService.DrawHoleMod)
+            if (layerService.DrawHoleMod && currentHole != null)
             {
                 Hole hole = currentHole;
                 g.TranslateTransform(hole.Origin.X, hole.Origin.Y);

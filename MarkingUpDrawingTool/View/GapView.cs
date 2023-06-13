@@ -241,7 +241,7 @@ namespace MarkingUpDrawingTool.View
                 g.DrawLine(pen, bend2, end);
                 g.TranslateTransform(-gap.StartOrigin.X, -gap.StartOrigin.Y);
             }
-            if (layerService.DrawGapMod)
+            if (layerService.DrawGapMod && currentGap != null)
             {
                 pen.Color = Color.Purple;
                 Gap gap = currentGap;

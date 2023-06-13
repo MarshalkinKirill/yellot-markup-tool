@@ -50,8 +50,6 @@ namespace MarkingUpDrawingTool.View
             projectionSaveTool.Click += ProjectionSaveTool_Click;
             projectionDeleteTool.Click += ProjectionDeleteTool_Click;
             projectionComboBox.SelectedIndexChanged += ProjectionComboBox_SelectedIndexChanged;
-
-            projectionComboBox.KeyDown += Projection_KeyDown;
         }
 
         public void Projection_KeyDown(object sender, KeyEventArgs e)
