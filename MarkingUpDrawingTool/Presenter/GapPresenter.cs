@@ -34,6 +34,7 @@ namespace MarkingUpDrawingTool.Presenter
         private void SaveGap(object sender, EventArgs e)
         {
             model.SaveGap();
+            Console.WriteLine(model.CurrentGap.Start.ToString() + model.CurrentGap.End.ToString());
         }
 
         private void DeleteGap(object sender, Gap Gap)

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using OpenCvSharp;
 using System.Collections.Generic;
 using System.Drawing;
+using Emgu.CV;
 
 namespace MarkingUpDrawingTool.View
 {
@@ -17,7 +18,8 @@ namespace MarkingUpDrawingTool.View
     {
         private IView mainForm;
         private HolePresenter holePresenter;
-        private LayerService layerService;
+        private LayerService layerService { get; set; }
+        public LayerService LayerService { get => layerService; set => layerService = value; }
         private Hole currentHole { get; set; }
         public Hole CurrentHole { get { return currentHole; } set { currentHole = value; } }
         private Layer imageLayer { get; set; }
@@ -93,7 +95,7 @@ namespace MarkingUpDrawingTool.View
         {
             if (layerService.DrawHoleMod && e.Button == MouseButtons.Left)
             {
-                layerService.StartPoint = e.Location;
+                layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
             }
             if (layerService.DrawHoleMod && e.Button == MouseButtons.Right)
             {
@@ -106,10 +108,10 @@ namespace MarkingUpDrawingTool.View
         {
             if (layerService.DrawHoleMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left)
             {
-                layerService.EndPoint = e.Location;
+                layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
                 float dist = (float)Math.Sqrt(Math.Pow(layerService.EndPoint.X - layerService.StartPoint.X, 2) + Math.Pow(layerService.EndPoint.Y - layerService.StartPoint.Y, 2));
                 Console.WriteLine(dist.ToString());
-                AddHole?.Invoke(this, new Hole(layerService.StartPoint, dist));
+                AddHole?.Invoke(this, new Hole(layerService.StartPoint, dist, layerService.Origin));
                 layerService.Invalidate();
                 currentHole = holePresenter.GetMarkedHole();
                 layerService.StartPoint = Point.Empty;
@@ -121,9 +123,9 @@ namespace MarkingUpDrawingTool.View
         {
             if (layerService.DrawHoleMod && layerService.StartPoint != Point.Empty)
             {
-                layerService.EndPoint = e.Location;
+                layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
                 float dist = (float)Math.Sqrt(Math.Pow(layerService.EndPoint.X - layerService.StartPoint.X, 2) + Math.Pow(layerService.EndPoint.Y - layerService.StartPoint.Y, 2));
-                AddHole?.Invoke(this, new Hole(layerService.StartPoint, dist));
+                AddHole?.Invoke(this, new Hole(layerService.StartPoint, dist, layerService.Origin));
                 currentHole = holePresenter.GetMarkedHole();
                 layerService.Invalidate();
             }
@@ -136,7 +138,7 @@ namespace MarkingUpDrawingTool.View
             {
                 Point _center = new Point((int)_circle.Center.X, (int)_circle.Center.Y);
 
-                AddHole?.Invoke(this, new Hole(_center, _circle.Radius));
+                AddHole?.Invoke(this, new Hole(_center, _circle.Radius, layerService.Origin));
                 SaveHole?.Invoke(this, e);
                 layerService.Invalidate();
 
@@ -208,7 +210,8 @@ namespace MarkingUpDrawingTool.View
             Pen pen = new Pen(Color.Red, 3);
             foreach (Hole hole in holes)
             {
-                Point center = hole.Center;
+                g.TranslateTransform(hole.Origin.X, hole.Origin.Y);
+                Point center = new Point(hole.Center.X - (hole.Origin.X), hole.Center.Y - (hole.Origin.Y));
                 float radius = hole.Radius;
                 int x = (int)(center.X - radius);
                 int y = (int)(center.Y - radius);
@@ -218,14 +221,16 @@ namespace MarkingUpDrawingTool.View
 
                 // Рисуем окружность с использованием метода DrawEllipse объекта Graphics
                 g.DrawEllipse(pen, x, y, diameter, diameter);
+                g.TranslateTransform(-hole.Origin.X, -hole.Origin.Y);
             }
             if (layerService.DrawHoleMod)
             {
-                Hole _markedHole = currentHole;
+                Hole hole = currentHole;
+                g.TranslateTransform(hole.Origin.X, hole.Origin.Y);
                 //Console.WriteLine(_markedHole.Center.ToString());
                 //Console.WriteLine(_markedHole.Radius.ToString());
-                Point center = _markedHole.Center;
-                float radius = _markedHole.Radius;
+                Point center = new Point(hole.Center.X - (hole.Origin.X), hole.Center.Y - (hole.Origin.Y));
+                float radius = hole.Radius;
                 int x = (int)(center.X - radius);
                 int y = (int)(center.Y - radius);
 
@@ -235,6 +240,7 @@ namespace MarkingUpDrawingTool.View
                 pen.Color = Color.Purple;
                 // Рисуем окружность с использованием метода DrawEllipse объекта Graphics
                 g.DrawEllipse(pen, x, y, diameter, diameter);
+                g.TranslateTransform(-hole.Origin.X, -hole.Origin.Y);
             }
         }
 

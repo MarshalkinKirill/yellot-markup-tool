@@ -1,4 +1,5 @@
-﻿using MarkingUpDrawingTool.Model;
+﻿using Emgu.CV;
+using MarkingUpDrawingTool.Model;
 using MarkingUpDrawingTool.Presenter;
 using MarkingUpDrawingTool.View.UiService;
 using MarkingUpDrawingTool.View.ViewInteraface;
@@ -17,9 +18,12 @@ namespace MarkingUpDrawingTool.View
     {
         private IView mainForm;
         private ProjectionPresenter projectionPresenter;
-        private LayerService layerService;
+        private LayerService layerService { get; set; }
+        public LayerService LayerService { get => layerService; set => layerService = value; }
         private Projection currentProjection { get; set; }
         public Projection CurrentArrow { get { return currentProjection; } set { currentProjection = value; } }
+        private Point startOrigin;
+        private Point endOrigin;
 
         private ToolStripButton projectionTool;
         private ToolStripMenuItem projectionSaveTool;
@@ -27,6 +31,7 @@ namespace MarkingUpDrawingTool.View
         private ToolStripComboBox projectionComboBox;
 
         public event EventHandler<Point> PointMarked;
+        public event EventHandler<Point> ChangePoint;
         public event EventHandler SaveProjection;
         public event EventHandler<Projection> DeleteProjection;
 
@@ -88,7 +93,8 @@ namespace MarkingUpDrawingTool.View
         {
             if (layerService.DrawProjectionMod && e.Button == MouseButtons.Left)
             {
-                layerService.StartPoint = e.Location;
+                layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
+                startOrigin = new Point(layerService.Origin.X, layerService.Origin.Y);
             }
             if (layerService.DrawProjectionMod && e.Button == MouseButtons.Right)
             {
@@ -101,9 +107,10 @@ namespace MarkingUpDrawingTool.View
         {
             if (layerService.DrawProjectionMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left)
             {
-                layerService.EndPoint = e.Location;
-
-                PointMarked?.Invoke(this, e.Location);
+                
+                layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
+                endOrigin = new Point(layerService.Origin.X, layerService.Origin.Y);
+                PointMarked?.Invoke(this, new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y));
                 layerService.Invalidate();
             }
         }
@@ -112,7 +119,9 @@ namespace MarkingUpDrawingTool.View
         {
             if (layerService.DrawProjectionMod && layerService.StartPoint != Point.Empty)
             {
-                layerService.EndPoint = e.Location;
+                layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
+                endOrigin = new Point(layerService.Origin.X, layerService.Origin.Y);
+                //ChangePoint?.Invoke(this, new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y));
                 layerService.Invalidate();
             }
         }
@@ -128,7 +137,10 @@ namespace MarkingUpDrawingTool.View
             }
 
             projectionComboBox.ComboBox.DisplayMember = "name";
+            layerService.StartPoint = Point.Empty;
+            layerService.EndPoint = Point.Empty;
             projectionPresenter.GetPoints().Clear();
+            projectionPresenter.GetOrigins().Clear();
         }
 
         private void ProjectionDeleteTool_Click(object sender, EventArgs e)
@@ -143,7 +155,10 @@ namespace MarkingUpDrawingTool.View
             }
 
             projectionComboBox.ComboBox.DisplayMember = "name";
+            layerService.StartPoint = Point.Empty;
+            layerService.EndPoint = Point.Empty;
             projectionPresenter.GetPoints().Clear();
+            projectionPresenter.GetOrigins().Clear();
         }
 
         private void ProjectionComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -155,6 +170,7 @@ namespace MarkingUpDrawingTool.View
             Console.WriteLine("Выбрана " + selectedObject.ToString());
             Console.WriteLine("Кол-во точек " + selectedObject.Points.Count);
             projectionPresenter.SetPoints(selectedObject.Points);
+            projectionPresenter.SetOrigins(selectedObject.Origins);
             layerService.Invalidate();
         }
 
@@ -163,18 +179,40 @@ namespace MarkingUpDrawingTool.View
             if (projectionPresenter.GetPoints().Count > 1)
             {
                 var points = projectionPresenter.GetPoints();
+                var origins = projectionPresenter.GetOrigins();
+                Point firstPoint, secondPoint;
 
                 Pen pen = new Pen(Color.Red, 3);
                 if (points.Count > 1)
                 {
+
                     for (int i = 0; i < points.Count - 1; i++)
                     {
-                        g.DrawLine(pen, points[i], points[i + 1]);
+                        if (origins[i] == origins[i + 1])
+                        {
+                            g.TranslateTransform(origins[i].X, origins[i].Y);
+                            firstPoint = new Point(points[i].X - (origins[i].X), points[i].Y - (origins[i].Y));
+                            secondPoint = new Point(points[i + 1].X - (origins[i + 1].X), points[i + 1].Y - (origins[i + 1].Y));
+                            g.DrawLine(pen, firstPoint, secondPoint);
+                            g.TranslateTransform(-origins[i].X, -origins[i].Y);
+                        }
+                        else
+                        {
+                            g.TranslateTransform(origins[i].X, origins[i].Y);
+                            firstPoint = new Point(points[i].X - (origins[i].X), points[i].Y - (origins[i].Y));
+                            secondPoint = new Point(points[i + 1].X - (origins[i].X), points[i + 1].Y - (origins[i].Y));
+                            g.DrawLine(pen, firstPoint, secondPoint);
+                            g.TranslateTransform(-origins[i].X, -origins[i].Y);
+                        }
                     }
                 }
                 if (layerService.DrawProjectionMod)
                 {
-                    g.DrawLine(pen, layerService.StartPoint, layerService.EndPoint);
+                    g.TranslateTransform(startOrigin.X, startOrigin.Y);
+                    firstPoint = new Point(layerService.StartPoint.X - (startOrigin.X), layerService.StartPoint.Y - (startOrigin.Y));
+                    secondPoint = new Point(layerService.EndPoint.X - (startOrigin.X), layerService.EndPoint.Y - (startOrigin.Y));
+                    g.DrawLine(pen, firstPoint, secondPoint);
+                    g.TranslateTransform(-startOrigin.X, -startOrigin.Y);
                 }
             }
         }

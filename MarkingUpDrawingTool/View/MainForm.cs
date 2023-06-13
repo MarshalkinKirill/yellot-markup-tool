@@ -9,6 +9,9 @@ using MarkingUpDrawingTool.View.ViewInteraface;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Web.UI.WebControls;
+using Image = System.Drawing.Image;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MarkingUpDrawingTool.View
 {
@@ -20,7 +23,10 @@ namespace MarkingUpDrawingTool.View
         private Layer imageLayer;
         private LayerService layerService { get; set; }
         public LayerService LayerService { get => layerService; set => layerService = value; }
-
+        VScrollBar vScrollBar;
+        HScrollBar hScrollBar;
+        LayerServiceControl layerServiceControl;
+        
 
         //Объявление событий 
         private ISizeView sizeView;
@@ -54,13 +60,14 @@ namespace MarkingUpDrawingTool.View
             holeView = new HoleView(this);
             tableView = new TableView(this);
 
+            layerServiceControl = new LayerServiceControl();
         }
 
 
         //Метод инициализации слоев для отображения графики
         private void InitDrawLayers()
         {
-            Layer projectionLayer = new Layer();
+            Layer projectionLayer = new Layer(new Point(0,0));
             projectionLayer.DrawActions = DrawProjection;
             layerService.AddLayer(projectionLayer);
             
@@ -88,9 +95,70 @@ namespace MarkingUpDrawingTool.View
             borderLayer.DrawActions = DrawBorder;
             layerService.AddLayer(borderLayer);
 
+            // Создание вертикального скролла
+            vScrollBar = new VScrollBar();
+            vScrollBar.Dock = DockStyle.Right;
+            vScrollBar.Maximum = imageLayer.Image.Height - panel1.Height;
+            vScrollBar.Scroll += VScrollBar_Scroll;
+            // Создание вертикального скролла
+            hScrollBar = new HScrollBar();
+            hScrollBar.Dock = DockStyle.Bottom;
+            hScrollBar.Maximum = imageLayer.Image.Width - panel1.Width;
+            hScrollBar.Scroll += HScrollBar_Scroll;
+            // Добавление скролла на панель
+            panel1.Controls.Add(vScrollBar);
+            panel1.Controls.Add(hScrollBar);
+
+            panel1.AutoScroll = true;
             panel1.Controls.Add(layerService);
         }
 
+        private void VScrollBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            // Получение направления прокрутки
+            ScrollOrientation orientation = e.ScrollOrientation;
+
+            // Получение значения прокрутки с инверсией
+            int scrollValue = -e.NewValue + e.OldValue;
+
+            if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
+            {
+                layerService.Top += scrollValue;
+            }
+            else if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)
+            {
+                layerService.Left += scrollValue;
+            }
+            layerService.vPanel_Scroll(this, e);
+            // Прокрутка всех слоев в LayerService
+            //layerService.ScrollLayers(orientation, scrollValue);
+
+            // Обновление отображения
+            layerService.Invalidate();
+        }
+        private void HScrollBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            // Получение направления прокрутки
+            ScrollOrientation orientation = e.ScrollOrientation;
+
+            // Получение значения прокрутки с инверсией
+            int scrollValue = -e.NewValue + e.OldValue;
+
+            if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
+            {
+                layerService.Top += scrollValue;
+            }
+            else if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)
+            {
+                layerService.Left += scrollValue;
+            }
+            layerService.hPanel_Scroll(this, e);
+            // Прокрутка всех слоев в LayerService
+            //layerService.ScrollLayers(orientation, scrollValue);
+
+            // Обновление отображения
+            layerService.Invalidate();
+        }
         private void mainForm_KeyDown(object sender, KeyEventArgs e)
         {
             projectionView.Projection_KeyDown(sender, e);
@@ -111,16 +179,23 @@ namespace MarkingUpDrawingTool.View
                 fileName = openFileDialog1.FileName;
 
                 imageLayer = new Layer(Image.FromFile(fileName), new Point(0,0), Path.GetFileNameWithoutExtension(fileName));
-
+                
                 layerService.AddLayer(imageLayer);
                 layerService.Dock = DockStyle.Fill;
-                layerService.Show();
+                layerService.Size = new System.Drawing.Size(imageLayer.Image.Width, imageLayer.Image.Height);
+
+                //layerService.Show();
+                /*layerServiceControl.AddLayer(imageLayer);
+                layerServiceControl.Dock = DockStyle.Fill;
+                layerServiceControl.Show();*/
                 InitDrawLayers();
 
-                panel1.Size = imageLayer.Image.Size;
+                
+                //panel1.Size = imageLayer.Image.Size;
+                //panel1.Controls.Add(layerServiceControl);
                 panel1.Controls.Add(layerService);
 
-                Console.WriteLine(imageLayer.Image.Width.ToString(), imageLayer.Image.Height.ToString());
+                Console.WriteLine(imageLayer.Image.Size.ToString());
                 Layer drawLayer = new Layer();
             } else
             {
@@ -204,6 +279,10 @@ namespace MarkingUpDrawingTool.View
         }
 
         public void DrawProjection(Graphics g)
+        {
+            projectionView.DrawProjection(g);
+        }
+        public void DrawProjection(Graphics g, Point location)
         {
             projectionView.DrawProjection(g);
         }

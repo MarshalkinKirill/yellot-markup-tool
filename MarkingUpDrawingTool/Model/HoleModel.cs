@@ -15,23 +15,28 @@ namespace MarkingUpDrawingTool.Model
         public Point Center { get => center; set => center = value; }
         private float radius { get; set; }
         public float Radius { get => radius; set => radius = value; }
+        private Point origin { get; set; }
+        public Point Origin { get => origin; set => origin = value; }
 
         public Hole() 
         {
             name = string.Empty;
             center = new Point();
             radius = 0;
+            origin = new Point();
         }
-        public Hole(Point _center, float _radious) 
+        public Hole(Point _center, float _radious, Point origin) 
         {
             center = _center;
             radius = _radious;
+            this.origin = origin;
         }
-        public Hole(Point _center, float _radious, int _number) 
+        public Hole(Point _center, float _radious, int _number, Point origin) 
         {
             name = "Hole №" + _number.ToString();
             center = _center;
             radius = _radious;
+            this.origin = origin;
         }
         public override string ToString()
         {
@@ -47,19 +52,23 @@ namespace MarkingUpDrawingTool.Model
         public Point Center { get => center; set => center = value; }
         private float radius { get; set; }
         public float Radius { get => radius; set => radius = value; }
+        private Point origin { get; set; }
+        public Point Origin { get => origin; set => origin = value; }
 
         public HoleModel() 
         {
             holes = new List<Hole>();
             center = Point.Empty;
             radius = 0;
+            origin = Point.Empty;
         }
 
         public void SaveHole()
         {
-            Point _center = new Point(center.X, center.Y);
-            float _radius = radius;
-            holes.Add(new Hole(_center, _radius, holes.Count));
+            Point center = new Point(this.center.X, this.center.Y);
+            float radius = this.radius;
+            Point origin = new Point(this.origin.X, this.origin.Y);
+            holes.Add(new Hole(center, radius, holes.Count, origin));
         }
 
         public void SaveHole(Hole _hole)
@@ -67,10 +76,11 @@ namespace MarkingUpDrawingTool.Model
             holes.Add(_hole);
         }
 
-        public void AddHole(Point _center, float _radius)
+        public void AddHole(Point _center, float _radius, Point origin)
         {
             center = _center;
             radius = _radius;
+            this.origin = origin;
         }
     }
 }

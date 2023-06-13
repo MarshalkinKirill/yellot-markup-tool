@@ -1,4 +1,5 @@
-﻿using MarkingUpDrawingTool.Model;
+﻿using Emgu.CV;
+using MarkingUpDrawingTool.Model;
 using MarkingUpDrawingTool.Presenter;
 using MarkingUpDrawingTool.View.UiService;
 using MarkingUpDrawingTool.View.ViewInteraface;
@@ -115,7 +116,7 @@ namespace MarkingUpDrawingTool.View
         {
             if ((layerService.DrawTableMod || layerService.DrawMainTableMod) && e.Button == MouseButtons.Left)
             {
-                layerService.StartPoint = e.Location;
+                layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
             }
             if ((layerService.DrawTableMod || layerService.DrawMainTableMod) && e.Button == MouseButtons.Right)
             {
@@ -128,8 +129,8 @@ namespace MarkingUpDrawingTool.View
         {
             if ((layerService.DrawTableMod || layerService.DrawMainTableMod) && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left)
             {
-                layerService.EndPoint = e.Location;
-                AddTable?.Invoke(this, new Table(layerService.StartPoint, layerService.EndPoint));
+                layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
+                AddTable?.Invoke(this, new Table(layerService.StartPoint, layerService.EndPoint, layerService.Origin));
 
                 if (layerService.DrawMainTableMod)
                 {
@@ -148,8 +149,8 @@ namespace MarkingUpDrawingTool.View
         {
             if ((layerService.DrawTableMod || layerService.DrawMainTableMod) && layerService.StartPoint != Point.Empty)
             {
-                layerService.EndPoint = e.Location;
-                AddTable?.Invoke(this, new Table(layerService.StartPoint, layerService.EndPoint));
+                layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
+                AddTable?.Invoke(this, new Table(layerService.StartPoint, layerService.EndPoint, layerService.Origin));
                 currentTable = tablePresenter.GetMarkedTable();
                 layerService.Invalidate();
             }
@@ -211,8 +212,10 @@ namespace MarkingUpDrawingTool.View
 
             foreach (Table table in tables)
             {
-                Point start = table.Start;
-                Point end = table.End;
+                g.TranslateTransform(table.Origin.X, table.Origin.Y);
+                Point start = new Point(table.Start.X - (table.Origin.X), table.Start.Y - (table.Origin.Y));
+                Point end = new Point(table.End.X - (table.Origin.X), table.End.Y - (table.Origin.Y));
+
                 int width = Math.Abs(start.X - end.X);
                 int height = Math.Abs(start.Y - end.Y);
                 int x = Math.Min(start.X, end.X);
@@ -220,14 +223,18 @@ namespace MarkingUpDrawingTool.View
 
                 // Рисование прямоугольника с пунктирными границами
                 g.DrawRectangle(pen, x, y, width, height);
+
+                g.TranslateTransform(-table.Origin.X, -table.Origin.Y);
             }
             if (layerService.DrawTableMod || LayerService.DrawMainTableMod)
             {
                 pen.Color = Color.Purple;
-                Table table = currentTable;
 
-                Point start = table.Start;
-                Point end = table.End;
+                Table table = currentTable;
+                g.TranslateTransform(table.Origin.X, table.Origin.Y);
+                Point start = new Point(table.Start.X - (table.Origin.X), table.Start.Y - (table.Origin.Y));
+                Point end = new Point(table.End.X - (table.Origin.X), table.End.Y - (table.Origin.Y));
+
                 int width = Math.Abs(start.X - end.X);
                 int height = Math.Abs(start.Y - end.Y);
                 int x = Math.Min(start.X, end.X);
@@ -235,6 +242,8 @@ namespace MarkingUpDrawingTool.View
 
                 // Рисование прямоугольника с пунктирными границами
                 g.DrawRectangle(pen, x, y, width, height);
+
+                g.TranslateTransform(-table.Origin.X, -table.Origin.Y);
             }
         }
 

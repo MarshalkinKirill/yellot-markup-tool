@@ -1,4 +1,5 @@
-﻿using MarkingUpDrawingTool.Model;
+﻿using Emgu.CV;
+using MarkingUpDrawingTool.Model;
 using MarkingUpDrawingTool.Presenter;
 using MarkingUpDrawingTool.View.UiService;
 using MarkingUpDrawingTool.View.ViewInteraface;
@@ -97,11 +98,11 @@ namespace MarkingUpDrawingTool.View
                 arrowPresenter.CleanMarkedArrow();
                 if (layerService.StartPoint == Point.Empty)
                 {
-                    layerService.StartPoint = e.Location;
+                    layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
                 }
                 else
                 {
-                    layerService.StartNote = e.Location;
+                    layerService.StartNote = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
                 }
 
             }
@@ -109,7 +110,7 @@ namespace MarkingUpDrawingTool.View
             {
                 if(layerService.EndPoint != Point.Empty)
                 {
-                    AddArrow?.Invoke(this, new Arrow(layerService.StartPoint, layerService.EndPoint, layerService.StartPoint, layerService.EndPoint));
+                    AddArrow?.Invoke(this, new Arrow(layerService.StartPoint, layerService.EndPoint, layerService.StartPoint, layerService.EndPoint, layerService.Origin));
                     layerService.StartPoint = Point.Empty;
                     layerService.EndPoint = Point.Empty;
                     layerService.StartNote = Point.Empty;
@@ -126,12 +127,12 @@ namespace MarkingUpDrawingTool.View
             {
                 if (layerService.StartPoint != Point.Empty && layerService.StartNote == Point.Empty)
                 {
-                    layerService.EndPoint = e.Location;
+                    layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
                 }
                 else
                 {
-                    layerService.EndNote = e.Location;
-                    AddArrow?.Invoke(this, new Arrow(layerService.StartPoint, layerService.EndPoint, layerService.StartNote, layerService.EndNote));
+                    layerService.EndNote = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
+                    AddArrow?.Invoke(this, new Arrow(layerService.StartPoint, layerService.EndPoint, layerService.StartNote, layerService.EndNote, layerService.Origin));
                 }
                 currentArrow = arrowPresenter.GetMarkedArrow();
                 if (layerService.EndNote != Point.Empty)
@@ -151,12 +152,12 @@ namespace MarkingUpDrawingTool.View
             {
                 if (layerService.StartPoint != Point.Empty && layerService.StartNote == Point.Empty)
                 {
-                    layerService.EndPoint = e.Location;
+                    layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y); ;
                 }
                 else
                 {
-                    layerService.EndNote = e.Location;
-                    AddArrow?.Invoke(this, new Arrow(layerService.StartPoint, layerService.EndPoint, layerService.StartNote, layerService.EndNote));
+                    layerService.EndNote = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y); ;
+                    AddArrow?.Invoke(this, new Arrow(layerService.StartPoint, layerService.EndPoint, layerService.StartNote, layerService.EndNote, layerService.Origin));
                     currentArrow = arrowPresenter.GetMarkedArrow();
                 }
                 layerService.Invalidate();
@@ -218,10 +219,12 @@ namespace MarkingUpDrawingTool.View
 
             foreach (Arrow arrow in arrows)
             {
-                Point start = arrow.Start;
-                Point end = arrow.End;
-                Point noteStart = arrow.NoteStart;
-                Point noteEnd = arrow.NoteEnd;
+                g.TranslateTransform(arrow.Origin.X, arrow.Origin.Y);
+                Point start = new Point(arrow.Start.X - (arrow.Origin.X), arrow.Start.Y - (arrow.Origin.Y));
+                Point end = new Point(arrow.End.X - (arrow.Origin.X), arrow.End.Y - (arrow.Origin.Y));
+                Point noteStart = new Point(arrow.NoteStart.X - (arrow.Origin.X), arrow.NoteStart.Y - (arrow.Origin.Y));
+                Point noteEnd = new Point(arrow.NoteEnd.X - (arrow.Origin.X), arrow.NoteEnd.Y - (arrow.Origin.Y));
+
                 GraphicsPath path1 = new GraphicsPath();
                 if (start ==  noteStart && end == noteEnd)
                 {
@@ -232,25 +235,36 @@ namespace MarkingUpDrawingTool.View
                 g.DrawPath(pen, path1);
                 g.DrawPath(pen, path2);
                 g.DrawLine(pen, noteStart, noteEnd);
+
+                g.TranslateTransform(-arrow.Origin.X, -arrow.Origin.Y);
             }
             if (layerService.DrawArrowMod)
             {
                 pen.Color = Color.Purple;
                 Arrow _currentArrow = arrowPresenter.GetMarkedArrow();
                 Point start, end, noteStart, noteEnd;
+                g.TranslateTransform(_currentArrow.Origin.X, _currentArrow.Origin.Y);
                 if (_currentArrow.NoteEnd == Point.Empty)
                 {
-                    start = layerService.StartPoint;
+                    /*start = layerService.StartPoint; 
                     end = layerService.EndPoint;
                     noteStart = layerService.StartNote;
-                    noteEnd = layerService.EndNote;
+                    noteEnd = layerService.EndNote;*/
+                    start = new Point(layerService.StartPoint.X - (_currentArrow.Origin.X), layerService.StartPoint.Y - (_currentArrow.Origin.Y));
+                    end = new Point(layerService.EndPoint.X - (_currentArrow.Origin.X), layerService.EndPoint.Y - (_currentArrow.Origin.Y));
+                    noteStart = new Point(layerService.StartNote.X - (_currentArrow.Origin.X), layerService.StartNote.Y - (_currentArrow.Origin.Y));
+                    noteEnd = new Point(layerService.EndNote.X - (_currentArrow.Origin.X), layerService.EndNote.Y - (_currentArrow.Origin.Y));
                 }
                 else
                 {
-                    start = _currentArrow.Start;
+                    /*start = _currentArrow.Start;
                     end = _currentArrow.End;
                     noteStart = _currentArrow.NoteStart;
-                    noteEnd = _currentArrow.NoteEnd;
+                    noteEnd = _currentArrow.NoteEnd;*/
+                    start = new Point(_currentArrow.Start.X - (_currentArrow.Origin.X), _currentArrow.Start.Y - (_currentArrow.Origin.Y));
+                    end = new Point(_currentArrow.End.X - (_currentArrow.Origin.X), _currentArrow.End.Y - (_currentArrow.Origin.Y));
+                    noteStart = new Point(_currentArrow.NoteStart.X - (_currentArrow.Origin.X), _currentArrow.NoteStart.Y - (_currentArrow.Origin.Y));
+                    noteEnd = new Point(_currentArrow.NoteEnd.X - (_currentArrow.Origin.X), _currentArrow.NoteEnd.Y - (_currentArrow.Origin.Y));
                 }
 
                 GraphicsPath path1 = new GraphicsPath();
@@ -263,6 +277,7 @@ namespace MarkingUpDrawingTool.View
                 g.DrawPath(pen, path1);
                 g.DrawPath(pen, path2);
                 g.DrawLine(pen, noteStart, noteEnd);
+                g.TranslateTransform(-_currentArrow.Origin.X, -_currentArrow.Origin.Y);
             }
         }
         private GraphicsPath GetAnglePath(Point start, Point end)

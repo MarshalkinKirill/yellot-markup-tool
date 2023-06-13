@@ -40,34 +40,32 @@ namespace MarkingUpDrawingTool.Model
         public Point End { get => end; set => end = value; }
         private TableNote tableNote { get; set; }
         public TableNote TableNote { get => tableNote; set => tableNote = value; }
+        private Point origin { get; set; }
+        public Point Origin { get => origin; set => origin = value; }
         public Table()
         { 
             name = string.Empty;
             start = new Point();
             end = new Point();
             tableNote = new TableNote();
+            origin = new Point();
         }
-        public Table(Point _x, Point _y)
+        public Table(Point _x, Point _y, Point origin)
         {
             name = String.Empty;
             start = _x;
             end = _y;
             tableNote = new TableNote();
-        }
-        public Table (Point _x, Point _y, string _mass, string _scale, string _partName, int num)
-        {
-            name = "Таблица №" + num.ToString();
-            start = _x;
-            end = _y;
-            tableNote = new TableNote(_partName, _mass, _scale);
+            this.origin = origin;
         }
 
-        public Table(Point _x, Point _y, TableNote _tableNote, int num)
+        public Table(Point _x, Point _y, TableNote _tableNote, int num, Point origin)
         {
             name = "Таблица №" + num.ToString();
             start = _x;
             end = _y;
             tableNote = _tableNote;
+            this.origin = origin;
         }
     }
     public class TableModel
@@ -88,7 +86,8 @@ namespace MarkingUpDrawingTool.Model
             Point x = new Point(currentTable.Start.X, currentTable.Start.Y);
             Point y = new Point(currentTable.End.X, currentTable.End.Y);
             TableNote note = currentTable.TableNote;
-            Table table = new Table(x, y, note, this.Tables.Count + 1);
+            Point origin = new Point(currentTable.Origin.X, currentTable.Origin.Y);
+            Table table = new Table(x, y, note, this.Tables.Count + 1, origin);
             tables.Add(table);
         }
 

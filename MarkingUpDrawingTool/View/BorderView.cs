@@ -1,4 +1,5 @@
-﻿using MarkingUpDrawingTool.Model;
+﻿using Emgu.CV;
+using MarkingUpDrawingTool.Model;
 using MarkingUpDrawingTool.Presenter;
 using MarkingUpDrawingTool.View.UiService;
 using MarkingUpDrawingTool.View.ViewInteraface;
@@ -69,7 +70,7 @@ namespace MarkingUpDrawingTool.View
             borderPresenter.CleanMarkedBorder();
             if (layerService.DrawBorderMod && e.Button == MouseButtons.Left)
             {
-                layerService.StartPoint = e.Location;
+                layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
             }
             if (layerService.DrawBorderMod && e.Button == MouseButtons.Right)
             {
@@ -85,8 +86,8 @@ namespace MarkingUpDrawingTool.View
         {
             if (layerService.DrawBorderMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left)
             {
-                layerService.EndPoint = e.Location;
-                SaveBorder?.Invoke(this, new Border(layerService.StartPoint, layerService.EndPoint));
+                layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
+                SaveBorder?.Invoke(this, new Border(layerService.StartPoint, layerService.EndPoint, layerService.Origin));
 
                 currentBorder = borderPresenter.GetMarkedBorder();
 
@@ -100,8 +101,8 @@ namespace MarkingUpDrawingTool.View
         {
             if (layerService.DrawBorderMod && layerService.StartPoint != Point.Empty)
             {
-                layerService.EndPoint = e.Location;
-                SaveBorder?.Invoke(this, new Border(layerService.StartPoint, layerService.EndPoint));
+                layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
+                SaveBorder?.Invoke(this, new Border(layerService.StartPoint, layerService.EndPoint, layerService.Origin));
                 currentBorder = borderPresenter.GetMarkedBorder();
                 layerService.Invalidate();
             }
@@ -114,8 +115,9 @@ namespace MarkingUpDrawingTool.View
             currentBorder = borderPresenter.GetMarkedBorder();
             if (!layerService.DrawBorderMod)
             {
-                Point start = currentBorder.Start;
-                Point end = currentBorder.End;
+                g.TranslateTransform(currentBorder.Origin.X, currentBorder.Origin.Y);
+                Point start = new Point(currentBorder.Start.X - (currentBorder.Origin.X), currentBorder.Start.Y - (currentBorder.Origin.Y));
+                Point end = new Point(currentBorder.End.X - (currentBorder.Origin.X), currentBorder.End.Y - (currentBorder.Origin.Y));
                 int width = Math.Abs(start.X - end.X);
                 int height = Math.Abs(start.Y - end.Y);
                 int x = Math.Min(start.X, end.X);
@@ -123,12 +125,14 @@ namespace MarkingUpDrawingTool.View
                 pen.DashStyle = DashStyle.Dot;
                 // Рисование прямоугольника с пунктирными границами
                 g.DrawRectangle(pen, x, y, width, height);
+                g.TranslateTransform(-currentBorder.Origin.X, -currentBorder.Origin.Y);
             }
             else
             {
+                g.TranslateTransform(currentBorder.Origin.X, currentBorder.Origin.Y);
                 pen.Color = Color.Purple;
-                Point start = currentBorder.Start;
-                Point end = currentBorder.End;
+                Point start = new Point(currentBorder.Start.X - (currentBorder.Origin.X), currentBorder.Start.Y - (currentBorder.Origin.Y));
+                Point end = new Point(currentBorder.End.X - (currentBorder.Origin.X), currentBorder.End.Y - (currentBorder.Origin.Y));
                 int width = Math.Abs(start.X - end.X);
                 int height = Math.Abs(start.Y - end.Y);
                 int x = Math.Min(start.X, end.X);
@@ -136,6 +140,7 @@ namespace MarkingUpDrawingTool.View
                 pen.DashStyle = DashStyle.Dot;
                 // Рисование прямоугольника с пунктирными границами
                 g.DrawRectangle(pen, x, y, width, height);
+                g.TranslateTransform(-currentBorder.Origin.X, -currentBorder.Origin.Y);
             }
         }
 

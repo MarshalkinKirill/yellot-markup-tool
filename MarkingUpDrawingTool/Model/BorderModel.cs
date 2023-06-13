@@ -13,15 +13,19 @@ namespace MarkingUpDrawingTool.Model
         public Point Start { get => start; set => start = value; }
         private Point end { get; set; }
         public Point End { get => end; set => end = value; }
+        private Point origin { get; set; }
+        public Point Origin { get =>  origin; set => origin = value; }
         public Border()
         {
             start = Point.Empty;
             end = Point.Empty;
+            origin = Point.Empty;
         }
-        public Border(Point start, Point end)
+        public Border(Point start, Point end, Point origin)
         {
             this.start = start;
             this.end = end;
+            this.origin = origin;
         }
     }
     public class BorderModel
@@ -37,7 +41,8 @@ namespace MarkingUpDrawingTool.Model
         {
             Point start = new Point(border.Start.X, border.Start.Y);
             Point end = new Point(border.End.X, border.End.Y);
-            currentBorder = new Border(start, end);
+            Point origin = new Point(border.Origin.X, border.Origin.Y);
+            currentBorder = new Border(start, end, origin);
         }
     }
 }

@@ -15,27 +15,37 @@ namespace MarkingUpDrawingTool.View.UiService
 {
     public class Layer
     {
+
         private string name { get; set; }
         public string Name { get => name; set => name = value; }
         private Image image { get; set; }
         public Image Image { get { return image; } }
         private Point location { get; set; }
-        public Point Location { get { return location; } }
+        public Point Location { get => location; set => location = value; }
         private Action<Graphics> drawActions { get; set; }
         public Action<Graphics> DrawActions { get { return drawActions; } set { drawActions = value; } }
 
-        public Layer() { }
+        public Layer() 
+        {
+            this.location = new Point(0, 0);
+        }
         public Layer(Image image, Point point, string name) 
         {
             this.image = image;
             this.location = point;
             this.name = name;
         }
+        public Layer(Point location)
+        {
+            this.location = location;
+        }
     }
 
     public class LayerService : PictureBox
     {
         List<Layer> layers;
+        private Point origin { get; set; } // Начало координат
+        public Point Origin { get => origin; set => origin = value; }   
 
         private Point startPoint { get; set; }
         public Point StartPoint { get => startPoint; set => startPoint = value; }
@@ -66,7 +76,6 @@ namespace MarkingUpDrawingTool.View.UiService
 
         public bool reDraw;
 
-
         public LayerService()
         {
             layers = new List<Layer>();
@@ -77,6 +86,7 @@ namespace MarkingUpDrawingTool.View.UiService
             startPoint = Point.Empty;
             endPoint = Point.Empty;
             reDraw = false;
+            origin = new Point(0, 0);
         }
 
         public void AddLayer(Layer layer)
@@ -93,6 +103,9 @@ namespace MarkingUpDrawingTool.View.UiService
         {
             base.OnPaint(e);
 
+            // Применяем смещение начала координат
+            e.Graphics.TranslateTransform(origin.X, origin.Y);
+
             foreach (Layer layer in layers)
             {
                 if (layer.Image != null)
@@ -102,32 +115,50 @@ namespace MarkingUpDrawingTool.View.UiService
 
                 if (layer.DrawActions != null)
                 {
-                    layer.DrawActions(e.Graphics); 
+                    //e.Graphics.TranslateTransform(layer.Location.X, layer.Location.Y);
+                    //Console.WriteLine("LOCATION _ " + layer.Location.ToString());
+                    layer.DrawActions(e.Graphics);
                 }
             }
         }
 
-        public void ChangeProjectionDrawAction()
+        public void ScrollLayers(ScrollOrientation orientation, int newValue)
         {
-            reDraw = !reDraw;
+            foreach (Layer layer in layers)
+            {
+                if (orientation == ScrollOrientation.HorizontalScroll)
+                {
+                    layer.Location = new Point(layer.Location.X + newValue, layer.Location.Y);
+                    //Console.WriteLine(layer.Location.ToString());
+                }
+                else if (orientation == ScrollOrientation.VerticalScroll)
+                {
+                    layer.Location = new Point(layer.Location.X, layer.Location.Y + newValue);
+                    //Console.WriteLine(layer.Location.ToString());
+                }
+            }
         }
 
-        public Point PointToImageCoordinates(Point point, Layer imageLayer)
+        public void vPanel_Scroll(object sender, ScrollEventArgs e)
         {
-            float imageWidth = imageLayer.Image.Width;
-            float imageHeight = imageLayer.Image.Height;
-            float controlWidth = this.Width;
-            float controlHeight = this.Height;
+            int scrollValue = -e.NewValue; // Получаем текущее значение скроллинга
 
-            float scaleX = imageWidth / controlWidth;
-            float scaleY = imageHeight / controlHeight;
-
-            int imageX = (int)(point.X * scaleX);
-            int imageY = (int)(point.Y * scaleY);
-
-            return new Point(imageX, imageY);
+            // Изменяем начало координат
+            origin = new Point(origin.X, scrollValue);
+            //Console.WriteLine(origin.ToString());
+            // Обновляем отображение
+            Invalidate();
         }
+        public void hPanel_Scroll(object sender, ScrollEventArgs e)
+        {
+            int scrollValue = -e.NewValue; // Получаем текущее значение скроллинга
 
+            // Изменяем начало координат
+            origin = new Point(scrollValue, origin.Y);
+            //Console.WriteLine(origin.ToString());
+            // Обновляем отображение
+            Invalidate();
+        }
         public byte[] BitmapToBytes(Bitmap bitmap)
         {
             // Создаем пустой массив байтов
@@ -144,6 +175,72 @@ namespace MarkingUpDrawingTool.View.UiService
             }
 
             return bytes;
+        }
+    }
+
+    public class LayerServiceControl : Control
+    {
+        private Panel panel;
+        private List<Layer> layers;
+
+        public LayerServiceControl()
+        {
+            DoubleBuffered = true;
+
+            panel = new Panel();
+            panel.AutoScroll = true;
+            panel.Dock = DockStyle.Fill;
+            panel.Paint += Panel_Paint;
+
+            layers = new List<Layer>();
+
+            Controls.Add(panel);
+        }
+
+        public void AddLayer(Layer layer)
+        {
+            layers.Add(layer);
+            panel.Invalidate();
+        }
+
+        public void RemoveLayer(Layer layer)
+        {
+            layers.Remove(layer);
+            panel.Invalidate();
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            // Рисование пользовательского элемента управления (если необходимо)
+            foreach (Layer layer in layers)
+            {
+                if (layer.Image != null)
+                {
+                    e.Graphics.DrawImage(layer.Image, layer.Location);
+                }
+
+                if (layer.DrawActions != null)
+                {
+                    layer.DrawActions(e.Graphics);
+                }
+            }
+        }
+
+        private void Panel_Paint(object sender, PaintEventArgs e)
+        {
+            foreach (Layer layer in layers)
+            {
+                if (layer.Image != null)
+                {
+                    e.Graphics.DrawImage(layer.Image, layer.Location);
+                }
+
+                if (layer.DrawActions != null)
+                {
+                    layer.DrawActions(e.Graphics);
+                }
+            }
         }
     }
 }

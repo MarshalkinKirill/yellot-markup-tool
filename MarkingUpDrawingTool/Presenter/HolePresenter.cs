@@ -34,7 +34,7 @@ namespace MarkingUpDrawingTool.Presenter
 
         public void AddHole(object sender, Hole _hole)
         {
-            model.AddHole(_hole.Center, _hole.Radius);
+            model.AddHole(_hole.Center, _hole.Radius, _hole.Origin);
             Console.WriteLine("Center point and radius");
             Console.WriteLine(_hole.Center.ToString());
             Console.WriteLine(_hole.Radius.ToString());
@@ -43,7 +43,7 @@ namespace MarkingUpDrawingTool.Presenter
 
         public void SaveHole(object sender, CircleSegment _circleSegment)
         {
-            Hole _hole = new Hole(new Point(((int)_circleSegment.Center.X), (int)_circleSegment.Center.Y), _circleSegment.Radius, model.Holes.Count);
+            Hole _hole = new Hole(new Point(((int)_circleSegment.Center.X), (int)_circleSegment.Center.Y), _circleSegment.Radius, model.Holes.Count, view.LayerService.Origin);
             model.SaveHole(_hole);
         }
 
@@ -70,7 +70,7 @@ namespace MarkingUpDrawingTool.Presenter
 
         public Hole GetMarkedHole()
         {
-            return new Hole(model.Center, model.Radius);
+            return new Hole(model.Center, model.Radius, model.Origin);
         }
 
         public Point GetMarkedCenter()

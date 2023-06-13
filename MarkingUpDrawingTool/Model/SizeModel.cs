@@ -18,26 +18,32 @@ namespace MarkingUpDrawingTool.Model
         public Point End { get => end; set => end = value; }
         private string note { get; set; }
         public string Note { get => note; set => note = value; }
+        private Point origin { get; set; }
+        public Point Origin { get => origin; set => origin = value; }
+
         public Size() 
         {
             name = string.Empty;
             start = new Point();
             end = new Point();
             note = string.Empty;
+            origin = new Point();
         }
-        public Size(Point _start, Point _end)
+        public Size(Point _start, Point _end, Point origin)
         {
             name = string.Empty;
             start = _start;
             end = _end;
             note = string.Empty;
+            this.origin = origin;
         }
-        public Size(Point _start, Point _end, string _note, int _num)
+        public Size(Point _start, Point _end, string _note, int _num, Point origin)
         {
             name = "Размер №" + _num.ToString();
             start = _start;
             end = _end;
             note = _note;
+            this.origin = origin;
         }
     }
     public class SizeModel
@@ -58,7 +64,8 @@ namespace MarkingUpDrawingTool.Model
             Point x = new Point(currentSize.Start.X, currentSize.Start.Y);
             Point y = new Point(currentSize.End.X, currentSize.End.Y);
             string note = currentSize.Note;
-            sizes.Add(new Size(x , y , note, this.sizes.Count + 1));
+            Point origin = new Point(currentSize.Origin.X, currentSize.Origin.Y);
+            sizes.Add(new Size(x , y , note, this.sizes.Count + 1, origin));
 
         }
 

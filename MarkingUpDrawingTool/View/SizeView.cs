@@ -1,4 +1,5 @@
-﻿using MarkingUpDrawingTool.Model;
+﻿using Emgu.CV;
+using MarkingUpDrawingTool.Model;
 using MarkingUpDrawingTool.Presenter;
 using MarkingUpDrawingTool.View.UiService;
 using MarkingUpDrawingTool.View.ViewInteraface;
@@ -122,7 +123,7 @@ namespace MarkingUpDrawingTool.View
         {
             if ((layerService.DrawSizeMod || layerService.DrawSizeAutoMod) && e.Button == MouseButtons.Left)
             {
-                layerService.StartPoint = e.Location;
+                layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
             }
             if ((layerService.DrawSizeMod || layerService.DrawSizeAutoMod) && e.Button == MouseButtons.Right)
             {
@@ -137,8 +138,8 @@ namespace MarkingUpDrawingTool.View
             {
                 if (layerService.DrawSizeAutoMod)
                 {
-                    layerService.EndPoint = e.Location;
-                    AddSize?.Invoke(this, new Size(layerService.StartPoint, layerService.EndPoint));
+                    layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
+                    AddSize?.Invoke(this, new Size(layerService.StartPoint, layerService.EndPoint, layerService.Origin));
                     DetectSizeNote?.Invoke(this, e);
 
                     SizeNoteForm noteForm = new SizeNoteForm(this, sizePresenter.GetMarkedSize().Note);
@@ -147,8 +148,8 @@ namespace MarkingUpDrawingTool.View
 
                 if (layerService.DrawSizeMod)
                 {
-                    layerService.EndPoint = e.Location;
-                    AddSize?.Invoke(this, new Size(layerService.StartPoint, layerService.EndPoint));
+                    layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
+                    AddSize?.Invoke(this, new Size(layerService.StartPoint, layerService.EndPoint, layerService.Origin));
 
                     SizeNoteForm noteForm = new SizeNoteForm(this, sizePresenter.GetMarkedSize().Note);
                     noteForm.ShowDialog();
@@ -165,8 +166,8 @@ namespace MarkingUpDrawingTool.View
         {
             if ((layerService.DrawSizeMod || layerService.DrawSizeAutoMod) && layerService.StartPoint != Point.Empty)
             {
-                layerService.EndPoint = e.Location;
-                AddSize?.Invoke(this, new Size(layerService.StartPoint, layerService.EndPoint));
+                layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
+                AddSize?.Invoke(this, new Size(layerService.StartPoint, layerService.EndPoint, layerService.Origin));
                 currentSize = sizePresenter.GetMarkedSize();
                 layerService.Invalidate();
             }
@@ -232,8 +233,10 @@ namespace MarkingUpDrawingTool.View
 
             foreach (Size size in sizes)
             {
-                Point start = size.Start;
-                Point end = size.End;
+                g.TranslateTransform(size.Origin.X, size.Origin.Y);
+                Point start = new Point(size.Start.X - (size.Origin.X), size.Start.Y - (size.Origin.Y));
+                Point end = new Point(size.End.X - (size.Origin.X), size.End.Y - (size.Origin.Y));
+
                 int width = Math.Abs(start.X - end.X);
                 int height = Math.Abs(start.Y - end.Y);
                 int x = Math.Min(start.X, end.X);
@@ -241,14 +244,17 @@ namespace MarkingUpDrawingTool.View
 
                 // Рисование прямоугольника с пунктирными границами
                 g.DrawRectangle(pen, x, y, width, height);
+                g.TranslateTransform(-size.Origin.X, -size.Origin.Y);
             }
             if (layerService.DrawSizeMod || layerService.DrawSizeAutoMod)
             {
                 pen.Color = Color.Purple;
                 Size size = currentSize;
 
-                Point start = size.Start;
-                Point end = size.End;
+                g.TranslateTransform(size.Origin.X, size.Origin.Y);
+                Point start = new Point(size.Start.X - (size.Origin.X), size.Start.Y - (size.Origin.Y));
+                Point end = new Point(size.End.X - (size.Origin.X), size.End.Y - (size.Origin.Y));
+
                 int width = Math.Abs(start.X - end.X);
                 int height = Math.Abs(start.Y - end.Y);
                 int x = Math.Min(start.X, end.X);
@@ -256,6 +262,7 @@ namespace MarkingUpDrawingTool.View
 
                 // Рисование прямоугольника с пунктирными границами
                 g.DrawRectangle(pen, x, y, width, height);
+                g.TranslateTransform(-size.Origin.X, -size.Origin.Y);
             }
         }
 

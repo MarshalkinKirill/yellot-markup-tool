@@ -33,6 +33,7 @@ namespace MarkingUpDrawingTool.Presenter
         private void SaveArrow(object sender, EventArgs e)
         {
             model.SaveArrow();
+            Console.WriteLine(model.CurrentArrow.Start.ToString() + model.CurrentArrow.End.ToString());
         }
 
         private void DeleteArrow(object sender, Arrow arrow)

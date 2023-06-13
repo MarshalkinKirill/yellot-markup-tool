@@ -93,7 +93,7 @@ namespace MarkingUpDrawingTool.View
         {
             if (layerService.DrawGapMod && e.Button == MouseButtons.Left)
             {
-                layerService.StartPoint = e.Location;
+                layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y); 
             }
             if (layerService.DrawGapMod && e.Button == MouseButtons.Right)
             {
@@ -109,8 +109,8 @@ namespace MarkingUpDrawingTool.View
         {
             if (layerService.DrawGapMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left)
             {
-                layerService.EndPoint = e.Location;
-                AddGap?.Invoke(this, new Gap(layerService.StartPoint, layerService.EndPoint));
+                layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y); 
+                AddGap?.Invoke(this, new Gap(layerService.StartPoint, layerService.EndPoint, layerService.Origin, layerService.Origin));
 
                 currentGap = gapPresenter.GetMarkedGap();
 
@@ -124,8 +124,8 @@ namespace MarkingUpDrawingTool.View
         {
             if (layerService.DrawGapMod && layerService.StartPoint != Point.Empty)
             {
-                layerService.EndPoint = e.Location;
-                AddGap?.Invoke(this, new Gap(layerService.StartPoint, layerService.EndPoint));
+                layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y); ;
+                AddGap?.Invoke(this, new Gap(layerService.StartPoint, layerService.EndPoint, layerService.Origin, layerService.Origin));
                 currentGap = gapPresenter.GetMarkedGap();
                 layerService.Invalidate();
             }
@@ -184,11 +184,14 @@ namespace MarkingUpDrawingTool.View
 
             Pen pen = new Pen(Color.Red, 3);
             pen.DashStyle = DashStyle.Dot;
-
+            
             foreach (var gap in gaps)
             {
-                Point start = gap.Start;
-                Point end = gap.End;
+                Point origin = layerService.Origin;
+                g.TranslateTransform(gap.StartOrigin.X, gap.StartOrigin.Y);
+                Point start = new Point(gap.Start.X - (gap.StartOrigin.X), gap.Start.Y - (gap.StartOrigin.Y));
+                Point end = new Point(gap.End.X - (gap.EndOrigin.X), gap.End.Y - (gap.EndOrigin.Y));
+
                 int width = Math.Abs(start.X - end.X);
                 int height = Math.Abs(start.Y - end.Y);
                 int x = Math.Min(start.X, end.X);
@@ -202,30 +205,6 @@ namespace MarkingUpDrawingTool.View
                 pen = new Pen(Color.Red);
                 //pen.DashStyle = DashStyle.Dash;
 
-
-                /////////////////////////////////////////////
-                /*int deltaX = end.X - start.X;
-                int deltaY = end.Y - start.Y;
-
-                // Находим середину между началом и концом молнии
-                Point midPoint = new Point(start.X + deltaX / 2, start.Y + deltaY / 2);
-
-                // Вычисляем координаты точек изгиба
-                Point bend1 = new Point(midPoint.X - deltaY / 4, midPoint.Y + deltaX / 4);
-                Point bend2 = new Point(midPoint.X + deltaY / 4, midPoint.Y - deltaX / 4);
-
-                // Рисуем линии молнии
-
-                g.DrawLine(pen, start, bend1);
-                g.DrawLine(pen, bend1, midPoint);
-                g.DrawLine(pen, midPoint, bend2);
-                g.DrawLine(pen, bend2, end);*/
-                // Рисуем пунктирный прямоугольник
-                //g.DrawRectangle(pen, rect);
-
-                // Рисуем молнию внутри прямоугольника
-                //g.DrawPath(pen, lightningPath);
-                //g.DrawLines(pen, lightningPoints);
                 ///////////////////////////////////////////////////////
                 int deltaX = end.X - start.X;
                 int deltaY = end.Y - start.Y;
@@ -260,14 +239,20 @@ namespace MarkingUpDrawingTool.View
                 g.DrawLine(pen, bend1, midPoint);
                 g.DrawLine(pen, midPoint, bend2);
                 g.DrawLine(pen, bend2, end);
+                g.TranslateTransform(-gap.StartOrigin.X, -gap.StartOrigin.Y);
             }
             if (layerService.DrawGapMod)
             {
                 pen.Color = Color.Purple;
                 Gap gap = currentGap;
 
-                Point start = gap.Start;
-                Point end = gap.End;
+                //Point start = gap.Start;
+                //Point end = gap.End;
+                Point origin = layerService.Origin;
+                g.TranslateTransform(gap.StartOrigin.X, gap.StartOrigin.Y);
+                Point start = new Point(gap.Start.X - (gap.StartOrigin.X ), gap.Start.Y - (gap.StartOrigin.Y ));
+                Point end = new Point(gap.End.X - (gap.EndOrigin.X ), gap.End.Y - (gap.EndOrigin.Y ));
+
                 int width = Math.Abs(start.X - end.X);
                 int height = Math.Abs(start.Y - end.Y);
                 int x = Math.Min(start.X, end.X);
@@ -313,6 +298,7 @@ namespace MarkingUpDrawingTool.View
                 g.DrawLine(pen, bend1, midPoint);
                 g.DrawLine(pen, midPoint, bend2);
                 g.DrawLine(pen, bend2, end);
+                g.TranslateTransform(-gap.StartOrigin.X, -gap.StartOrigin.Y);
             }
         }
 
