@@ -151,6 +151,7 @@ namespace MarkingUpDrawingTool.View.UiService
             // Обновляем отображение
             Invalidate();
         }
+
         public void hPanel_Scroll(object sender, ScrollEventArgs e)
         {
             int scrollValue = -e.NewValue; // Получаем текущее значение скроллинга
@@ -161,6 +162,21 @@ namespace MarkingUpDrawingTool.View.UiService
             // Обновляем отображение
             Invalidate();
         }
+
+        public void RefreshDrawMods()
+        {
+            drawArrowMod = false;
+            drawBorderMod = false;
+            drawGapMod = false;
+            drawHoleMod = false;
+            drawMainTableMod = false;
+            drawTableMod = false;
+            drawProjectionMod = false;
+            drawProjectionRoiMod = false;
+            drawSizeAutoMod = false;
+            drawSizeMod = false;
+        }
+
         public byte[] BitmapToBytes(Bitmap bitmap)
         {
             // Создаем пустой массив байтов

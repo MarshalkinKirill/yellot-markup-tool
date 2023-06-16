@@ -69,6 +69,10 @@ namespace MarkingUpDrawingTool.View
 
         private void ProjectionTool_Click(object sender, EventArgs e)
         {
+            if (!layerService.DrawProjectionMod)
+            {
+                mainForm.MainForm_CheckedChanged();
+            }
             layerService.DrawProjectionMod = !layerService.DrawProjectionMod; // Инвертируем режим рисования
 
             if (layerService.DrawProjectionMod)

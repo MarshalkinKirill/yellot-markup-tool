@@ -65,6 +65,10 @@ namespace MarkingUpDrawingTool.View
         }
         private void GapTool_Click(object sender, EventArgs e)
         {
+            if (!layerService.DrawGapMod)
+            {
+                mainForm.MainForm_CheckedChanged();
+            }
             layerService.DrawGapMod = !layerService.DrawGapMod;
             SaveDrawGapMod();
         }

@@ -76,6 +76,10 @@ namespace MarkingUpDrawingTool.View
         }
         public void SizeTool_Click(object sender, EventArgs e)
         {
+            if (!layerService.DrawSizeMod)
+            {
+                mainForm.MainForm_CheckedChanged();
+            }
             layerService.DrawSizeMod = !layerService.DrawSizeMod;
             layerService.DrawSizeAutoMod = false;
             SaveDrawSizeMod();
@@ -83,6 +87,10 @@ namespace MarkingUpDrawingTool.View
 
         public void SizeAutoTool_Click(object sender, EventArgs e)
         {
+            if (!layerService.DrawSizeAutoMod)
+            {
+                mainForm.MainForm_CheckedChanged();
+            }
             layerService.DrawSizeAutoMod = !layerService.DrawSizeAutoMod;
             layerService.DrawSizeMod = false;
             SaveDrawSizeMod();

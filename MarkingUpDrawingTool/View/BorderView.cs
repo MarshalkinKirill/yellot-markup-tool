@@ -41,6 +41,10 @@ namespace MarkingUpDrawingTool.View
 
         private void BorderTool_Click(object sender, EventArgs e)
         {
+            if (!layerService.DrawBorderMod)
+            {
+                mainForm.MainForm_CheckedChanged();
+            }
             layerService.DrawBorderMod = !layerService.DrawBorderMod;
             SaveDrawBorderMod();
         }

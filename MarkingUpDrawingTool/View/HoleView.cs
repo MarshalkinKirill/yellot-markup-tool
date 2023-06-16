@@ -72,6 +72,10 @@ namespace MarkingUpDrawingTool.View
 
         private void HoleTool_Click(object sender, EventArgs e)
         {
+            if (!layerService.DrawHoleMod)
+            {
+                mainForm.MainForm_CheckedChanged();
+            }
             layerService.DrawHoleMod = !layerService.DrawHoleMod; // Инвертируем режим рисования
 
             if (layerService.DrawHoleMod)

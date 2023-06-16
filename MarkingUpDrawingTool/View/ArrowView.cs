@@ -47,6 +47,7 @@ namespace MarkingUpDrawingTool.View
             arrowSaveTool.Click += ArrowSaveTool_Click;
             arrowDeleteTool.Click += ArrowDeleteTool_Click;
             arrowComboBox.SelectedIndexChanged += ArrowComboBox_SelectedIndexChanged;
+            
         }
 
         public void Arrow_KeyDown(object sender, KeyEventArgs e)
@@ -65,6 +66,10 @@ namespace MarkingUpDrawingTool.View
         }
         private void ArrowTool_Click(object sender, EventArgs e)
         {
+            if (!layerService.DrawArrowMod)
+            {
+                mainForm.MainForm_CheckedChanged();
+            }
             layerService.DrawArrowMod = !layerService.DrawArrowMod;
             SaveDrawArrowMod();
         }

@@ -313,6 +313,20 @@ namespace MarkingUpDrawingTool.View
             }
         }
 
+        public void MainForm_CheckedChanged()
+        {
+            toolStripButtonProjectionRoi.Checked = false;
+            ToolStripButtonHole.Checked = false;
+            toolStripButtonProjection.Checked = false;
+            ToolStripButtonGap.Checked = false;
+            ToolStripMenuSize.Checked = false;
+            ToolStripMenuTable.Checked = false;
+            ToolStripMenuMainTable.Checked = false;
+            toolStripButtonArrow.Checked = false;
+            ToolStripButtonBorder.Checked = false;
+            layerService.RefreshDrawMods();
+        }
+
         //Методы для разметки Projection
         public ToolStripButton GetProjectionTool()
         {

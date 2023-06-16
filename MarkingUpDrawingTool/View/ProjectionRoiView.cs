@@ -66,6 +66,10 @@ namespace MarkingUpDrawingTool.View
 
         private void ProjectionRoiTool_Click(object sender, EventArgs e)
         {
+            if (!layerService.DrawProjectionRoiMod)
+            {
+                MainForm.MainForm_CheckedChanged();
+            }
             layerService.DrawProjectionRoiMod = !layerService.DrawProjectionRoiMod;
             SaveDrawProjectionRoiMod();
         }

@@ -71,6 +71,10 @@ namespace MarkingUpDrawingTool.View
 
         private void TableTool_Click(object sender, EventArgs e)
         {
+            if (!layerService.DrawTableMod)
+            {
+                mainForm.MainForm_CheckedChanged();
+            }
             layerService.DrawTableMod = !layerService.DrawTableMod;
             layerService.DrawMainTableMod = false;
             SaveDrawTableMod();
@@ -78,6 +82,10 @@ namespace MarkingUpDrawingTool.View
 
         private void TableMainTool_Click(object sender, EventArgs e)
         {
+            if (!layerService.DrawMainTableMod)
+            {
+                mainForm.MainForm_CheckedChanged();
+            }
             layerService.DrawMainTableMod = !layerService.DrawMainTableMod;
             layerService.DrawTableMod = false;
             SaveDrawTableMod();

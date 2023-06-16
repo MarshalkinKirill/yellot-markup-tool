@@ -17,6 +17,7 @@ namespace MarkingUpDrawingTool.View.ViewInterface
     {
         LayerService LayerService { get; set; }
         Layer GetImageLayer();
+        void MainForm_CheckedChanged();
         //Prjection view
         ToolStripButton GetProjectionTool();
         ToolStripMenuItem GetProjectionSaveTool();
