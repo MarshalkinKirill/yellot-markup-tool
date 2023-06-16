@@ -128,6 +128,7 @@
     <Compile Include="Model\GapModel.cs" />
     <Compile Include="Model\HoleModel.cs" />
     <Compile Include="Model\ProjectionModel.cs" />
+    <Compile Include="Model\ProjectionRoiModel.cs" />
     <Compile Include="Model\SizeModel.cs" />
     <Compile Include="Model\TableModel.cs" />
     <Compile Include="Presenter\ArrowPresenter.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="Presenter\GapPresenter.cs" />
     <Compile Include="Presenter\HolePresenter.cs" />
     <Compile Include="Presenter\ProjectionPresenter.cs" />
+    <Compile Include="Presenter\ProjectionRoiPresenter.cs" />
     <Compile Include="Presenter\SizePresenter.cs" />
     <Compile Include="Presenter\TablePresenter.cs" />
     <Compile Include="Program.cs" />
@@ -143,6 +145,7 @@
     <Compile Include="View\BorderView.cs" />
     <Compile Include="View\GapView.cs" />
     <Compile Include="View\HoleView.cs" />
+    <Compile Include="View\ProjectionRoiView.cs" />
     <Compile Include="View\ProjectionView.cs" />
     <Compile Include="View\SizeNoteForm.cs">
       <SubType>Form</SubType>
@@ -164,6 +167,7 @@
     <Compile Include="View\ViewInteraface\IBorderView.cs" />
     <Compile Include="View\ViewInteraface\IGapView.cs" />
     <Compile Include="View\ViewInteraface\IHoleView.cs" />
+    <Compile Include="View\ViewInteraface\IProjectionRoiView.cs" />
     <Compile Include="View\ViewInteraface\IProjectionView.cs" />
     <Compile Include="View\ViewInteraface\ISizeView.cs" />
     <Compile Include="View\ViewInteraface\ITableView.cs" />

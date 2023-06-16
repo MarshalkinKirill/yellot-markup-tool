@@ -73,6 +73,8 @@ namespace MarkingUpDrawingTool.View.UiService
         public bool DrawGapMod { get => drawGapMod; set => drawGapMod = value; }
         private bool drawBorderMod { get; set; }
         public bool DrawBorderMod { get => drawBorderMod; set => drawBorderMod = value; }
+        private bool drawProjectionRoiMod { get; set; }
+        public bool DrawProjectionRoiMod { get => drawProjectionRoiMod; set => drawProjectionRoiMod = value; }
 
         public bool reDraw;
 

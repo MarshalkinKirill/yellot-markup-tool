@@ -23,6 +23,12 @@ namespace MarkingUpDrawingTool.View.ViewInterface
         ToolStripMenuItem GetProjectionDeleteTool();
         ToolStripComboBox GetProjectionComboBox();
 
+        //ProjectionRoi view
+        ToolStripButton GetProjectionRoiTool();
+        ToolStripMenuItem GetProjectionRoiSaveTool();
+        ToolStripMenuItem GetProjectionRoiDeleteTool();
+        ToolStripComboBox GetProjectionRoiComboBox();
+
         //HoleView
         ToolStripButton GetHoleTool();
         ToolStripMenuItem GetHoleSearchTool();

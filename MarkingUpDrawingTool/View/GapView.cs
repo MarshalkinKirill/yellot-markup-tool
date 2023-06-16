@@ -109,7 +109,7 @@ namespace MarkingUpDrawingTool.View
         {
             if (layerService.DrawGapMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left)
             {
-                layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y); 
+                layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
                 AddGap?.Invoke(this, new Gap(layerService.StartPoint, layerService.EndPoint, layerService.Origin, layerService.Origin));
 
                 currentGap = gapPresenter.GetMarkedGap();

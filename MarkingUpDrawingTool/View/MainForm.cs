@@ -25,7 +25,6 @@ namespace MarkingUpDrawingTool.View
         public LayerService LayerService { get => layerService; set => layerService = value; }
         VScrollBar vScrollBar;
         HScrollBar hScrollBar;
-        LayerServiceControl layerServiceControl;
         
 
         //Объявление событий 
@@ -34,6 +33,7 @@ namespace MarkingUpDrawingTool.View
         private IGapView gapView;
         private IBorderView borderView;
         private IProjectionView projectionView;
+        private IProjectionRoiView projectionRoiView;
         private IHoleView holeView;
         private ITableView tableView;
 
@@ -49,7 +49,8 @@ namespace MarkingUpDrawingTool.View
             this.toolStripComboBoxTable.KeyDown += mainForm_KeyDown;
             this.toolStripComboBoxArrow.KeyDown += mainForm_KeyDown;
             this.toolStripComboBoxSize.KeyDown += mainForm_KeyDown;
-            this.ToolStripComboBoxGap.KeyDown += mainForm_KeyDown;
+            this.toolStripComboBoxGap.KeyDown += mainForm_KeyDown;
+            this.toolStripComboBoxProjectionRoi.KeyDown += mainForm_KeyDown;
 
             //Views
             sizeView = new SizeView(this);
@@ -59,6 +60,7 @@ namespace MarkingUpDrawingTool.View
             projectionView = new ProjectionView(this);
             holeView = new HoleView(this);
             tableView = new TableView(this);
+            projectionRoiView = new ProjectionRoiView(this);
 
         }
 
@@ -69,6 +71,10 @@ namespace MarkingUpDrawingTool.View
             Layer projectionLayer = new Layer(new Point(0,0));
             projectionLayer.DrawActions = DrawProjection;
             layerService.AddLayer(projectionLayer);
+
+            Layer projectionRoi = new Layer();
+            projectionRoi.DrawActions = DrawProjectionRoi;
+            layerService.AddLayer(projectionRoi);
             
             Layer holeLayer = new Layer();
             holeLayer.DrawActions = DrawHole;
@@ -161,6 +167,7 @@ namespace MarkingUpDrawingTool.View
         private void mainForm_KeyDown(object sender, KeyEventArgs e)
         {
             projectionView.Projection_KeyDown(sender, e);
+            projectionRoiView.ProjectionRoi_KeyDown(sender, e);
             holeView.Hole_KeyDown(sender, e);
             tableView.Table_KeyDown(sender, e);
             arrowView.Arrow_KeyDown(sender, e);
@@ -211,6 +218,10 @@ namespace MarkingUpDrawingTool.View
             toolStripComboBoxProjection.Enabled = true;
             toolStripComboBoxProjection.Items.Clear();
 
+            toolStripButtonProjectionRoi.Enabled = true;
+            toolStripComboBoxProjectionRoi.Enabled = true;
+            toolStripComboBoxProjectionRoi.Items.Clear();
+
             ToolStripButtonHole.Enabled = true;
             toolStripButton2.Enabled = true;
             toolStripComboBoxHole.Enabled = true;
@@ -233,8 +244,8 @@ namespace MarkingUpDrawingTool.View
 
             ToolStripButtonGap.Enabled = true;
             toolStripButton8.Enabled = true;
-            ToolStripComboBoxGap.Enabled = true;
-            ToolStripComboBoxGap.Items.Clear();
+            toolStripComboBoxGap.Enabled = true;
+            toolStripComboBoxGap.Items.Clear();
 
             layerService = new LayerService();
             sizeView = new SizeView(this);
@@ -242,6 +253,7 @@ namespace MarkingUpDrawingTool.View
             gapView = new GapView(this);
             borderView = new BorderView(this);
             projectionView = new ProjectionView(this);
+            projectionRoiView = new ProjectionRoiView(this);
             holeView = new HoleView(this);
             tableView = new TableView(this);
             panel1.Controls.Clear();
@@ -326,9 +338,31 @@ namespace MarkingUpDrawingTool.View
         {
             projectionView.DrawProjection(g);
         }
-        public void DrawProjection(Graphics g, Point location)
+
+        //Методы для разметки ProjectionRoi
+        public ToolStripButton GetProjectionRoiTool()
         {
-            projectionView.DrawProjection(g);
+            return toolStripButtonProjectionRoi;
+        }
+
+        public ToolStripMenuItem GetProjectionRoiSaveTool()
+        {
+            return ToolStripMenuSaveObject;
+        }
+
+        public ToolStripMenuItem GetProjectionRoiDeleteTool()
+        {
+            return ToolStripMenuDeleteObject;
+        }
+
+        public ToolStripComboBox GetProjectionRoiComboBox()
+        {
+            return toolStripComboBoxProjectionRoi;
+        }
+
+        public void DrawProjectionRoi(Graphics g)
+        {
+            projectionRoiView.DrawProjectionRoi(g);
         }
 
         //Методы для разметки Hole
@@ -473,7 +507,7 @@ namespace MarkingUpDrawingTool.View
 
         public ToolStripComboBox GetGapComboBox()
         {
-            return this.ToolStripComboBoxGap;
+            return this.toolStripComboBoxGap;
         }
 
         public void DrawGap(Graphics g)

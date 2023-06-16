@@ -69,11 +69,16 @@
             this.toolStripButton8 = new System.Windows.Forms.ToolStripDropDownButton();
             this.ToolStripMenuSaveGap = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuDeleteGap = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripComboBoxGap = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripComboBoxGap = new System.Windows.Forms.ToolStripComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.toolStripButtonProjectionRoi = new System.Windows.Forms.ToolStripButton();
+            this.toolStripComboBoxProjectionRoi = new System.Windows.Forms.ToolStripComboBox();
+            this.правкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuSaveObject = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuDeleteObject = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -83,7 +88,8 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem});
+            this.файлToolStripMenuItem,
+            this.правкаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -103,14 +109,14 @@
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
             // 
             // ToolStripMenuSaveAs
             // 
             this.ToolStripMenuSaveAs.Name = "ToolStripMenuSaveAs";
-            this.ToolStripMenuSaveAs.Size = new System.Drawing.Size(157, 22);
+            this.ToolStripMenuSaveAs.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuSaveAs.Text = "Сохранить как ";
             this.ToolStripMenuSaveAs.Click += new System.EventHandler(this.ToolStripMenuSaveAs_Click);
             // 
@@ -122,6 +128,8 @@
             this.toolStripButtonProjection,
             this.toolStripButtonProjectionSettings,
             this.toolStripComboBoxProjection,
+            this.toolStripButtonProjectionRoi,
+            this.toolStripComboBoxProjectionRoi,
             this.ToolStripButtonHole,
             this.toolStripButton2,
             this.toolStripComboBoxHole,
@@ -136,7 +144,7 @@
             this.toolStripComboBoxArrow,
             this.ToolStripButtonGap,
             this.toolStripButton8,
-            this.ToolStripComboBoxGap});
+            this.toolStripComboBoxGap});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1443, 27);
@@ -342,13 +350,13 @@
             // ToolStripMenuSaveSize
             // 
             this.ToolStripMenuSaveSize.Name = "ToolStripMenuSaveSize";
-            this.ToolStripMenuSaveSize.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuSaveSize.Size = new System.Drawing.Size(176, 22);
             this.ToolStripMenuSaveSize.Text = "Сохранить размер";
             // 
             // ToolStripMenuDeleteSize
             // 
             this.ToolStripMenuDeleteSize.Name = "ToolStripMenuDeleteSize";
-            this.ToolStripMenuDeleteSize.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuDeleteSize.Size = new System.Drawing.Size(176, 22);
             this.ToolStripMenuDeleteSize.Text = "Удалить размер";
             // 
             // toolStripComboBoxSize
@@ -383,13 +391,13 @@
             // ToolStripMenuSaveArrow
             // 
             this.ToolStripMenuSaveArrow.Name = "ToolStripMenuSaveArrow";
-            this.ToolStripMenuSaveArrow.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuSaveArrow.Size = new System.Drawing.Size(174, 22);
             this.ToolStripMenuSaveArrow.Text = "Сохранить срелку";
             // 
             // ToolStripMenuDeleteArrow
             // 
             this.ToolStripMenuDeleteArrow.Name = "ToolStripMenuDeleteArrow";
-            this.ToolStripMenuDeleteArrow.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuDeleteArrow.Size = new System.Drawing.Size(174, 22);
             this.ToolStripMenuDeleteArrow.Text = "Удалить стрелку";
             // 
             // toolStripComboBoxArrow
@@ -424,20 +432,20 @@
             // ToolStripMenuSaveGap
             // 
             this.ToolStripMenuSaveGap.Name = "ToolStripMenuSaveGap";
-            this.ToolStripMenuSaveGap.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuSaveGap.Size = new System.Drawing.Size(176, 22);
             this.ToolStripMenuSaveGap.Text = "Сохранить разрыв";
             // 
             // ToolStripMenuDeleteGap
             // 
             this.ToolStripMenuDeleteGap.Name = "ToolStripMenuDeleteGap";
-            this.ToolStripMenuDeleteGap.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuDeleteGap.Size = new System.Drawing.Size(176, 22);
             this.ToolStripMenuDeleteGap.Text = "Удалить разрыв";
             // 
-            // ToolStripComboBoxGap
+            // toolStripComboBoxGap
             // 
-            this.ToolStripComboBoxGap.Enabled = false;
-            this.ToolStripComboBoxGap.Name = "ToolStripComboBoxGap";
-            this.ToolStripComboBoxGap.Size = new System.Drawing.Size(75, 27);
+            this.toolStripComboBoxGap.Enabled = false;
+            this.toolStripComboBoxGap.Name = "toolStripComboBoxGap";
+            this.toolStripComboBoxGap.Size = new System.Drawing.Size(75, 27);
             // 
             // pictureBox1
             // 
@@ -464,6 +472,43 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1443, 806);
             this.panel1.TabIndex = 3;
+            // 
+            // toolStripButtonProjectionRoi
+            // 
+            this.toolStripButtonProjectionRoi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonProjectionRoi.Enabled = false;
+            this.toolStripButtonProjectionRoi.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonProjectionRoi.Image")));
+            this.toolStripButtonProjectionRoi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonProjectionRoi.Name = "toolStripButtonProjectionRoi";
+            this.toolStripButtonProjectionRoi.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButtonProjectionRoi.Text = "Proection ROI";
+            // 
+            // toolStripComboBoxProjectionRoi
+            // 
+            this.toolStripComboBoxProjectionRoi.Enabled = false;
+            this.toolStripComboBoxProjectionRoi.Name = "toolStripComboBoxProjectionRoi";
+            this.toolStripComboBoxProjectionRoi.Size = new System.Drawing.Size(120, 27);
+            // 
+            // правкаToolStripMenuItem
+            // 
+            this.правкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuSaveObject,
+            this.ToolStripMenuDeleteObject});
+            this.правкаToolStripMenuItem.Name = "правкаToolStripMenuItem";
+            this.правкаToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.правкаToolStripMenuItem.Text = "Правка";
+            // 
+            // ToolStripMenuSaveObject
+            // 
+            this.ToolStripMenuSaveObject.Name = "ToolStripMenuSaveObject";
+            this.ToolStripMenuSaveObject.Size = new System.Drawing.Size(182, 22);
+            this.ToolStripMenuSaveObject.Text = "Сохранить элемент";
+            // 
+            // ToolStripMenuDeleteObject
+            // 
+            this.ToolStripMenuDeleteObject.Name = "ToolStripMenuDeleteObject";
+            this.ToolStripMenuDeleteObject.Size = new System.Drawing.Size(182, 22);
+            this.ToolStripMenuDeleteObject.Text = "Удалить элемент";
             // 
             // MainForm
             // 
@@ -528,11 +573,16 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteArrow;
         private System.Windows.Forms.ToolStripButton ToolStripButtonGap;
         private System.Windows.Forms.ToolStripDropDownButton toolStripButton8;
-        private System.Windows.Forms.ToolStripComboBox ToolStripComboBoxGap;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxGap;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveGap;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteGap;
         private System.Windows.Forms.ToolStripButton ToolStripButtonBorder;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveAs;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.ToolStripButton toolStripButtonProjectionRoi;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxProjectionRoi;
+        private System.Windows.Forms.ToolStripMenuItem правкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveObject;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteObject;
     }
 }
