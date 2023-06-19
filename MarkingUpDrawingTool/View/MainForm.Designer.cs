@@ -33,6 +33,9 @@
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.правкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuSaveObject = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuDeleteObject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ToolStripButtonBorder = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonProjection = new System.Windows.Forms.ToolStripButton();
@@ -40,6 +43,8 @@
             this.ToolStripMenuSaveProjection = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuDeleteProjection = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBoxProjection = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripButtonProjectionRoi = new System.Windows.Forms.ToolStripButton();
+            this.toolStripComboBoxProjectionRoi = new System.Windows.Forms.ToolStripComboBox();
             this.ToolStripButtonHole = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.ToolStripMenuHoleSave = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +65,14 @@
             this.ToolStripMenuSaveSize = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuDeleteSize = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBoxSize = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripButtonArrow = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonArrow = new System.Windows.Forms.ToolStripDropDownButton();
+            this.ToolStripMenuLinearArrow = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuAngularArrow = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuRadialArrow = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuDiametralArrow = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuReferenceArrow = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuConeArrow = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuChamferArrow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripDropDownButton();
             this.ToolStripMenuSaveArrow = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuDeleteArrow = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,11 +86,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.toolStripButtonProjectionRoi = new System.Windows.Forms.ToolStripButton();
-            this.toolStripComboBoxProjectionRoi = new System.Windows.Forms.ToolStripComboBox();
-            this.правкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuSaveObject = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuDeleteObject = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -109,16 +116,37 @@
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
             // 
             // ToolStripMenuSaveAs
             // 
             this.ToolStripMenuSaveAs.Name = "ToolStripMenuSaveAs";
-            this.ToolStripMenuSaveAs.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuSaveAs.Size = new System.Drawing.Size(157, 22);
             this.ToolStripMenuSaveAs.Text = "Сохранить как ";
             this.ToolStripMenuSaveAs.Click += new System.EventHandler(this.ToolStripMenuSaveAs_Click);
+            // 
+            // правкаToolStripMenuItem
+            // 
+            this.правкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuSaveObject,
+            this.ToolStripMenuDeleteObject});
+            this.правкаToolStripMenuItem.Name = "правкаToolStripMenuItem";
+            this.правкаToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.правкаToolStripMenuItem.Text = "Правка";
+            // 
+            // ToolStripMenuSaveObject
+            // 
+            this.ToolStripMenuSaveObject.Name = "ToolStripMenuSaveObject";
+            this.ToolStripMenuSaveObject.Size = new System.Drawing.Size(182, 22);
+            this.ToolStripMenuSaveObject.Text = "Сохранить элемент";
+            // 
+            // ToolStripMenuDeleteObject
+            // 
+            this.ToolStripMenuDeleteObject.Name = "ToolStripMenuDeleteObject";
+            this.ToolStripMenuDeleteObject.Size = new System.Drawing.Size(182, 22);
+            this.ToolStripMenuDeleteObject.Text = "Удалить элемент";
             // 
             // toolStrip1
             // 
@@ -203,6 +231,22 @@
             this.toolStripComboBoxProjection.Enabled = false;
             this.toolStripComboBoxProjection.Name = "toolStripComboBoxProjection";
             this.toolStripComboBoxProjection.Size = new System.Drawing.Size(121, 27);
+            // 
+            // toolStripButtonProjectionRoi
+            // 
+            this.toolStripButtonProjectionRoi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonProjectionRoi.Enabled = false;
+            this.toolStripButtonProjectionRoi.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonProjectionRoi.Image")));
+            this.toolStripButtonProjectionRoi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonProjectionRoi.Name = "toolStripButtonProjectionRoi";
+            this.toolStripButtonProjectionRoi.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButtonProjectionRoi.Text = "Proection ROI";
+            // 
+            // toolStripComboBoxProjectionRoi
+            // 
+            this.toolStripComboBoxProjectionRoi.Enabled = false;
+            this.toolStripComboBoxProjectionRoi.Name = "toolStripComboBoxProjectionRoi";
+            this.toolStripComboBoxProjectionRoi.Size = new System.Drawing.Size(120, 27);
             // 
             // ToolStripButtonHole
             // 
@@ -368,12 +412,62 @@
             // toolStripButtonArrow
             // 
             this.toolStripButtonArrow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonArrow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuLinearArrow,
+            this.ToolStripMenuAngularArrow,
+            this.ToolStripMenuRadialArrow,
+            this.ToolStripMenuDiametralArrow,
+            this.ToolStripMenuReferenceArrow,
+            this.ToolStripMenuConeArrow,
+            this.ToolStripMenuChamferArrow});
             this.toolStripButtonArrow.Enabled = false;
             this.toolStripButtonArrow.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonArrow.Image")));
             this.toolStripButtonArrow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonArrow.Name = "toolStripButtonArrow";
-            this.toolStripButtonArrow.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButtonArrow.Size = new System.Drawing.Size(33, 24);
             this.toolStripButtonArrow.Text = "Arrow";
+            // 
+            // ToolStripMenuLinearArrow
+            // 
+            this.ToolStripMenuLinearArrow.Name = "ToolStripMenuLinearArrow";
+            this.ToolStripMenuLinearArrow.Size = new System.Drawing.Size(187, 22);
+            this.ToolStripMenuLinearArrow.Text = "Линейная стрелка";
+            // 
+            // ToolStripMenuAngularArrow
+            // 
+            this.ToolStripMenuAngularArrow.Name = "ToolStripMenuAngularArrow";
+            this.ToolStripMenuAngularArrow.Size = new System.Drawing.Size(187, 22);
+            this.ToolStripMenuAngularArrow.Text = "Угловая стрелка";
+            // 
+            // ToolStripMenuRadialArrow
+            // 
+            this.ToolStripMenuRadialArrow.Name = "ToolStripMenuRadialArrow";
+            this.ToolStripMenuRadialArrow.Size = new System.Drawing.Size(187, 22);
+            this.ToolStripMenuRadialArrow.Text = "Стрелка радиуса";
+            // 
+            // ToolStripMenuDiametralArrow
+            // 
+            this.ToolStripMenuDiametralArrow.Name = "ToolStripMenuDiametralArrow";
+            this.ToolStripMenuDiametralArrow.Size = new System.Drawing.Size(187, 22);
+            this.ToolStripMenuDiametralArrow.Text = "Стрелка диаметра";
+            // 
+            // ToolStripMenuReferenceArrow
+            // 
+            this.ToolStripMenuReferenceArrow.Name = "ToolStripMenuReferenceArrow";
+            this.ToolStripMenuReferenceArrow.Size = new System.Drawing.Size(187, 22);
+            this.ToolStripMenuReferenceArrow.Text = "Справочная стрелка";
+            // 
+            // ToolStripMenuConeArrow
+            // 
+            this.ToolStripMenuConeArrow.Name = "ToolStripMenuConeArrow";
+            this.ToolStripMenuConeArrow.Size = new System.Drawing.Size(187, 22);
+            this.ToolStripMenuConeArrow.Text = "Конусная стрелка";
+            // 
+            // ToolStripMenuChamferArrow
+            // 
+            this.ToolStripMenuChamferArrow.Name = "ToolStripMenuChamferArrow";
+            this.ToolStripMenuChamferArrow.Size = new System.Drawing.Size(187, 22);
+            this.ToolStripMenuChamferArrow.Text = "Фасочнпя стрелка";
             // 
             // toolStripButton7
             // 
@@ -473,43 +567,6 @@
             this.panel1.Size = new System.Drawing.Size(1443, 806);
             this.panel1.TabIndex = 3;
             // 
-            // toolStripButtonProjectionRoi
-            // 
-            this.toolStripButtonProjectionRoi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonProjectionRoi.Enabled = false;
-            this.toolStripButtonProjectionRoi.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonProjectionRoi.Image")));
-            this.toolStripButtonProjectionRoi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonProjectionRoi.Name = "toolStripButtonProjectionRoi";
-            this.toolStripButtonProjectionRoi.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButtonProjectionRoi.Text = "Proection ROI";
-            // 
-            // toolStripComboBoxProjectionRoi
-            // 
-            this.toolStripComboBoxProjectionRoi.Enabled = false;
-            this.toolStripComboBoxProjectionRoi.Name = "toolStripComboBoxProjectionRoi";
-            this.toolStripComboBoxProjectionRoi.Size = new System.Drawing.Size(120, 27);
-            // 
-            // правкаToolStripMenuItem
-            // 
-            this.правкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuSaveObject,
-            this.ToolStripMenuDeleteObject});
-            this.правкаToolStripMenuItem.Name = "правкаToolStripMenuItem";
-            this.правкаToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.правкаToolStripMenuItem.Text = "Правка";
-            // 
-            // ToolStripMenuSaveObject
-            // 
-            this.ToolStripMenuSaveObject.Name = "ToolStripMenuSaveObject";
-            this.ToolStripMenuSaveObject.Size = new System.Drawing.Size(182, 22);
-            this.ToolStripMenuSaveObject.Text = "Сохранить элемент";
-            // 
-            // ToolStripMenuDeleteObject
-            // 
-            this.ToolStripMenuDeleteObject.Name = "ToolStripMenuDeleteObject";
-            this.ToolStripMenuDeleteObject.Size = new System.Drawing.Size(182, 22);
-            this.ToolStripMenuDeleteObject.Text = "Удалить элемент";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -566,7 +623,6 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveSize;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteSize;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxSize;
-        private System.Windows.Forms.ToolStripButton toolStripButtonArrow;
         private System.Windows.Forms.ToolStripDropDownButton toolStripButton7;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxArrow;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveArrow;
@@ -584,5 +640,13 @@
         private System.Windows.Forms.ToolStripMenuItem правкаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveObject;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteObject;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripButtonArrow;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuLinearArrow;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuAngularArrow;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuRadialArrow;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDiametralArrow;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuReferenceArrow;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuConeArrow;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuChamferArrow;
     }
 }

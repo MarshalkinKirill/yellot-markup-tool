@@ -51,6 +51,8 @@ namespace MarkingUpDrawingTool.View.UiService
         public Point StartPoint { get => startPoint; set => startPoint = value; }
         private Point endPoint { get; set; }
         public Point EndPoint { get => endPoint; set => endPoint = value; }
+        private Point centerPoint { get; set; }
+        public Point CenterPoint { get => centerPoint; set => centerPoint = value; }
         private Point startNote { get; set; }
         public Point StartNote { get => startNote; set => startNote = value; }
         private Point endNote { get; set; }
@@ -67,8 +69,20 @@ namespace MarkingUpDrawingTool.View.UiService
         public bool DrawSizeMod { get => drawSizeMod; set => drawSizeMod = value; }
         private bool drawSizeAutoMod { get; set; }
         public bool DrawSizeAutoMod { get => drawSizeAutoMod; set => drawSizeAutoMod = value; }
-        private bool drawArrowMod { get; set; }
-        public bool DrawArrowMod { get => drawArrowMod; set => drawArrowMod = value; }
+        private bool drawLinearArrowMod { get; set; }
+        public bool DrawLinearArrowMod { get => drawLinearArrowMod; set => drawLinearArrowMod = value; }
+        private bool drawAngularArrowMod { get; set; }
+        public bool DrawAngularArrowMod { get => drawAngularArrowMod; set => drawAngularArrowMod = value; }
+        private bool drawRadialArrowMod { get; set; }
+        public bool DrawRadialArrowMod { get => drawRadialArrowMod; set => drawRadialArrowMod = value; }
+        private bool drawDiametralArrowMod { get; set; }
+        public bool DrawDiametralArrowMod { get => drawDiametralArrowMod; set => drawDiametralArrowMod = value; }
+        private bool drawReferenceArrowMod { get; set; }
+        public bool DrawReferenceArrowMod { get => drawReferenceArrowMod; set => drawReferenceArrowMod = value; }
+        private bool drawConeArrowMod { get; set; }
+        public bool DrawConeArrowMod { get => drawConeArrowMod; set => drawConeArrowMod = value; }
+        private bool drawChamferArrowMod { get; set; }
+        public bool DrawChamferArrowMod { get => drawChamferArrowMod; set => drawChamferArrowMod = value; }
         private bool drawGapMod { get; set; }
         public bool DrawGapMod { get => drawGapMod; set => drawGapMod = value; }
         private bool drawBorderMod { get; set; }
@@ -165,7 +179,18 @@ namespace MarkingUpDrawingTool.View.UiService
 
         public void RefreshDrawMods()
         {
-            drawArrowMod = false;
+            startPoint = Point.Empty;
+            endPoint = Point.Empty;
+            endNote = Point.Empty;
+            startNote = Point.Empty;
+            CenterPoint = Point.Empty;
+            drawLinearArrowMod = false;
+            drawAngularArrowMod = false;
+            drawRadialArrowMod = false;
+            drawDiametralArrowMod = false;
+            drawReferenceArrowMod = false;
+            drawConeArrowMod = false;
+            drawChamferArrowMod = false;
             drawBorderMod = false;
             drawGapMod = false;
             drawHoleMod = false;

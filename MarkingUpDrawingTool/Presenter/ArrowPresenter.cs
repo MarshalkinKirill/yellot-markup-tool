@@ -30,9 +30,10 @@ namespace MarkingUpDrawingTool.Presenter
             model.CurrentArrow = arrow;
         }
 
-        private void SaveArrow(object sender, EventArgs e)
+        private void SaveArrow(object sender,EventArgs e)
         {
             model.SaveArrow();
+            Console.WriteLine(model.CurrentArrow.Center.ToString());
             Console.WriteLine(model.CurrentArrow.Start.ToString() + model.CurrentArrow.End.ToString());
         }
 

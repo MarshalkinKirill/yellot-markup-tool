@@ -52,7 +52,13 @@ namespace MarkingUpDrawingTool.View.ViewInterface
         ToolStripComboBox GetSizeComboBox();
 
         //ArrowView
-        ToolStripButton GetArrowTool();
+        ToolStripMenuItem GetLinearArrowTool();
+        ToolStripMenuItem GetAngularArrowTool();
+        ToolStripMenuItem GetRadialArrowTool();
+        ToolStripMenuItem GetDiametralArrowTool();
+        ToolStripMenuItem GetReferenceArrowTool();
+        ToolStripMenuItem GetConeArrowTool();
+        ToolStripMenuItem GetChamferArrowTool();
         ToolStripMenuItem GetArrowDeleteTool();
         ToolStripMenuItem GetArrowSaveTool();
         ToolStripComboBox GetArrowComboBox();

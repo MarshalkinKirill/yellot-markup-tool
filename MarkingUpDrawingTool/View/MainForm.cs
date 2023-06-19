@@ -322,7 +322,13 @@ namespace MarkingUpDrawingTool.View
             ToolStripMenuSize.Checked = false;
             ToolStripMenuTable.Checked = false;
             ToolStripMenuMainTable.Checked = false;
-            toolStripButtonArrow.Checked = false;
+            ToolStripMenuLinearArrow.Checked = false;
+            ToolStripMenuAngularArrow.Checked = false;
+            ToolStripMenuRadialArrow.Checked = false;
+            ToolStripMenuDiametralArrow.Checked = false;
+            ToolStripMenuReferenceArrow.Checked = false;
+            ToolStripMenuConeArrow.Checked = false;
+            ToolStripMenuChamferArrow.Checked = false;
             ToolStripButtonBorder.Checked = false;
             layerService.RefreshDrawMods();
         }
@@ -478,9 +484,39 @@ namespace MarkingUpDrawingTool.View
         }
 
         //Перечень методов для раметки Arrow
-        public ToolStripButton GetArrowTool() 
+        public ToolStripMenuItem GetLinearArrowTool() 
         {
-            return this.toolStripButtonArrow;
+            return this.ToolStripMenuLinearArrow;
+        }
+
+        public ToolStripMenuItem GetAngularArrowTool()
+        {
+            return this.ToolStripMenuAngularArrow;
+        }
+
+        public ToolStripMenuItem GetRadialArrowTool()
+        {
+            return this.ToolStripMenuRadialArrow;
+        }
+
+        public ToolStripMenuItem GetDiametralArrowTool()
+        {
+            return this.ToolStripMenuDiametralArrow;
+        }
+
+        public ToolStripMenuItem GetReferenceArrowTool()
+        {
+            return this.ToolStripMenuReferenceArrow;
+        }
+
+        public ToolStripMenuItem GetConeArrowTool()
+        {
+            return this.ToolStripMenuConeArrow;
+        }
+
+        public ToolStripMenuItem GetChamferArrowTool()
+        {
+            return this.ToolStripMenuChamferArrow;
         }
 
         public ToolStripMenuItem GetArrowSaveTool()
