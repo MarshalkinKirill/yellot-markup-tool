@@ -25,6 +25,22 @@ namespace MarkingUpDrawingTool.Presenter
             view.DeleteArrow += DeleteArrow;
         }
 
+        public ArrowView ArrowView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public ArrowModel ArrowModel
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private void AddArrow(object sender, Arrow arrow)
         {
             model.CurrentArrow = arrow;

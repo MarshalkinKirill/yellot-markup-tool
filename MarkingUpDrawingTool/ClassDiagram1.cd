@@ -1,0 +1,648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MarkingUpDrawingTool.Model.Arrow">
+    <Position X="0.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAoAAAACACAACAAgAAgAAAQAAAAFAAAAQQAAAEgIAAA=</HashCode>
+      <FileName>Model\ArrowModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.ArrowModel">
+    <Position X="0.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAIAAAACAAAAAAAgAAAAICAA=</HashCode>
+      <FileName>Model\ArrowModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Arrow" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.Border">
+    <Position X="31" Y="32.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAACACAAAAAgAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Model\BorderModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.BorderModel">
+    <Position X="28.25" Y="32.75" Width="1.5" />
+    <AssociationLine Name="Border" Type="MarkingUpDrawingTool.Model.Border">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.292" Y="0.096" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAACAAAAAEAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\BorderModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Border" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.Gap">
+    <Position X="31" Y="21.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAACACAAAAAgAAAAAAQCAAAEAwAAAAEAAAAAAAA=</HashCode>
+      <FileName>Model\GapModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.GapModel">
+    <Position X="28.25" Y="21.75" Width="1.5" />
+    <AssociationLine Name="Gap" Type="MarkingUpDrawingTool.Model.Gap">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.365" Y="0.042" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQQAAAAAAAAAQAAABEAAAgAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Model\GapModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Gap" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.Hole">
+    <Position X="1.5" Y="35.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAgIAAAACAAAAAAEAAAAAAAAAAAEAAAAAAAAAAgIAAA=</HashCode>
+      <FileName>Model\HoleModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.HoleModel">
+    <Position X="1.5" Y="30.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAgIAAAACggAEAAIAAAAAAAAAAQAAAAAAAAAAAgIAAA=</HashCode>
+      <FileName>Model\HoleModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Hole" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.Projection">
+    <Position X="9.5" Y="35.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAACAEAAAgAAEAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ProjectionModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.ProjectionModel">
+    <Position X="9.5" Y="30.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAEIAQAAAAAAAAAAAAAJAAIAAAACAAAAAQAAA=</HashCode>
+      <FileName>Model\ProjectionModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Projection" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.ProjectionRoi">
+    <Position X="1.5" Y="26.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAACACAAAAAgAAAAAAQAAAAEAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Model\ProjectionRoiModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.ProjectionRoiModel">
+    <Position X="1.5" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAABAAAAAQAIQAAAQAAAAE=</HashCode>
+      <FileName>Model\ProjectionRoiModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProjectionRoi" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.Size">
+    <Position X="28.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQIAAAACACAAAAAgAAAAAAQAAAAEAAAAAAAAAAkAAAA=</HashCode>
+      <FileName>Model\SizeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.SizeModel">
+    <Position X="26" Y="11.25" Width="1.5" />
+    <AssociationLine Name="Size" Type="MarkingUpDrawingTool.Model.Size">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.33" Y="0.184" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAABAAAgAQgAAAAAAAAAAAAAgAAAAIAAAAAAAA=</HashCode>
+      <FileName>Model\SizeModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Size" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.Symbol">
+    <Position X="16" Y="35.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAACACAAAAAgAAAAAAQAAAAEAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Model\SymbolModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.SymbolModel">
+    <Position X="16" Y="30.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAEAAIAhAAAAAAAAAAAAAAAAAAAAAAgAAAAAACAA=</HashCode>
+      <FileName>Model\SymbolModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Symbol" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.TableNote">
+    <Position X="17.25" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAIAAAQCAAAEAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Model\TableModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.Table">
+    <Position X="17.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAACACAAAAAgAAAAAAQAEAAkAAAAIAAAAAgAAAA=</HashCode>
+      <FileName>Model\TableModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TableNote1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Model.TableModel">
+    <Position X="14.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAABgAAAAQAAAAAAAEAAACAAAAAAAAAA=</HashCode>
+      <FileName>Model\TableModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Table" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Presenter.ArrowPresenter">
+    <Position X="6.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACCAAAAAGAAAAAAAAAAAAABAAAAAAAQAiAAAICAA=</HashCode>
+      <FileName>Presenter\ArrowPresenter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ArrowView" />
+      <Property Name="ArrowModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Presenter.BorderPresenter">
+    <Position X="23.5" Y="32.75" Width="1.5" />
+    <AssociationLine Name="BorderView" Type="MarkingUpDrawingTool.View.BorderView">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.402" Y="0.078" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAEAAAAAAAAAAQAAAAAIAGE=</HashCode>
+      <FileName>Presenter\BorderPresenter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BorderView" />
+      <Property Name="BorderModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Presenter.GapPresenter">
+    <Position X="23.5" Y="21.75" Width="1.5" />
+    <AssociationLine Name="GapView" Type="MarkingUpDrawingTool.View.GapView">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.474" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="GapModel" Type="MarkingUpDrawingTool.Model.GapModel">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.786" Y="0.443" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAQAAAAAAAgAAAAAABAAAAAAAgQAQAAABAIAAI=</HashCode>
+      <FileName>Presenter\GapPresenter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="GapView" />
+      <Property Name="GapModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Presenter.HolePresenter">
+    <Position X="6.25" Y="30.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAgAAEAAAAAAAAAAAQAABgQACIQABAAgIAAA=</HashCode>
+      <FileName>Presenter\HolePresenter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="HoleView" />
+      <Property Name="HoleModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Presenter.ProjectionPresenter">
+    <Position X="13.75" Y="30.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAEIAAAIgAAAAAAIAAAAAkQABAAAAAAAQBAAAQIAAA=</HashCode>
+      <FileName>Presenter\ProjectionPresenter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProjectionView" />
+      <Property Name="ProjectionModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Presenter.ProjectionRoiPresenter">
+    <Position X="6.25" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAIAACAAAAAAAAAAAAAAAAAAAAAACAAIQAAAAEIBAA=</HashCode>
+      <FileName>Presenter\ProjectionRoiPresenter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProjectionRoiView" />
+      <Property Name="ProjectionRoiModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Presenter.SizePresenter">
+    <Position X="21.25" Y="11.25" Width="1.5" />
+    <AssociationLine Name="SizeView" Type="MarkingUpDrawingTool.View.SizeView">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.365" Y="0.096" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="SizeModel" Type="MarkingUpDrawingTool.Model.SizeModel">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.823" Y="0.515" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BgAIIAAIAAAAAGAgAAAAAAAAAAAACAAAAQAAAEAKAAA=</HashCode>
+      <FileName>Presenter\SizePresenter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SizeView" />
+      <Property Name="SizeModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Presenter.SymbolPresenter">
+    <Position X="20.25" Y="30.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAgAABAAAAAAAAAAAAAAAAIIAwAAAABJAAA=</HashCode>
+      <FileName>Presenter\SymbolPresenter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SymbolView" />
+      <Property Name="SymbolModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Presenter.TablePresenter">
+    <Position X="10" Y="11.25" Width="1.5" />
+    <AssociationLine Name="TableModel" Type="MarkingUpDrawingTool.Model.TableModel">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.823" Y="0.534" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AEAAEAAAAAAAAAAAAACAAAAAAAAAESAACQEAAAAIAAQ=</HashCode>
+      <FileName>Presenter\TablePresenter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TableModel" />
+      <Property Name="TableView" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Program" Collapsed="true">
+    <Position X="17.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Properties.Resources" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.Properties.Settings" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.View.ArrowView" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAABEGiAAIAHBAAACwKAALgQAICAAgBQAKXIQJIBCEA=</HashCode>
+      <FileName>View\ArrowView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LayerService" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MarkingUpDrawingTool.View.BorderView" BaseTypeListCollapsed="true">
+    <Position X="26.5" Y="32.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAIEIAACAEAACgAAAAgEEAAAAAAAAEAACAAAASE=</HashCode>
+      <FileName>View\BorderView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LayerService1" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MarkingUpDrawingTool.View.GapView" BaseTypeListCollapsed="true">
+    <Position X="26.5" Y="21.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IBQEAAgQAAABAAAkChUCAQhEEAAAACAAAAAQAAABAAA=</HashCode>
+      <FileName>View\GapView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LayerService1" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MarkingUpDrawingTool.View.HoleView" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="30.75" Width="1.5" />
+    <AssociationLine Name="LayerService1" Type="MarkingUpDrawingTool.View.UiService.LayerService" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.062" Y="37.824" />
+        <Point X="4.062" Y="39.855" />
+        <Point X="36.938" Y="39.855" />
+        <Point X="36.938" Y="31.828" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>RAAEATAACwAYMAAQCgABEAgAEIAAQAAAIAIBBAAAAAA=</HashCode>
+      <FileName>View\HoleView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LayerService1" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MarkingUpDrawingTool.View.MainForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="23.75" Width="1.5" />
+    <AssociationLine Name="ArrowPresenter" Type="MarkingUpDrawingTool.Presenter.ArrowPresenter" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.875" Y="23.75" />
+        <Point X="14.875" Y="20.647" />
+        <Point X="8.249" Y="20.647" />
+        <Point X="8.249" Y="12.058" />
+        <Point X="7.75" Y="12.058" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TablePresenter" Type="MarkingUpDrawingTool.Presenter.TablePresenter" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.594" Y="23.75" />
+        <Point X="15.594" Y="19.691" />
+        <Point X="10.75" Y="19.691" />
+        <Point X="10.75" Y="14.344" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="SizePresenter" Type="MarkingUpDrawingTool.Presenter.SizePresenter" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16.188" Y="23.75" />
+        <Point X="16.188" Y="19.64" />
+        <Point X="22" Y="19.64" />
+        <Point X="22" Y="14.728" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="GapPresenter" Type="MarkingUpDrawingTool.Presenter.GapPresenter" FixedFromPoint="true">
+      <Path>
+        <Point X="16.25" Y="23.875" />
+        <Point X="23.5" Y="23.875" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="BorderPresenter" Type="MarkingUpDrawingTool.Presenter.BorderPresenter" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16.25" Y="24.25" />
+        <Point X="22.724" Y="24.25" />
+        <Point X="22.724" Y="33.912" />
+        <Point X="23.5" Y="33.912" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ProjectionRoiPresenter" Type="MarkingUpDrawingTool.Presenter.ProjectionRoiPresenter" FixedFromPoint="true">
+      <Path>
+        <Point X="14.75" Y="23.875" />
+        <Point X="7.75" Y="23.875" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="HolePresenter" Type="MarkingUpDrawingTool.Presenter.HolePresenter" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.75" Y="24.187" />
+        <Point X="8.519" Y="24.187" />
+        <Point X="8.519" Y="32.681" />
+        <Point X="7.75" Y="32.681" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="SymbolPresenter" Type="MarkingUpDrawingTool.Presenter.SymbolPresenter" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16" Y="24.441" />
+        <Point X="16" Y="29.287" />
+        <Point X="21" Y="29.287" />
+        <Point X="21" Y="30.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>FwYNARa2MGfdUzwRDXuQwH9jcfJoAc6CDtAgrb5Q5oo=</HashCode>
+      <FileName>View\MainForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ArrowPresenter" />
+      <Property Name="TablePresenter" />
+      <Property Name="SizePresenter" />
+      <Property Name="GapPresenter" />
+      <Property Name="BorderPresenter" />
+      <Property Name="ProjectionRoiPresenter" />
+      <Property Name="HolePresenter" />
+      <Property Name="ProjectionPresenter" />
+      <Property Name="SymbolPresenter" />
+      <Property Name="LayerService1" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MarkingUpDrawingTool.View.ProjectionRoiView" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RAAAAAQAAAJKCAAICAAABAggMQEAggAIIQAAAQAABAE=</HashCode>
+      <FileName>View\ProjectionRoiView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LayerService1" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.554" />
+  </Class>
+  <Class Name="MarkingUpDrawingTool.View.ProjectionView" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="30.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAARAQIAAAEQAAiiEAQIgAABSAAwAAACBAAAIAACQ=</HashCode>
+      <FileName>View\ProjectionView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.246" />
+  </Class>
+  <Class Name="MarkingUpDrawingTool.View.SizeNoteForm">
+    <Position X="28.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAQAACAAAAAAAADAIAACAAAAAAAAAAAAASAAAAA=</HashCode>
+      <FileName>View\SizeNoteForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.View.SizeView" BaseTypeListCollapsed="true">
+    <Position X="24.25" Y="11.25" Width="1.5" />
+    <AssociationLine Name="SizeNoteForm" Type="MarkingUpDrawingTool.View.SizeNoteForm">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.003" Y="0.096" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="LayerService1" Type="MarkingUpDrawingTool.View.UiService.LayerService" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="25.75" Y="15.143" />
+        <Point X="35.292" Y="15.143" Type="JumpStart" />
+        <Point X="35.458" Y="15.143" Type="JumpEnd" />
+        <Point X="36" Y="15.143" />
+        <Point X="36" Y="19.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AQAIYBAQAAwQgGBgCgBCAAiAkAAACgIAAAIAAEAAAA4=</HashCode>
+      <FileName>View\SizeView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SizeNoteForm" />
+      <Property Name="LayerService1" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MarkingUpDrawingTool.View.SymbolView" BaseTypeListCollapsed="true">
+    <Position X="17.75" Y="30.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAgAAAiIAgCgAAACIAEAAgBEAAAgAAACgAAgQJBBAA=</HashCode>
+      <FileName>View\SymbolView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LayerService1" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MarkingUpDrawingTool.View.TableNoteForm">
+    <Position X="15.25" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAKEAAAAAQgCIAEACACAAAAAQAAQAACAAAAI=</HashCode>
+      <FileName>View\TableNoteForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.View.TableView" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="11.25" Width="1.5" />
+    <AssociationLine Name="LayerService1" Type="MarkingUpDrawingTool.View.UiService.LayerService" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.812" Y="11.25" />
+        <Point X="13.812" Y="10.264" />
+        <Point X="35.375" Y="10.264" />
+        <Point X="35.375" Y="20.169" />
+        <Point X="35.75" Y="20.169" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AMAIgAIAACBAAYAgCgAEECgFECAAECACGAkAAJAAQAE=</HashCode>
+      <FileName>View\TableView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TableNoteForm" />
+      <Property Name="LayerService1" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.396" />
+  </Class>
+  <Class Name="MarkingUpDrawingTool.View.UiService.Layer">
+    <Position X="37.75" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAQQCEAEEABAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\UiService\LayerService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarkingUpDrawingTool.View.UiService.LayerService">
+    <Position X="35.75" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SwKJCMIAgCICQABAQEBCQIAEIQEEBGAEhAAAlImCiFg=</HashCode>
+      <FileName>View\UiService\LayerService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Layer" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="MarkingUpDrawingTool.View.ViewInteraface.IArrowView" Collapsed="true">
+    <Position X="6.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAGAAAAAAAAAAAAAAAAAAAAAAAAABIACAA=</HashCode>
+      <FileName>View\ViewInteraface\IArrowView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MarkingUpDrawingTool.View.ViewInteraface.IBorderView" Collapsed="true">
+    <Position X="2.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>View\ViewInteraface\IBorderView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MarkingUpDrawingTool.View.ViewInteraface.IGapView" Collapsed="true">
+    <Position X="4" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAAAQAAAAAAAgABAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\ViewInteraface\IGapView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MarkingUpDrawingTool.View.ViewInteraface.IHoleView" Collapsed="true">
+    <Position X="5.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAQEAAACAAAAAAAAAAAAAAAIAIBAAAAAAA=</HashCode>
+      <FileName>View\ViewInteraface\IHoleView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MarkingUpDrawingTool.View.ViewInteraface.IProjectionRoiView" Collapsed="true">
+    <Position X="7.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAIQAAAAAABAA=</HashCode>
+      <FileName>View\ViewInteraface\IProjectionRoiView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MarkingUpDrawingTool.View.ViewInteraface.IProjectionView" Collapsed="true">
+    <Position X="9.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAIAAAAAAAiAAAAAgAABAAAAAAAABAAAIAAAA=</HashCode>
+      <FileName>View\ViewInteraface\IProjectionView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MarkingUpDrawingTool.View.ViewInteraface.ISizeView" Collapsed="true">
+    <Position X="11" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAQAAAQAGBgCABAAAAAAAAACAAAAAAAAEAAAAA=</HashCode>
+      <FileName>View\ViewInteraface\ISizeView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MarkingUpDrawingTool.View.ViewInteraface.ISymbolView" Collapsed="true">
+    <Position X="0.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAgAAAAAAAAAAAAAAAAAAAAAAgAAAAJBAAA=</HashCode>
+      <FileName>View\ViewInteraface\ISymbolView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MarkingUpDrawingTool.View.ViewInteraface.ITableView" Collapsed="true">
+    <Position X="2.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AMAIAAIAAAAAAAAAAAAAAAAAAAAAECAACAEAAAAAAAA=</HashCode>
+      <FileName>View\ViewInteraface\ITableView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MarkingUpDrawingTool.View.ViewInterface.IView" Collapsed="true">
+    <Position X="4" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAJAAQEEAOIABABCBsQwCACQYAgAYwACJAALBpQoAA=</HashCode>
+      <FileName>View\ViewInteraface\IView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="MarkingUpDrawingTool.Model.ArrowType" Collapsed="true">
+    <Position X="0.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACgAAAAAIEAAAAgAAAAAAQAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ArrowModel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

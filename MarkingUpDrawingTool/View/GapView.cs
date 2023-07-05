@@ -310,5 +310,13 @@ namespace MarkingUpDrawingTool.View
         {
             return gapPresenter.GetGaps();
         }
+
+        public LayerService LayerService1
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

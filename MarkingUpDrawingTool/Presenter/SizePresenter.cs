@@ -41,6 +41,22 @@ namespace MarkingUpDrawingTool.Presenter
             view.DeleteSize += DeleteSize;
         }
 
+        public View.SizeView SizeView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public SizeModel SizeModel
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public void AddSize(object sender, Size size) 
         {
             model.CurrentSize = size;

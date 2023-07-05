@@ -154,5 +154,13 @@ namespace MarkingUpDrawingTool.View
             borderList.Add(borderPresenter.GetMarkedBorder());
             return borderList ;
         }
+
+        public LayerService LayerService1
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

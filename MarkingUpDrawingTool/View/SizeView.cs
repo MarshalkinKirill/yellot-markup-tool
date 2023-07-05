@@ -278,5 +278,21 @@ namespace MarkingUpDrawingTool.View
         {
             return sizePresenter.GetSizes();
         }
+
+        public SizeNoteForm SizeNoteForm
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public LayerService LayerService1
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

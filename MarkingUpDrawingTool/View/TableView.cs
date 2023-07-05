@@ -264,5 +264,21 @@ namespace MarkingUpDrawingTool.View
         {
             return tablePresenter.GetTables();
         }
+
+        public TableNoteForm TableNoteForm
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public LayerService LayerService1
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

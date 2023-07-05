@@ -42,6 +42,15 @@ namespace MarkingUpDrawingTool.Model
         public TableNote TableNote { get => tableNote; set => tableNote = value; }
         private Point origin { get; set; }
         public Point Origin { get => origin; set => origin = value; }
+
+        public TableNote TableNote1
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public Table()
         { 
             name = string.Empty;
@@ -74,6 +83,14 @@ namespace MarkingUpDrawingTool.Model
         public List<Table> Tables { get => tables; set => tables = value; }
         private Table currentTable { get; set; }
         public Table CurrentTable { get => currentTable; set => currentTable = value; }
+
+        public Table Table
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
         public TableModel() 
         {

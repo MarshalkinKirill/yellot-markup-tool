@@ -86,6 +86,8 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.toolStripButtonSymbol = new System.Windows.Forms.ToolStripButton();
+            this.toolStripComboBoxSymbol = new System.Windows.Forms.ToolStripComboBox();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -172,7 +174,9 @@
             this.toolStripComboBoxArrow,
             this.ToolStripButtonGap,
             this.toolStripButton8,
-            this.toolStripComboBoxGap});
+            this.toolStripComboBoxGap,
+            this.toolStripButtonSymbol,
+            this.toolStripComboBoxSymbol});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1443, 27);
@@ -567,6 +571,22 @@
             this.panel1.Size = new System.Drawing.Size(1443, 806);
             this.panel1.TabIndex = 3;
             // 
+            // toolStripButtonSymbol
+            // 
+            this.toolStripButtonSymbol.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSymbol.Enabled = false;
+            this.toolStripButtonSymbol.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSymbol.Image")));
+            this.toolStripButtonSymbol.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSymbol.Name = "toolStripButtonSymbol";
+            this.toolStripButtonSymbol.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButtonSymbol.Text = "Symbol";
+            // 
+            // toolStripComboBoxSymbol
+            // 
+            this.toolStripComboBoxSymbol.Enabled = false;
+            this.toolStripComboBoxSymbol.Name = "toolStripComboBoxSymbol";
+            this.toolStripComboBoxSymbol.Size = new System.Drawing.Size(75, 27);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -648,5 +668,7 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuReferenceArrow;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuConeArrow;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuChamferArrow;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSymbol;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxSymbol;
     }
 }

@@ -641,5 +641,13 @@ namespace MarkingUpDrawingTool.View
         {
             return arrowPresenter.GetArrows();
         }
+
+        public LayerService LayerService
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

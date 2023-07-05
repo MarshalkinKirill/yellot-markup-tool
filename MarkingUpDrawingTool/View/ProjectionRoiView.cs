@@ -200,6 +200,11 @@ namespace MarkingUpDrawingTool.View
                 pen.DashStyle = DashStyle.Dot;
                 // Рисование прямоугольника с пунктирными границами
                 g.DrawRectangle(pen, x, y, width, height);
+
+                Font font = new Font("Arial", 12);
+                SolidBrush brush = new SolidBrush(pen.Color);
+                g.DrawString("Projection", font, brush, x, y);
+
                 g.TranslateTransform(-projectionRoi.Origin.X, -projectionRoi.Origin.Y);
             }
             if (layerService.DrawProjectionRoiMod && currentProjectionRoi != null)
@@ -216,6 +221,11 @@ namespace MarkingUpDrawingTool.View
                 pen.DashStyle = DashStyle.Dot;
                 // Рисование прямоугольника с пунктирными границами
                 g.DrawRectangle(pen, x, y, width, height);
+
+                Font font = new Font("Arial", 12);
+                SolidBrush brush = new SolidBrush(pen.Color);
+                g.DrawString("Projection", font, brush, x, y);
+
                 g.TranslateTransform(-currentProjectionRoi.Origin.X, -currentProjectionRoi.Origin.Y);
             }
         }
@@ -223,6 +233,14 @@ namespace MarkingUpDrawingTool.View
         public List<ProjectionRoi> GetProjectionRois()
         {
             return ProjectionRoiPresenter.GetProjectionRois();
+        }
+
+        public LayerService LayerService1
+        {
+            get => default;
+            set
+            {
+            }
         }
     }
 }

@@ -53,6 +53,14 @@ namespace MarkingUpDrawingTool.Model
         private Size currentSize { get; set; }
         public Size CurrentSize { get => currentSize; set => currentSize = value; }
 
+        public Size Size
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public SizeModel() 
         {
             sizes = new List<Size>();

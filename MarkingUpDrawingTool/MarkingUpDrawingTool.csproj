@@ -130,6 +130,7 @@
     <Compile Include="Model\ProjectionModel.cs" />
     <Compile Include="Model\ProjectionRoiModel.cs" />
     <Compile Include="Model\SizeModel.cs" />
+    <Compile Include="Model\SymbolModel.cs" />
     <Compile Include="Model\TableModel.cs" />
     <Compile Include="Presenter\ArrowPresenter.cs" />
     <Compile Include="Presenter\BorderPresenter.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Presenter\ProjectionPresenter.cs" />
     <Compile Include="Presenter\ProjectionRoiPresenter.cs" />
     <Compile Include="Presenter\SizePresenter.cs" />
+    <Compile Include="Presenter\SymbolPresenter.cs" />
     <Compile Include="Presenter\TablePresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,6 +156,7 @@
       <DependentUpon>SizeNoteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\SizeView.cs" />
+    <Compile Include="View\SymbolView.cs" />
     <Compile Include="View\TableNoteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +173,7 @@
     <Compile Include="View\ViewInteraface\IProjectionRoiView.cs" />
     <Compile Include="View\ViewInteraface\IProjectionView.cs" />
     <Compile Include="View\ViewInteraface\ISizeView.cs" />
+    <Compile Include="View\ViewInteraface\ISymbolView.cs" />
     <Compile Include="View\ViewInteraface\ITableView.cs" />
     <Compile Include="View\ViewInteraface\IView.cs" />
     <Compile Include="View\MainForm.cs">
@@ -196,6 +200,7 @@
     <EmbeddedResource Include="View\TableNoteForm.resx">
       <DependentUpon>TableNoteForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

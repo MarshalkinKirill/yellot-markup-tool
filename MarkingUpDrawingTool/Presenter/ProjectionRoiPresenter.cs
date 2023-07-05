@@ -25,6 +25,22 @@ namespace MarkingUpDrawingTool.Presenter
             view.DeleteProjectionRoi += DeleteProjectionRoi;
         }
 
+        public View.ProjectionRoiView ProjectionRoiView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public ProjectionRoiModel ProjectionRoiModel
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private void AddProjectionRoi(object sender, ProjectionRoi projectionRoi)
         {
             model.CurrentProjectionRoi = projectionRoi;

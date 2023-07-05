@@ -32,6 +32,22 @@ namespace MarkingUpDrawingTool.Presenter
             view.DeleteHole += DeleteHole;
         }
 
+        public HoleView HoleView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public HoleModel HoleModel
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public void AddHole(object sender, Hole _hole)
         {
             model.AddHole(_hole.Center, _hole.Radius, _hole.Origin);

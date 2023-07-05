@@ -251,5 +251,13 @@ namespace MarkingUpDrawingTool.View
         {
             return holePresenter.GetHoles();
         }
+
+        public LayerService LayerService1
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

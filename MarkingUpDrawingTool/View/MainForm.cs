@@ -36,6 +36,7 @@ namespace MarkingUpDrawingTool.View
         private IProjectionRoiView projectionRoiView;
         private IHoleView holeView;
         private ITableView tableView;
+        private ISymbolView symbolView;
 
         public MainForm()
         {
@@ -51,6 +52,7 @@ namespace MarkingUpDrawingTool.View
             this.toolStripComboBoxSize.KeyDown += mainForm_KeyDown;
             this.toolStripComboBoxGap.KeyDown += mainForm_KeyDown;
             this.toolStripComboBoxProjectionRoi.KeyDown += mainForm_KeyDown;
+            this.toolStripComboBoxSymbol.KeyDown += mainForm_KeyDown;
 
             //Views
             sizeView = new SizeView(this);
@@ -61,6 +63,7 @@ namespace MarkingUpDrawingTool.View
             holeView = new HoleView(this);
             tableView = new TableView(this);
             projectionRoiView = new ProjectionRoiView(this);
+            symbolView = new SymbolView(this);
 
         }
 
@@ -99,6 +102,10 @@ namespace MarkingUpDrawingTool.View
             Layer borderLayer = new Layer();
             borderLayer.DrawActions = DrawBorder;
             layerService.AddLayer(borderLayer);
+
+            Layer symbolLayer = new Layer();
+            symbolLayer.DrawActions = DrawSymbol;
+            layerService.AddLayer(symbolLayer);
 
             // Создание вертикального скролла
             vScrollBar = new VScrollBar();
@@ -173,6 +180,7 @@ namespace MarkingUpDrawingTool.View
             arrowView.Arrow_KeyDown(sender, e);
             sizeView.Size_KeyDown(sender, e);
             gapView.Gap_KeyDown(sender, e);
+            symbolView.Symbol_KeyDown(sender, e);
         }
 
         //Метод для подключения изображения на форму 
@@ -222,6 +230,10 @@ namespace MarkingUpDrawingTool.View
             toolStripComboBoxProjectionRoi.Enabled = true;
             toolStripComboBoxProjectionRoi.Items.Clear();
 
+            toolStripButtonSymbol.Enabled = true;
+            toolStripComboBoxSymbol.Enabled = true;
+            toolStripComboBoxSymbol.Items.Clear();
+
             ToolStripButtonHole.Enabled = true;
             toolStripButton2.Enabled = true;
             toolStripComboBoxHole.Enabled = true;
@@ -256,6 +268,7 @@ namespace MarkingUpDrawingTool.View
             projectionRoiView = new ProjectionRoiView(this);
             holeView = new HoleView(this);
             tableView = new TableView(this);
+            symbolView = new SymbolView(this);
             panel1.Controls.Clear();
         }
         private void ToolStripMenuSaveAs_Click(object sender, EventArgs e)
@@ -286,8 +299,10 @@ namespace MarkingUpDrawingTool.View
                 string borderJson = JsonConvert.SerializeObject(borderView.GetBorder(), Formatting.Indented);
                 string gapsJson = JsonConvert.SerializeObject(gapView.GetGaps(), Formatting.Indented);
                 string projectionsJson = JsonConvert.SerializeObject(projectionView.GetProjections(), Formatting.Indented);
+                string projectionsRoiJson = JsonConvert.SerializeObject(projectionRoiView.GetProjectionRois(), Formatting.Indented);
                 string holesJson = JsonConvert.SerializeObject(holeView.GetHoles(), Formatting.Indented);
                 string tablesJson = JsonConvert.SerializeObject(tableView.GetTables(), Formatting.Indented);
+                string symbolsJson = JsonConvert.SerializeObject(symbolView.GetSymbols(), Formatting.Indented);
 
                 var combinedJson = new JObject
                 {
@@ -296,8 +311,10 @@ namespace MarkingUpDrawingTool.View
                     { "Border", JArray.Parse(borderJson) },
                     { "Gaps", JArray.Parse(gapsJson) },
                     { "Projections", JArray.Parse(projectionsJson) },
+                    { "ProjectionsRoi", JArray.Parse(projectionsRoiJson) },
                     { "Holes", JArray.Parse(holesJson) },
-                    { "Tables", JArray.Parse(tablesJson) }
+                    { "Tables", JArray.Parse(tablesJson) },
+                    { "Symbols", JArray.Parse(symbolsJson) }
                 };
                 // Сохранение JSON-строки в файл
                 string fileName = Path.GetFileName(filePath);
@@ -316,6 +333,7 @@ namespace MarkingUpDrawingTool.View
         public void MainForm_CheckedChanged()
         {
             toolStripButtonProjectionRoi.Checked = false;
+            toolStripButtonSymbol.Checked = false;
             ToolStripButtonHole.Checked = false;
             toolStripButtonProjection.Checked = false;
             ToolStripButtonGap.Checked = false;
@@ -331,6 +349,17 @@ namespace MarkingUpDrawingTool.View
             ToolStripMenuChamferArrow.Checked = false;
             ToolStripButtonBorder.Checked = false;
             layerService.RefreshDrawMods();
+        }
+
+        //Save Delete Get obj
+        public ToolStripMenuItem GetSaveTool()
+        {
+            return ToolStripMenuSaveObject;
+        }
+
+        public ToolStripMenuItem GetDeleteTool()
+        {
+            return ToolStripMenuDeleteObject;
         }
 
         //Методы для разметки Projection
@@ -383,6 +412,22 @@ namespace MarkingUpDrawingTool.View
         public void DrawProjectionRoi(Graphics g)
         {
             projectionRoiView.DrawProjectionRoi(g);
+        }
+
+        //Symbol
+        public ToolStripButton GetSymbolTool()
+        {
+            return toolStripButtonSymbol;
+        }
+
+        public ToolStripComboBox GetSymbolComboBox()
+        {
+            return toolStripComboBoxSymbol;
+        }
+
+        public void DrawSymbol(Graphics g)
+        {
+            symbolView.DrawSymbol(g);
         }
 
         //Методы для разметки Hole
@@ -576,5 +621,84 @@ namespace MarkingUpDrawingTool.View
             borderView.DrawBorder(g);
         }
 
+        public Presenter.ArrowPresenter ArrowPresenter
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Presenter.TablePresenter TablePresenter
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Presenter.SizePresenter SizePresenter
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Presenter.GapPresenter GapPresenter
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Presenter.BorderPresenter BorderPresenter
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Presenter.ProjectionRoiPresenter ProjectionRoiPresenter
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Presenter.HolePresenter HolePresenter
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Presenter.ProjectionPresenter ProjectionPresenter
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Presenter.SymbolPresenter SymbolPresenter
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public LayerService LayerService1
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

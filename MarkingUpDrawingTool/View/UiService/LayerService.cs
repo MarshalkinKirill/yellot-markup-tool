@@ -89,6 +89,8 @@ namespace MarkingUpDrawingTool.View.UiService
         public bool DrawBorderMod { get => drawBorderMod; set => drawBorderMod = value; }
         private bool drawProjectionRoiMod { get; set; }
         public bool DrawProjectionRoiMod { get => drawProjectionRoiMod; set => drawProjectionRoiMod = value; }
+        private bool drawSymbolMod { get; set; }
+        public bool DrawSymbolMod { get => drawSymbolMod; set => drawSymbolMod = value; }
 
         public bool reDraw;
 
@@ -138,30 +140,12 @@ namespace MarkingUpDrawingTool.View.UiService
             }
         }
 
-        public void ScrollLayers(ScrollOrientation orientation, int newValue)
-        {
-            foreach (Layer layer in layers)
-            {
-                if (orientation == ScrollOrientation.HorizontalScroll)
-                {
-                    layer.Location = new Point(layer.Location.X + newValue, layer.Location.Y);
-                    //Console.WriteLine(layer.Location.ToString());
-                }
-                else if (orientation == ScrollOrientation.VerticalScroll)
-                {
-                    layer.Location = new Point(layer.Location.X, layer.Location.Y + newValue);
-                    //Console.WriteLine(layer.Location.ToString());
-                }
-            }
-        }
-
         public void vPanel_Scroll(object sender, ScrollEventArgs e)
         {
             int scrollValue = -e.NewValue; // Получаем текущее значение скроллинга
 
             // Изменяем начало координат
             origin = new Point(origin.X, scrollValue);
-            //Console.WriteLine(origin.ToString());
             // Обновляем отображение
             Invalidate();
         }
@@ -172,7 +156,6 @@ namespace MarkingUpDrawingTool.View.UiService
 
             // Изменяем начало координат
             origin = new Point(scrollValue, origin.Y);
-            //Console.WriteLine(origin.ToString());
             // Обновляем отображение
             Invalidate();
         }
@@ -200,6 +183,7 @@ namespace MarkingUpDrawingTool.View.UiService
             drawProjectionRoiMod = false;
             drawSizeAutoMod = false;
             drawSizeMod = false;
+            drawSymbolMod = false;
         }
 
         public byte[] BitmapToBytes(Bitmap bitmap)
@@ -218,6 +202,14 @@ namespace MarkingUpDrawingTool.View.UiService
             }
 
             return bytes;
+        }
+
+        public Layer Layer
+        {
+            get => default;
+            set
+            {
+            }
         }
     }
 

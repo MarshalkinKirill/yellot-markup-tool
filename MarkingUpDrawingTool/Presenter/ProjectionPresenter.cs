@@ -14,6 +14,23 @@ namespace MarkingUpDrawingTool.Presenter
     public class ProjectionPresenter
     {
         private IProjectionView view { get; set; }
+
+        public View.ProjectionView ProjectionView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public ProjectionModel ProjectionModel
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private ProjectionModel model;
 
         public ProjectionPresenter(IProjectionView view)

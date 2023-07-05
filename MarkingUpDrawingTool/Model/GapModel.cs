@@ -51,7 +51,15 @@ namespace MarkingUpDrawingTool.Model
         private List<Gap> gaps { get; set; }
         public List<Gap> Gaps { get => gaps; set => gaps = value; }
         private Gap currentGap { get; set; }
-        public Gap CurrentGap { get => currentGap; set => currentGap = value; } 
+        public Gap CurrentGap { get => currentGap; set => currentGap = value; }
+
+        public Gap Gap
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
         public GapModel() 
         {

@@ -18,6 +18,8 @@ namespace MarkingUpDrawingTool.View.ViewInterface
         LayerService LayerService { get; set; }
         Layer GetImageLayer();
         void MainForm_CheckedChanged();
+        ToolStripMenuItem GetSaveTool();
+        ToolStripMenuItem GetDeleteTool();
         //Prjection view
         ToolStripButton GetProjectionTool();
         ToolStripMenuItem GetProjectionSaveTool();
@@ -71,5 +73,9 @@ namespace MarkingUpDrawingTool.View.ViewInterface
 
         //BorderView
         ToolStripButton GetBorderTool();
+
+        //SymbolView
+        ToolStripButton GetSymbolTool();
+        ToolStripComboBox GetSymbolComboBox();
     }
 }

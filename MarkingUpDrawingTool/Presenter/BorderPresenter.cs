@@ -24,6 +24,22 @@ namespace MarkingUpDrawingTool.Presenter
             view.SaveBorder += SaveBorder;
         }
 
+        public BorderView BorderView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public BorderModel BorderModel
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private void SaveBorder(object sender, Border border)
         {
             Console.WriteLine(border.Start.ToString() + "" + border.End.ToString());

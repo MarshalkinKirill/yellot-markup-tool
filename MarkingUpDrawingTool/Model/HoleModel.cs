@@ -55,6 +55,14 @@ namespace MarkingUpDrawingTool.Model
         private Point origin { get; set; }
         public Point Origin { get => origin; set => origin = value; }
 
+        public Hole Hole
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public HoleModel() 
         {
             holes = new List<Hole>();

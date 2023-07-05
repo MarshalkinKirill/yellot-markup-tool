@@ -26,6 +26,22 @@ namespace MarkingUpDrawingTool.Presenter
             view.DeleteTable += DeleteTable;
         }
 
+        public TableModel TableModel
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public View.TableView TableView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public void AddTable(object sender, Table table)
         {
             model.CurrentTable = table;

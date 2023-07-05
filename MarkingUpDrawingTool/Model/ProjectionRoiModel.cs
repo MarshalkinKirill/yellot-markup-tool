@@ -49,6 +49,14 @@ namespace MarkingUpDrawingTool.Model
         private ProjectionRoi currentProjectionRoi { get; set; }
         public ProjectionRoi CurrentProjectionRoi { get => currentProjectionRoi; set => currentProjectionRoi = value; }
 
+        public ProjectionRoi ProjectionRoi
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public ProjectionRoiModel()
         {
             projectionRois = new List<ProjectionRoi>();

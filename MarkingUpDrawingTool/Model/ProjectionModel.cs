@@ -66,5 +66,12 @@ namespace MarkingUpDrawingTool.Model
             origins.Add(origin);
         }
 
+        public Projection Projection
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

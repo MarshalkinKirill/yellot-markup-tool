@@ -88,6 +88,14 @@ namespace MarkingUpDrawingTool.Model
         private Arrow currentArrow { get; set; }
         public Arrow CurrentArrow { get => currentArrow; set => currentArrow = value; }
 
+        public Arrow Arrow
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public ArrowModel()
         {
             arrows = new List<Arrow>();
