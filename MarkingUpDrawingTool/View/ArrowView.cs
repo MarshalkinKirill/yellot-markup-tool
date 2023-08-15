@@ -114,7 +114,7 @@ namespace MarkingUpDrawingTool.View
 
         private void layerServiceLinearArrow_MouseDown(object sender, MouseEventArgs e)
         {
-            if (layerService.DrawLinearArrowMod && e.Button == MouseButtons.Left)
+            if (layerService.DrawLinearArrowMod && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 arrowPresenter.CleanMarkedArrow();
                 if (layerService.StartPoint == Point.Empty)
@@ -127,7 +127,7 @@ namespace MarkingUpDrawingTool.View
                 }
 
             }
-            if (layerService.DrawLinearArrowMod && e.Button == MouseButtons.Right)
+            if (layerService.DrawLinearArrowMod && e.Button == MouseButtons.Middle)
             {
                 if (layerService.EndPoint != Point.Empty)
                 {
@@ -144,7 +144,7 @@ namespace MarkingUpDrawingTool.View
 
         private void layerServiceLinearArrow_MouseUp(object sender, MouseEventArgs e)
         {
-            if (layerService.DrawLinearArrowMod && e.Button == MouseButtons.Left)
+            if (layerService.DrawLinearArrowMod && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 if (layerService.StartPoint != Point.Empty && layerService.StartNote == Point.Empty)
                 {
@@ -169,7 +169,7 @@ namespace MarkingUpDrawingTool.View
 
         private void layerServiceLinearArrow_MouseMove(object sender, MouseEventArgs e)
         {
-            if (layerService.DrawLinearArrowMod && e.Button == MouseButtons.Left)
+            if (layerService.DrawLinearArrowMod && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 if (layerService.StartPoint != Point.Empty && layerService.StartNote == Point.Empty)
                 {
@@ -227,7 +227,7 @@ namespace MarkingUpDrawingTool.View
                 }
 
             }
-            if (layerService.DrawAngularArrowMod && e.Button == MouseButtons.Right)
+            if (layerService.DrawAngularArrowMod && e.Button == MouseButtons.Middle)
             {
                 if (layerService.EndPoint != Point.Empty)
                 {
@@ -266,7 +266,7 @@ namespace MarkingUpDrawingTool.View
 
         private void layerServiceAngularArrow_MouseMove(object sender, MouseEventArgs e)
         {
-            if (layerService.DrawAngularArrowMod && e.Button == MouseButtons.Left)
+            if (layerService.DrawAngularArrowMod && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 if (layerService.CenterPoint != Point.Empty && layerService.StartPoint == Point.Empty)
                 {
@@ -324,7 +324,7 @@ namespace MarkingUpDrawingTool.View
                 }
 
             }
-            if (layerService.DrawRadialArrowMod && e.Button == MouseButtons.Right)
+            if (layerService.DrawRadialArrowMod && e.Button == MouseButtons.Middle)
             {
                 if (layerService.EndPoint != Point.Empty)
                 {
@@ -367,7 +367,7 @@ namespace MarkingUpDrawingTool.View
 
         private void layerServiceRadialArrow_MouseMove(object sender, MouseEventArgs e)
         {
-            if (layerService.DrawRadialArrowMod && e.Button == MouseButtons.Left)
+            if (layerService.DrawRadialArrowMod && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 if (layerService.StartPoint != Point.Empty && layerService.StartNote == Point.Empty)
                 {

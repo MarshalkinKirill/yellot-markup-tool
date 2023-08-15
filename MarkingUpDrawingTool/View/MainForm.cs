@@ -12,6 +12,7 @@ using Newtonsoft.Json.Linq;
 using System.Web.UI.WebControls;
 using Image = System.Drawing.Image;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Collections.Generic;
 
 namespace MarkingUpDrawingTool.View
 {
@@ -25,7 +26,8 @@ namespace MarkingUpDrawingTool.View
         public LayerService LayerService { get => layerService; set => layerService = value; }
         VScrollBar vScrollBar;
         HScrollBar hScrollBar;
-        
+        private Timer scrollTimer;
+        private const int DebounceDelay = 300;
 
         //Объявление событий 
         private ISizeView sizeView;
@@ -42,7 +44,10 @@ namespace MarkingUpDrawingTool.View
         {
             InitializeComponent();
             layerService = new LayerService();
-            
+            scrollTimer = new Timer();
+            scrollTimer.Interval = DebounceDelay;
+            scrollTimer.Tick += ScrollTimer_Tick;
+
             //Подписка на глобальные события формы
             this.KeyDown += mainForm_KeyDown;
             this.toolStripComboBoxHole.KeyDown += mainForm_KeyDown;
@@ -112,7 +117,7 @@ namespace MarkingUpDrawingTool.View
             vScrollBar.Dock = DockStyle.Right;
             vScrollBar.Maximum = imageLayer.Image.Height - panel1.Height;
             vScrollBar.Scroll += VScrollBar_Scroll;
-            // Создание вертикального скролла
+            // Создание горизонтального скролла
             hScrollBar = new HScrollBar();
             hScrollBar.Dock = DockStyle.Bottom;
             hScrollBar.Maximum = imageLayer.Image.Width - panel1.Width;
@@ -120,6 +125,8 @@ namespace MarkingUpDrawingTool.View
             // Добавление скролла на панель
             panel1.Controls.Add(vScrollBar);
             panel1.Controls.Add(hScrollBar);
+
+            // Добавление метода 
 
             panel1.AutoScroll = true;
             panel1.Controls.Add(layerService);
@@ -181,6 +188,74 @@ namespace MarkingUpDrawingTool.View
             sizeView.Size_KeyDown(sender, e);
             gapView.Gap_KeyDown(sender, e);
             symbolView.Symbol_KeyDown(sender, e);
+
+            if (e.KeyCode == Keys.ShiftKey)
+            {
+                Console.WriteLine("PROZAL");
+                ScrollMouseEvent();
+            }
+        }
+
+        private void ScrollMouseEvent()
+        {
+            layerService.ScrollMod = !layerService.ScrollMod;
+            if (layerService.ScrollMod)
+            {
+                layerService.MouseDown += mainForm_MouseDown;
+                layerService.MouseMove += mainForm_MouseMove;
+            }
+            else
+            {
+                layerService.MouseDown -= mainForm_MouseDown;
+                layerService.MouseMove -= mainForm_MouseMove;
+            }
+        }
+
+        private void mainForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                layerService.MainFormStartPoint = e.Location;
+            }
+        }
+
+
+        private void ScrollTimer_Tick(object sender, EventArgs e)
+        {
+            scrollTimer.Stop();
+            VScrollBar_Scroll(sender, layerService.LastVScrollEventArgs);
+            HScrollBar_Scroll(sender, layerService.LastHScrollEventArgs);
+        }
+
+        private void mainForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle || e.Button == (MouseButtons.Left | MouseButtons.Right))
+            {
+                // Вертикальный Scroll
+                int deltaY = e.Y - layerService.MainFormStartPoint.Y; 
+                int newValue = vScrollBar.Value - deltaY; 
+
+                // Ограничиваем новое значение скролла в пределах минимального и максимального
+                newValue = Math.Max(vScrollBar.Minimum, Math.Min(vScrollBar.Maximum, newValue));
+
+                vScrollBar.Value = newValue; 
+                layerService.LastVScrollEventArgs = new ScrollEventArgs(ScrollEventType.ThumbPosition, newValue);
+
+                // Горизонтальный Scroll
+                int deltaX = e.X - layerService.MainFormStartPoint.X;
+                newValue = hScrollBar.Value - deltaX;
+
+                // Ограничиваем новое значение скролла в пределах минимального и максимального
+                newValue = Math.Max(hScrollBar.Minimum, Math.Min(hScrollBar.Maximum, newValue));
+
+                hScrollBar.Value = newValue;
+                layerService.LastHScrollEventArgs = new ScrollEventArgs(ScrollEventType.ThumbPosition, newValue);
+
+                scrollTimer.Stop();
+                scrollTimer.Start();
+
+                layerService.MainFormStartPoint = e.Location;
+            }
         }
 
         //Метод для подключения изображения на форму 
@@ -304,9 +379,11 @@ namespace MarkingUpDrawingTool.View
                 string tablesJson = JsonConvert.SerializeObject(tableView.GetTables(), Formatting.Indented);
                 string symbolsJson = JsonConvert.SerializeObject(symbolView.GetSymbols(), Formatting.Indented);
 
-                var combinedJson = new JObject
+                JObject combinedJson = new JObject { };
+
+                /*var combinedJson = new JObject
                 {
-                    { "Sizes", JArray.Parse(sizesJson) },
+                    //{ "Sizes", JArray.Parse(sizesJson) },
                     { "Arrows", JArray.Parse(arrowsJson) },
                     { "Border", JArray.Parse(borderJson) },
                     { "Gaps", JArray.Parse(gapsJson) },
@@ -315,7 +392,18 @@ namespace MarkingUpDrawingTool.View
                     { "Holes", JArray.Parse(holesJson) },
                     { "Tables", JArray.Parse(tablesJson) },
                     { "Symbols", JArray.Parse(symbolsJson) }
-                };
+                };*/
+
+                if (sizesJson != "[]") combinedJson.Add("Sizes", JArray.Parse(sizesJson)); 
+                if (arrowsJson != "[]") combinedJson.Add("Arrows", JArray.Parse(arrowsJson)); 
+                if (borderJson != "[]") combinedJson.Add("Border", JArray.Parse(borderJson)); 
+                if (gapsJson != "[]") combinedJson.Add("Gaps", JArray.Parse(gapsJson)); 
+                if (projectionsJson != "[]") combinedJson.Add("Projections", JArray.Parse(projectionsJson)); 
+                if (projectionsRoiJson != "[]") combinedJson.Add("ProjectionsRoi", JArray.Parse(projectionsRoiJson)); 
+                if (holesJson != "[]") combinedJson.Add("Holes", JArray.Parse(holesJson)); 
+                if (tablesJson != "[]") combinedJson.Add("Tables", JArray.Parse(tablesJson)); 
+                if (symbolsJson != "[]") combinedJson.Add("Symbols", JArray.Parse(symbolsJson));
+                Console.WriteLine(sizesJson);
                 // Сохранение JSON-строки в файл
                 string fileName = Path.GetFileName(filePath);
                 string fullPath = Path.Combine(directoryPath, fileName);

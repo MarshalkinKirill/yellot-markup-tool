@@ -57,6 +57,14 @@ namespace MarkingUpDrawingTool.View.UiService
         public Point StartNote { get => startNote; set => startNote = value; }
         private Point endNote { get; set; }
         public Point EndNote { get => endNote; set => endNote = value; } 
+        private Point mainFormStartPoint { get; set; }
+        public Point MainFormStartPoint { get => mainFormStartPoint; set => mainFormStartPoint = value; }
+        private Point mainFormEndPoint { get; set; }
+        public Point MainFormEndPoint { get => mainFormEndPoint; set => mainFormEndPoint = value; }
+        public ScrollEventArgs LastVScrollEventArgs;
+        public ScrollEventArgs LastHScrollEventArgs;
+        private bool scrollMod { get; set; }
+        public bool ScrollMod { get => scrollMod; set => scrollMod = value; }
         private bool drawProjectionMod  { get; set; }
         public bool DrawProjectionMod { get => drawProjectionMod; set => drawProjectionMod = value; }
         private bool drawHoleMod { get; set; }

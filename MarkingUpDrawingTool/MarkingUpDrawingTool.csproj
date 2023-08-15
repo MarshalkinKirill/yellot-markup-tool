@@ -229,6 +229,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Image\symbol_tool.png" />
     <Content Include="Image\arrow_tool.png" />
     <Content Include="Image\border_tool.png" />
     <Content Include="Image\gap_tool.png" />

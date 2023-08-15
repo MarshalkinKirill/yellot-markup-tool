@@ -82,12 +82,12 @@
             this.ToolStripMenuSaveGap = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuDeleteGap = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBoxGap = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripButtonSymbol = new System.Windows.Forms.ToolStripButton();
+            this.toolStripComboBoxSymbol = new System.Windows.Forms.ToolStripComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.toolStripButtonSymbol = new System.Windows.Forms.ToolStripButton();
-            this.toolStripComboBoxSymbol = new System.Windows.Forms.ToolStripComboBox();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -191,7 +191,7 @@
             this.ToolStripButtonBorder.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripButtonBorder.Name = "ToolStripButtonBorder";
             this.ToolStripButtonBorder.Size = new System.Drawing.Size(24, 24);
-            this.ToolStripButtonBorder.Text = "Border";
+            this.ToolStripButtonBorder.Text = "Рамка";
             // 
             // toolStripButtonProjection
             // 
@@ -201,7 +201,7 @@
             this.toolStripButtonProjection.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonProjection.Name = "toolStripButtonProjection";
             this.toolStripButtonProjection.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButtonProjection.Text = "Projection";
+            this.toolStripButtonProjection.Text = "Контур проекции ";
             this.toolStripButtonProjection.ToolTipText = "toolStripButtonProjection";
             // 
             // toolStripButtonProjectionSettings
@@ -244,7 +244,7 @@
             this.toolStripButtonProjectionRoi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonProjectionRoi.Name = "toolStripButtonProjectionRoi";
             this.toolStripButtonProjectionRoi.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButtonProjectionRoi.Text = "Proection ROI";
+            this.toolStripButtonProjectionRoi.Text = "Область проекции";
             // 
             // toolStripComboBoxProjectionRoi
             // 
@@ -260,7 +260,7 @@
             this.ToolStripButtonHole.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripButtonHole.Name = "ToolStripButtonHole";
             this.ToolStripButtonHole.Size = new System.Drawing.Size(24, 24);
-            this.ToolStripButtonHole.Text = "Hole";
+            this.ToolStripButtonHole.Text = "Отверсие";
             this.ToolStripButtonHole.ToolTipText = "ToolStripButtonHole";
             // 
             // toolStripButton2
@@ -545,6 +545,22 @@
             this.toolStripComboBoxGap.Name = "toolStripComboBoxGap";
             this.toolStripComboBoxGap.Size = new System.Drawing.Size(75, 27);
             // 
+            // toolStripButtonSymbol
+            // 
+            this.toolStripButtonSymbol.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSymbol.Enabled = false;
+            this.toolStripButtonSymbol.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSymbol.Image")));
+            this.toolStripButtonSymbol.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSymbol.Name = "toolStripButtonSymbol";
+            this.toolStripButtonSymbol.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButtonSymbol.Text = "Символ";
+            // 
+            // toolStripComboBoxSymbol
+            // 
+            this.toolStripComboBoxSymbol.Enabled = false;
+            this.toolStripComboBoxSymbol.Name = "toolStripComboBoxSymbol";
+            this.toolStripComboBoxSymbol.Size = new System.Drawing.Size(75, 27);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -570,22 +586,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1443, 806);
             this.panel1.TabIndex = 3;
-            // 
-            // toolStripButtonSymbol
-            // 
-            this.toolStripButtonSymbol.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSymbol.Enabled = false;
-            this.toolStripButtonSymbol.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSymbol.Image")));
-            this.toolStripButtonSymbol.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSymbol.Name = "toolStripButtonSymbol";
-            this.toolStripButtonSymbol.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButtonSymbol.Text = "Symbol";
-            // 
-            // toolStripComboBoxSymbol
-            // 
-            this.toolStripComboBoxSymbol.Enabled = false;
-            this.toolStripComboBoxSymbol.Name = "toolStripComboBoxSymbol";
-            this.toolStripComboBoxSymbol.Size = new System.Drawing.Size(75, 27);
             // 
             // MainForm
             // 

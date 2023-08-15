@@ -13,7 +13,6 @@ C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\MarkingUpDr
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\MarkingUpDrawingTool.exe
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\bin\Debug\MarkingUpDrawingTool.pdb
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\MarkingUpDrawingTool.csproj.AssemblyReference.cache
-C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\MarkingUpDrawingTool.csproj.SuggestedBindingRedirects.cache
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\MarkingUpDrawingTool.Properties.Resources.resources
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\MarkingUpDrawingTool.View.MainForm.resources
 C:\Users\evilr\source\repos\MarkupApp\MarkingUpDrawingTool\obj\Debug\MarkingUpDrawingTool.csproj.GenerateResource.cache
