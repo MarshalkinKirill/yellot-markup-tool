@@ -96,11 +96,10 @@ namespace MarkingUpDrawingTool.View
 
         private void LayerServiceSymbol_MouseDown(object sender, MouseEventArgs e)
         {
-            Console.WriteLine("1");
-            if (layerService.DrawSymbolMod && e.Button == MouseButtons.Left)
+            if (layerService.DrawSymbolMod && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
-            }
+            }/*
             if (layerService.DrawSymbolMod && e.Button == MouseButtons.Right)
             {
                 if (layerService.EndPoint != Point.Empty)
@@ -108,12 +107,12 @@ namespace MarkingUpDrawingTool.View
                     layerService.StartPoint = Point.Empty;
                     layerService.EndPoint = Point.Empty;
                 }
-            }
+            }*/
         }
 
         private void LayerServiceSymbol_MouseUp(object sender, MouseEventArgs e)
         {
-            if (layerService.DrawSymbolMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left)
+            if (layerService.DrawSymbolMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
                 AddSymbol?.Invoke(this, new Symbol(layerService.StartPoint, layerService.EndPoint, layerService.Origin));

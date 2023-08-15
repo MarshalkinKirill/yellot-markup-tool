@@ -122,20 +122,20 @@ namespace MarkingUpDrawingTool.View
 
         private void layerServiceTable_MouseDown(object sender, MouseEventArgs e)
         {
-            if ((layerService.DrawTableMod || layerService.DrawMainTableMod) && e.Button == MouseButtons.Left)
+            if ((layerService.DrawTableMod || layerService.DrawMainTableMod) && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
-            }
+            }/*
             if ((layerService.DrawTableMod || layerService.DrawMainTableMod) && e.Button == MouseButtons.Right)
             {
                 layerService.StartPoint = Point.Empty;
                 layerService.EndPoint = Point.Empty;
-            }
+            }*/
         }
 
         private void layerServiceTable_MouseUp(object sender, MouseEventArgs e)
         {
-            if ((layerService.DrawTableMod || layerService.DrawMainTableMod) && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left)
+            if ((layerService.DrawTableMod || layerService.DrawMainTableMod) && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
                 AddTable?.Invoke(this, new Table(layerService.StartPoint, layerService.EndPoint, layerService.Origin));

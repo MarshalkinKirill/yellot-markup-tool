@@ -95,23 +95,23 @@ namespace MarkingUpDrawingTool.View
 
         private void layerServiceGap_MouseDown(object sender, MouseEventArgs e)
         {
-            if (layerService.DrawGapMod && e.Button == MouseButtons.Left)
+            if (layerService.DrawGapMod && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y); 
             }
-            if (layerService.DrawGapMod && e.Button == MouseButtons.Right)
+            /*if (layerService.DrawGapMod && e.Button == MouseButtons.Right)
             {
                 if (layerService.EndPoint != Point.Empty)
                 {
                     layerService.StartPoint = Point.Empty;
                     layerService.EndPoint = Point.Empty;
                 }
-            }
+            }*/
         }
 
         private void layerServiceGap_MouseUp(object sender, MouseEventArgs e)
         {
-            if (layerService.DrawGapMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left)
+            if (layerService.DrawGapMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
                 AddGap?.Invoke(this, new Gap(layerService.StartPoint, layerService.EndPoint, layerService.Origin, layerService.Origin));

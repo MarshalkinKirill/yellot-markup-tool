@@ -93,21 +93,21 @@ namespace MarkingUpDrawingTool.View
 
         private void layerServiceProjection_MouseDown(object sender, MouseEventArgs e)
         {
-            if (layerService.DrawProjectionMod && e.Button == MouseButtons.Left)
+            if (layerService.DrawProjectionMod && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
                 startOrigin = new Point(layerService.Origin.X, layerService.Origin.Y);
-            }
+            }/*
             if (layerService.DrawProjectionMod && e.Button == MouseButtons.Right)
             {
                 layerService.StartPoint = Point.Empty;
                 layerService.EndPoint = Point.Empty;
-            }
+            }*/
         }
 
         private void layerServiceProjection_MouseUp(object sender, MouseEventArgs e)
         {
-            if (layerService.DrawProjectionMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left)
+            if (layerService.DrawProjectionMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 
                 layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
@@ -123,7 +123,6 @@ namespace MarkingUpDrawingTool.View
             {
                 layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
                 endOrigin = new Point(layerService.Origin.X, layerService.Origin.Y);
-                //ChangePoint?.Invoke(this, new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y));
                 layerService.Invalidate();
             }
         }

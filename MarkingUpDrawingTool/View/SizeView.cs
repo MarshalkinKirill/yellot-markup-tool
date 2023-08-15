@@ -129,20 +129,20 @@ namespace MarkingUpDrawingTool.View
 
         private void layerServiceSize_MouseDown(object sender, MouseEventArgs e)
         {
-            if ((layerService.DrawSizeMod || layerService.DrawSizeAutoMod) && e.Button == MouseButtons.Left)
+            if ((layerService.DrawSizeMod || layerService.DrawSizeAutoMod) && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
-            }
+            }/*
             if ((layerService.DrawSizeMod || layerService.DrawSizeAutoMod) && e.Button == MouseButtons.Right)
             {
                 layerService.StartPoint = Point.Empty;
                 layerService.EndPoint = Point.Empty;
-            }
+            }*/
         }
 
         private void layerServiceSize_MouseUp(object sender, MouseEventArgs e)
         {
-            if ((layerService.DrawSizeMod || layerService.DrawSizeAutoMod) && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left)
+            if ((layerService.DrawSizeMod || layerService.DrawSizeAutoMod) && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 if (layerService.DrawSizeAutoMod)
                 {

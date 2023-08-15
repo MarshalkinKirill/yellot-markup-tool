@@ -96,20 +96,20 @@ namespace MarkingUpDrawingTool.View
 
         private void layerServiceHole_MouseDown(object sender, MouseEventArgs e)
         {
-            if (layerService.DrawHoleMod && e.Button == MouseButtons.Left)
+            if (layerService.DrawHoleMod && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
             }
-            if (layerService.DrawHoleMod && e.Button == MouseButtons.Right)
+            /*if (layerService.DrawHoleMod && e.Button == MouseButtons.Right)
             {
                 layerService.StartPoint = Point.Empty;
                 layerService.EndPoint = Point.Empty;
-            }
+            }*/
         }
 
         private void layerServiceHole_MouseUp(object sender, MouseEventArgs e)
         {
-            if (layerService.DrawHoleMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left)
+            if (layerService.DrawHoleMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
                 float dist = (float)Math.Sqrt(Math.Pow(layerService.EndPoint.X - layerService.StartPoint.X, 2) + Math.Pow(layerService.EndPoint.Y - layerService.StartPoint.Y, 2));

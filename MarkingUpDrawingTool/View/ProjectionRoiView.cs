@@ -96,10 +96,10 @@ namespace MarkingUpDrawingTool.View
 
         private void LayerServiceProjectionRoi_MouseDown(object sender, MouseEventArgs e)
         {
-            if (layerService.DrawProjectionRoiMod && e.Button == MouseButtons.Left)
+            if (layerService.DrawProjectionRoiMod && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
-            }
+            }/*
             if (layerService.DrawProjectionRoiMod && e.Button == MouseButtons.Right)
             {
                 if (layerService.EndPoint != Point.Empty)
@@ -107,12 +107,12 @@ namespace MarkingUpDrawingTool.View
                     layerService.StartPoint = Point.Empty;
                     layerService.EndPoint = Point.Empty;
                 }
-            }
+            }*/
         }
 
         private void LayerServiceProjectionRoi_MouseUp(object sender, MouseEventArgs e)
         {
-            if (layerService.DrawProjectionRoiMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left)
+            if (layerService.DrawProjectionRoiMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
                 AddProjectionRoi?.Invoke(this, new ProjectionRoi(layerService.StartPoint, layerService.EndPoint, layerService.Origin));

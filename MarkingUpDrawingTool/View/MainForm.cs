@@ -27,7 +27,7 @@ namespace MarkingUpDrawingTool.View
         VScrollBar vScrollBar;
         HScrollBar hScrollBar;
         private Timer scrollTimer;
-        private const int DebounceDelay = 300;
+        private const int DebounceDelay = 100;
 
         //Объявление событий 
         private ISizeView sizeView;
@@ -149,8 +149,6 @@ namespace MarkingUpDrawingTool.View
                 layerService.Left += scrollValue;
             }
             layerService.vPanel_Scroll(this, e);
-            // Прокрутка всех слоев в LayerService
-            //layerService.ScrollLayers(orientation, scrollValue);
 
             // Обновление отображения
             layerService.Invalidate();
@@ -172,8 +170,6 @@ namespace MarkingUpDrawingTool.View
                 layerService.Left += scrollValue;
             }
             layerService.hPanel_Scroll(this, e);
-            // Прокрутка всех слоев в LayerService
-            //layerService.ScrollLayers(orientation, scrollValue);
 
             // Обновление отображения
             layerService.Invalidate();
@@ -191,7 +187,6 @@ namespace MarkingUpDrawingTool.View
 
             if (e.KeyCode == Keys.ShiftKey)
             {
-                Console.WriteLine("PROZAL");
                 ScrollMouseEvent();
             }
         }
@@ -229,7 +224,7 @@ namespace MarkingUpDrawingTool.View
 
         private void mainForm_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Middle || e.Button == (MouseButtons.Left | MouseButtons.Right))
+            if (e.Button == MouseButtons.Right || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 // Вертикальный Scroll
                 int deltaY = e.Y - layerService.MainFormStartPoint.Y; 
