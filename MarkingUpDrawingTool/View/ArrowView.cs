@@ -53,8 +53,8 @@ namespace MarkingUpDrawingTool.View
             referenceArrowTool = mainForm.GetReferenceArrowTool();
             coneArrowTool = mainForm.GetConeArrowTool();
             chamferArrowTool = mainForm.GetChamferArrowTool();
-            arrowSaveTool = mainForm.GetArrowSaveTool();
-            arrowDeleteTool = mainForm.GetArrowDeleteTool();
+            arrowSaveTool = mainForm.GetSaveTool();
+            arrowDeleteTool = mainForm.GetDeleteTool();
             arrowComboBox = mainForm.GetArrowComboBox();
 
             linearArrowTool.Click += LinearArrowTool_Click;

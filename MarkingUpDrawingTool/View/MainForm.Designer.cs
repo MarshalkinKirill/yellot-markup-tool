@@ -39,31 +39,20 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ToolStripButtonBorder = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonProjection = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonProjectionSettings = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ToolStripMenuSaveProjection = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuDeleteProjection = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBoxProjection = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButtonProjectionRoi = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBoxProjectionRoi = new System.Windows.Forms.ToolStripComboBox();
             this.ToolStripButtonHole = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ToolStripMenuHoleSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuHoleDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuHoleSearch = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBoxHole = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.ToolStripMenuMainTable = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuTable = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ToolStripMenuTableSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuTableDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBoxTable = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripDropDownButton();
             this.ToolStripMenuSizeAuto = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuSize = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ToolStripMenuSaveSize = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuDeleteSize = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBoxSize = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButtonArrow = new System.Windows.Forms.ToolStripDropDownButton();
             this.ToolStripMenuLinearArrow = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,14 +62,8 @@
             this.ToolStripMenuReferenceArrow = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuConeArrow = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuChamferArrow = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ToolStripMenuSaveArrow = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuDeleteArrow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBoxArrow = new System.Windows.Forms.ToolStripComboBox();
             this.ToolStripButtonGap = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton8 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ToolStripMenuSaveGap = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuDeleteGap = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBoxGap = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButtonSymbol = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBoxSymbol = new System.Windows.Forms.ToolStripComboBox();
@@ -156,7 +139,6 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripButtonBorder,
             this.toolStripButtonProjection,
-            this.toolStripButtonProjectionSettings,
             this.toolStripComboBoxProjection,
             this.toolStripButtonProjectionRoi,
             this.toolStripComboBoxProjectionRoi,
@@ -164,16 +146,12 @@
             this.toolStripButton2,
             this.toolStripComboBoxHole,
             this.toolStripButton1,
-            this.toolStripButton3,
             this.toolStripComboBoxTable,
             this.toolStripButton4,
-            this.toolStripButton5,
             this.toolStripComboBoxSize,
             this.toolStripButtonArrow,
-            this.toolStripButton7,
             this.toolStripComboBoxArrow,
             this.ToolStripButtonGap,
-            this.toolStripButton8,
             this.toolStripComboBoxGap,
             this.toolStripButtonSymbol,
             this.toolStripComboBoxSymbol});
@@ -203,32 +181,6 @@
             this.toolStripButtonProjection.Size = new System.Drawing.Size(24, 24);
             this.toolStripButtonProjection.Text = "Контур проекции ";
             this.toolStripButtonProjection.ToolTipText = "toolStripButtonProjection";
-            // 
-            // toolStripButtonProjectionSettings
-            // 
-            this.toolStripButtonProjectionSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonProjectionSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuSaveProjection,
-            this.ToolStripMenuDeleteProjection});
-            this.toolStripButtonProjectionSettings.Enabled = false;
-            this.toolStripButtonProjectionSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonProjectionSettings.Image")));
-            this.toolStripButtonProjectionSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonProjectionSettings.Name = "toolStripButtonProjectionSettings";
-            this.toolStripButtonProjectionSettings.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButtonProjectionSettings.Text = "ProjectionSettings";
-            this.toolStripButtonProjectionSettings.ToolTipText = "toolStripButtonProjectionSettings";
-            // 
-            // ToolStripMenuSaveProjection
-            // 
-            this.ToolStripMenuSaveProjection.Name = "ToolStripMenuSaveProjection";
-            this.ToolStripMenuSaveProjection.Size = new System.Drawing.Size(193, 22);
-            this.ToolStripMenuSaveProjection.Text = "Сохранить проекцию";
-            // 
-            // ToolStripMenuDeleteProjection
-            // 
-            this.ToolStripMenuDeleteProjection.Name = "ToolStripMenuDeleteProjection";
-            this.ToolStripMenuDeleteProjection.Size = new System.Drawing.Size(193, 22);
-            this.ToolStripMenuDeleteProjection.Text = "Удалить проекцию";
             // 
             // toolStripComboBoxProjection
             // 
@@ -267,8 +219,6 @@
             // 
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuHoleSave,
-            this.ToolStripMenuHoleDelete,
             this.ToolStripMenuHoleSearch});
             this.toolStripButton2.Enabled = false;
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
@@ -276,18 +226,6 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(33, 24);
             this.toolStripButton2.Text = "HoleSettings";
-            // 
-            // ToolStripMenuHoleSave
-            // 
-            this.ToolStripMenuHoleSave.Name = "ToolStripMenuHoleSave";
-            this.ToolStripMenuHoleSave.Size = new System.Drawing.Size(191, 22);
-            this.ToolStripMenuHoleSave.Text = "Сохранить отверстие";
-            // 
-            // ToolStripMenuHoleDelete
-            // 
-            this.ToolStripMenuHoleDelete.Name = "ToolStripMenuHoleDelete";
-            this.ToolStripMenuHoleDelete.Size = new System.Drawing.Size(191, 22);
-            this.ToolStripMenuHoleDelete.Text = "Удалить отверстие";
             // 
             // ToolStripMenuHoleSearch
             // 
@@ -326,31 +264,6 @@
             this.ToolStripMenuTable.Size = new System.Drawing.Size(236, 22);
             this.ToolStripMenuTable.Text = "Выделить побочную таблицу";
             // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuTableSave,
-            this.ToolStripMenuTableDelete});
-            this.toolStripButton3.Enabled = false;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButton3.Text = "TableSettings";
-            // 
-            // ToolStripMenuTableSave
-            // 
-            this.ToolStripMenuTableSave.Name = "ToolStripMenuTableSave";
-            this.ToolStripMenuTableSave.Size = new System.Drawing.Size(184, 22);
-            this.ToolStripMenuTableSave.Text = "Сохранить таблицу ";
-            // 
-            // ToolStripMenuTableDelete
-            // 
-            this.ToolStripMenuTableDelete.Name = "ToolStripMenuTableDelete";
-            this.ToolStripMenuTableDelete.Size = new System.Drawing.Size(184, 22);
-            this.ToolStripMenuTableDelete.Text = "Удалить таблицу ";
-            // 
             // toolStripComboBoxTable
             // 
             this.toolStripComboBoxTable.Enabled = false;
@@ -381,31 +294,6 @@
             this.ToolStripMenuSize.Name = "ToolStripMenuSize";
             this.ToolStripMenuSize.Size = new System.Drawing.Size(200, 22);
             this.ToolStripMenuSize.Text = "Выделить размер ";
-            // 
-            // toolStripButton5
-            // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuSaveSize,
-            this.ToolStripMenuDeleteSize});
-            this.toolStripButton5.Enabled = false;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButton5.Text = "SizeSetting";
-            // 
-            // ToolStripMenuSaveSize
-            // 
-            this.ToolStripMenuSaveSize.Name = "ToolStripMenuSaveSize";
-            this.ToolStripMenuSaveSize.Size = new System.Drawing.Size(176, 22);
-            this.ToolStripMenuSaveSize.Text = "Сохранить размер";
-            // 
-            // ToolStripMenuDeleteSize
-            // 
-            this.ToolStripMenuDeleteSize.Name = "ToolStripMenuDeleteSize";
-            this.ToolStripMenuDeleteSize.Size = new System.Drawing.Size(176, 22);
-            this.ToolStripMenuDeleteSize.Text = "Удалить размер";
             // 
             // toolStripComboBoxSize
             // 
@@ -473,31 +361,6 @@
             this.ToolStripMenuChamferArrow.Size = new System.Drawing.Size(187, 22);
             this.ToolStripMenuChamferArrow.Text = "Фасочнпя стрелка";
             // 
-            // toolStripButton7
-            // 
-            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton7.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuSaveArrow,
-            this.ToolStripMenuDeleteArrow});
-            this.toolStripButton7.Enabled = false;
-            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButton7.Text = "ArrowSettings";
-            // 
-            // ToolStripMenuSaveArrow
-            // 
-            this.ToolStripMenuSaveArrow.Name = "ToolStripMenuSaveArrow";
-            this.ToolStripMenuSaveArrow.Size = new System.Drawing.Size(174, 22);
-            this.ToolStripMenuSaveArrow.Text = "Сохранить срелку";
-            // 
-            // ToolStripMenuDeleteArrow
-            // 
-            this.ToolStripMenuDeleteArrow.Name = "ToolStripMenuDeleteArrow";
-            this.ToolStripMenuDeleteArrow.Size = new System.Drawing.Size(174, 22);
-            this.ToolStripMenuDeleteArrow.Text = "Удалить стрелку";
-            // 
             // toolStripComboBoxArrow
             // 
             this.toolStripComboBoxArrow.Enabled = false;
@@ -513,31 +376,6 @@
             this.ToolStripButtonGap.Name = "ToolStripButtonGap";
             this.ToolStripButtonGap.Size = new System.Drawing.Size(24, 24);
             this.ToolStripButtonGap.Text = "Gap";
-            // 
-            // toolStripButton8
-            // 
-            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton8.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuSaveGap,
-            this.ToolStripMenuDeleteGap});
-            this.toolStripButton8.Enabled = false;
-            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
-            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButton8.Text = "toolStripButton8";
-            // 
-            // ToolStripMenuSaveGap
-            // 
-            this.ToolStripMenuSaveGap.Name = "ToolStripMenuSaveGap";
-            this.ToolStripMenuSaveGap.Size = new System.Drawing.Size(176, 22);
-            this.ToolStripMenuSaveGap.Text = "Сохранить разрыв";
-            // 
-            // ToolStripMenuDeleteGap
-            // 
-            this.ToolStripMenuDeleteGap.Name = "ToolStripMenuDeleteGap";
-            this.ToolStripMenuDeleteGap.Size = new System.Drawing.Size(176, 22);
-            this.ToolStripMenuDeleteGap.Text = "Удалить разрыв";
             // 
             // toolStripComboBoxGap
             // 
@@ -618,40 +456,23 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripButton toolStripButtonProjection;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripButtonProjectionSettings;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveProjection;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteProjection;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxProjection;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripButton ToolStripButtonHole;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxHole;
         private System.Windows.Forms.ToolStripDropDownButton toolStripButton2;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuHoleSave;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuHoleDelete;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuHoleSearch;
         private System.Windows.Forms.ToolStripDropDownButton toolStripButton1;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuMainTable;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuTable;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripButton3;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuTableSave;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuTableDelete;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxTable;
         private System.Windows.Forms.ToolStripDropDownButton toolStripButton4;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSizeAuto;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSize;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripButton5;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveSize;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteSize;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxSize;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripButton7;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxArrow;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveArrow;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteArrow;
         private System.Windows.Forms.ToolStripButton ToolStripButtonGap;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripButton8;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxGap;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveGap;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuDeleteGap;
         private System.Windows.Forms.ToolStripButton ToolStripButtonBorder;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuSaveAs;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;

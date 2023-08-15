@@ -297,7 +297,6 @@ namespace MarkingUpDrawingTool.View
             ToolStripButtonBorder.Enabled = true;
 
             toolStripButtonProjection.Enabled = true;
-            toolStripButtonProjectionSettings.Enabled = true;
             toolStripComboBoxProjection.Enabled = true;
             toolStripComboBoxProjection.Items.Clear();
 
@@ -315,22 +314,18 @@ namespace MarkingUpDrawingTool.View
             toolStripComboBoxHole.Items.Clear();
 
             toolStripButton1.Enabled = true;
-            toolStripButton3.Enabled = true;
             toolStripComboBoxTable.Enabled = true;
             toolStripComboBoxTable.Items.Clear();
 
             toolStripButton4.Enabled = true;
-            toolStripButton5.Enabled = true;
             toolStripComboBoxSize.Enabled = true;
             toolStripComboBoxSize.Items.Clear();
 
             toolStripButtonArrow.Enabled = true;
-            toolStripButton7.Enabled = true;
             toolStripComboBoxArrow.Enabled = true;
             toolStripComboBoxArrow.Items.Clear();
 
             ToolStripButtonGap.Enabled = true;
-            toolStripButton8.Enabled = true;
             toolStripComboBoxGap.Enabled = true;
             toolStripComboBoxGap.Items.Clear();
 
@@ -456,16 +451,6 @@ namespace MarkingUpDrawingTool.View
             return toolStripButtonProjection;
         }
 
-        public ToolStripMenuItem GetProjectionSaveTool()
-        {
-            return ToolStripMenuSaveProjection;
-        }
-
-        public ToolStripMenuItem GetProjectionDeleteTool()
-        {
-            return ToolStripMenuDeleteProjection;
-        }
-
         public ToolStripComboBox GetProjectionComboBox()
         {
             return toolStripComboBoxProjection;
@@ -529,16 +514,6 @@ namespace MarkingUpDrawingTool.View
             return ToolStripMenuHoleSearch;
         }
 
-        public ToolStripMenuItem GetHoleSaveTool()
-        {
-            return ToolStripMenuHoleSave;
-        }
-
-        public ToolStripMenuItem GetHoleDeleteTool()
-        {
-            return ToolStripMenuHoleDelete;
-        }
-
         public ToolStripComboBox GetHoleComboBox()
         {
             return toolStripComboBoxHole;
@@ -560,16 +535,6 @@ namespace MarkingUpDrawingTool.View
             return ToolStripMenuMainTable;
         }
 
-        public ToolStripMenuItem GetTableSaveTool()
-        {
-            return ToolStripMenuTableSave;
-        }
-
-        public ToolStripMenuItem GetTableDeleteTool()
-        {
-            return ToolStripMenuTableDelete;
-        }
-
         public ToolStripComboBox GetTableComboBox()
         {
             return toolStripComboBoxTable;
@@ -589,16 +554,6 @@ namespace MarkingUpDrawingTool.View
         public ToolStripMenuItem GetSizeAutoTool()
         {
             return this.ToolStripMenuSizeAuto;
-        }
-
-        public ToolStripMenuItem GetSizeSaveTool()
-        {
-            return this.ToolStripMenuSaveSize;
-        }
-
-        public ToolStripMenuItem GetSizeDeleteTool()
-        {
-            return this.ToolStripMenuDeleteSize;
         }
 
         public ToolStripComboBox GetSizeComboBox()
@@ -652,16 +607,6 @@ namespace MarkingUpDrawingTool.View
             return this.ToolStripMenuChamferArrow;
         }
 
-        public ToolStripMenuItem GetArrowSaveTool()
-        {
-            return this.ToolStripMenuSaveArrow;
-        }
-
-        public ToolStripMenuItem GetArrowDeleteTool()
-        {
-            return this.ToolStripMenuDeleteArrow;
-        }
-
         public ToolStripComboBox GetArrowComboBox()
         {
             return this.toolStripComboBoxArrow;
@@ -676,16 +621,6 @@ namespace MarkingUpDrawingTool.View
         public ToolStripButton GetGapTool()
         {
             return this.ToolStripButtonGap;
-        }
-
-        public ToolStripMenuItem GetGapSaveTool()
-        {
-            return this.ToolStripMenuSaveGap;
-        }
-
-        public ToolStripMenuItem GetGapDeleteTool()
-        {
-            return this.ToolStripMenuDeleteGap;
         }
 
         public ToolStripComboBox GetGapComboBox()

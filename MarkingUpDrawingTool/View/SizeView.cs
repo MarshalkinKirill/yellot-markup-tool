@@ -49,8 +49,8 @@ namespace MarkingUpDrawingTool.View
 
             sizeTool = mainForm.GetSizeTool();
             sizeAutoTool = mainForm.GetSizeAutoTool();
-            sizeSaveTool = mainForm.GetSizeSaveTool();
-            sizeDeleteTool = mainForm.GetSizeDeleteTool();
+            sizeSaveTool = mainForm.GetSaveTool();
+            sizeDeleteTool = mainForm.GetDeleteTool();
             sizeComboBox = mainForm.GetSizeComboBox();
 
             sizeTool.Click += SizeTool_Click;

@@ -39,8 +39,8 @@ namespace MarkingUpDrawingTool.View
             this.layerService = MainForm.LayerService;
 
             ProjectionRoiTool = MainForm.GetProjectionRoiTool();
-            ProjectionRoiSaveTool = MainForm.GetProjectionRoiSaveTool();
-            ProjectionRoiDeleteTool = MainForm.GetProjectionRoiDeleteTool();
+            ProjectionRoiSaveTool = MainForm.GetSaveTool();
+            ProjectionRoiDeleteTool = MainForm.GetDeleteTool();
             ProjectionRoiComboBox = MainForm.GetProjectionRoiComboBox();
 
             ProjectionRoiTool.Click += ProjectionRoiTool_Click;

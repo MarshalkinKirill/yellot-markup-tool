@@ -44,8 +44,8 @@ namespace MarkingUpDrawingTool.View
 
             holeTool = mainForm.GetHoleTool();
             holeSearchTool = mainForm.GetHoleSearchTool();
-            holeSaveTool = mainForm.GetHoleSaveTool();
-            holeDeleteTool = mainForm.GetHoleDeleteTool();
+            holeSaveTool = mainForm.GetSaveTool();
+            holeDeleteTool = mainForm.GetDeleteTool();
             holeComboBox = mainForm.GetHoleComboBox();
 
             holeTool.Click += HoleTool_Click;

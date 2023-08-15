@@ -42,8 +42,8 @@ namespace MarkingUpDrawingTool.View
             layerService = mainForm.LayerService;
 
             projectionTool = mainForm.GetProjectionTool();
-            projectionSaveTool = mainForm.GetProjectionSaveTool();
-            projectionDeleteTool = mainForm.GetProjectionDeleteTool();
+            projectionSaveTool = mainForm.GetSaveTool();
+            projectionDeleteTool = mainForm.GetDeleteTool();
             projectionComboBox = mainForm.GetProjectionComboBox();
 
             projectionTool.Click += ProjectionTool_Click;

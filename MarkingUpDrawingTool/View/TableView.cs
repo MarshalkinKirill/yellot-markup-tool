@@ -43,8 +43,8 @@ namespace MarkingUpDrawingTool.View
 
             tableTool = mainForm.GetTableTool();
             tableMainTool = mainForm.GetMainTableTool();
-            tableSaveTool = mainForm.GetTableSaveTool();
-            tableDeleteTool = mainForm.GetTableDeleteTool();
+            tableSaveTool = mainForm.GetSaveTool();
+            tableDeleteTool = mainForm.GetDeleteTool();
             tableComboBox = mainForm.GetTableComboBox();
 
             tableTool.Click += TableTool_Click;

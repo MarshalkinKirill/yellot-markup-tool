@@ -39,8 +39,8 @@ namespace MarkingUpDrawingTool.View
             layerService = mainForm.LayerService;
 
             gapTool = mainForm.GetGapTool();
-            gapSaveTool = mainForm.GetGapSaveTool();
-            gapDeleteTool = mainForm.GetGapDeleteTool();
+            gapSaveTool = mainForm.GetSaveTool();
+            gapDeleteTool = mainForm.GetDeleteTool();
             gapComboBox = mainForm.GetGapComboBox();
 
             gapTool.Click += GapTool_Click;
