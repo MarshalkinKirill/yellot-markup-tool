@@ -71,9 +71,9 @@ namespace MarkingUpDrawingTool.View
 
         private void layerServiceBorder_MouseDown(object sender, MouseEventArgs e)
         {
-            borderPresenter.CleanMarkedBorder();
             if (layerService.DrawBorderMod && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
+                borderPresenter.CleanMarkedBorder();
                 layerService.StartPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
             }
             

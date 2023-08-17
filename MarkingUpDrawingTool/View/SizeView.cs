@@ -254,7 +254,7 @@ namespace MarkingUpDrawingTool.View
                 g.DrawRectangle(pen, x, y, width, height);
                 g.TranslateTransform(-size.Origin.X, -size.Origin.Y);
             }
-            if (layerService.DrawSizeMod || layerService.DrawSizeAutoMod && currentSize != null)
+            if (layerService.DrawSizeMod && currentSize != null || layerService.DrawSizeAutoMod && currentSize != null)
             {
                 pen.Color = Color.Purple;
                 Size size = currentSize;

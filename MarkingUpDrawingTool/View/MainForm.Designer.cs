@@ -180,7 +180,7 @@
             this.toolStripButtonProjection.Name = "toolStripButtonProjection";
             this.toolStripButtonProjection.Size = new System.Drawing.Size(24, 24);
             this.toolStripButtonProjection.Text = "Контур проекции ";
-            this.toolStripButtonProjection.ToolTipText = "toolStripButtonProjection";
+            this.toolStripButtonProjection.ToolTipText = "Контур проекции ";
             // 
             // toolStripComboBoxProjection
             // 
@@ -213,7 +213,7 @@
             this.ToolStripButtonHole.Name = "ToolStripButtonHole";
             this.ToolStripButtonHole.Size = new System.Drawing.Size(24, 24);
             this.ToolStripButtonHole.Text = "Отверсие";
-            this.ToolStripButtonHole.ToolTipText = "ToolStripButtonHole";
+            this.ToolStripButtonHole.ToolTipText = "Отверсие";
             // 
             // toolStripButton2
             // 
@@ -230,7 +230,7 @@
             // ToolStripMenuHoleSearch
             // 
             this.ToolStripMenuHoleSearch.Name = "ToolStripMenuHoleSearch";
-            this.ToolStripMenuHoleSearch.Size = new System.Drawing.Size(191, 22);
+            this.ToolStripMenuHoleSearch.Size = new System.Drawing.Size(168, 22);
             this.ToolStripMenuHoleSearch.Text = "Поиск отверстий";
             // 
             // toolStripComboBoxHole
@@ -250,7 +250,8 @@
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButton1.Text = "Table";
+            this.toolStripButton1.Text = "Таблица";
+            this.toolStripButton1.ToolTipText = "Таблица";
             // 
             // ToolStripMenuMainTable
             // 
@@ -281,7 +282,7 @@
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButton4.Text = "Size";
+            this.toolStripButton4.Text = "Размер";
             // 
             // ToolStripMenuSizeAuto
             // 
@@ -317,7 +318,7 @@
             this.toolStripButtonArrow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonArrow.Name = "toolStripButtonArrow";
             this.toolStripButtonArrow.Size = new System.Drawing.Size(33, 24);
-            this.toolStripButtonArrow.Text = "Arrow";
+            this.toolStripButtonArrow.Text = "Размерные стрелки";
             // 
             // ToolStripMenuLinearArrow
             // 
@@ -375,7 +376,7 @@
             this.ToolStripButtonGap.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripButtonGap.Name = "ToolStripButtonGap";
             this.ToolStripButtonGap.Size = new System.Drawing.Size(24, 24);
-            this.ToolStripButtonGap.Text = "Gap";
+            this.ToolStripButtonGap.Text = "Разрыв";
             // 
             // toolStripComboBoxGap
             // 
