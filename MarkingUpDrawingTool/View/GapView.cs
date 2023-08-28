@@ -311,12 +311,18 @@ namespace MarkingUpDrawingTool.View
             return gapPresenter.GetGaps();
         }
 
-        public LayerService LayerService1
+        public void SetGaps(List<Gap> gaps)
         {
-            get => default;
-            set
+            gapPresenter.SetGaps(gaps);
+
+            foreach (Gap gap in gaps)
             {
+                gapComboBox.Items.Add(gap);
             }
+
+            gapComboBox.ComboBox.DisplayMember = "name";
+            gapPresenter.CleanMarkedGap();
+            layerService.Invalidate();
         }
     }
 }

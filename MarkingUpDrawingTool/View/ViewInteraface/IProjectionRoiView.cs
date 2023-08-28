@@ -18,5 +18,6 @@ namespace MarkingUpDrawingTool.View.ViewInteraface
         void DrawProjectionRoi(Graphics g);
         void ProjectionRoi_KeyDown(object sender, KeyEventArgs e);
         List<ProjectionRoi> GetProjectionRois();
+        void SetProjectionRois(List<ProjectionRoi> projectionRois);
     }
 }

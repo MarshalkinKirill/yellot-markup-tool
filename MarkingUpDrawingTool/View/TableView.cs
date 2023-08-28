@@ -278,20 +278,19 @@ namespace MarkingUpDrawingTool.View
         {
             TableSaveTool_Click(sender, e);
         }
-        public TableNoteForm TableNoteForm
-        {
-            get => default;
-            set
-            {
-            }
-        }
 
-        public LayerService LayerService1
+        public void SetTables(List<Table> tables)
         {
-            get => default;
-            set
+            tablePresenter.SetTables(tables);
+
+            foreach (Table table in tables)
             {
+                tableComboBox.Items.Add(table);
             }
+
+            tableComboBox.ComboBox.DisplayMember = "name";
+            tablePresenter.CleanMarkedTable();
+            currentTable = null;
         }
     }
 }

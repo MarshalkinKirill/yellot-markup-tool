@@ -148,12 +148,11 @@ namespace MarkingUpDrawingTool.View
             return borderList ;
         }
 
-        public LayerService LayerService1
+        public void SetBorders(Border border)
         {
-            get => default;
-            set
-            {
-            }
+            borderPresenter.SetBorders(border);
+
+            layerService.Invalidate();
         }
     }
 }

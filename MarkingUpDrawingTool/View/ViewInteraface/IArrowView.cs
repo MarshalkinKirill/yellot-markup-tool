@@ -19,5 +19,6 @@ namespace MarkingUpDrawingTool.View.ViewInteraface
         void DrawArrow(Graphics g);
         void Arrow_KeyDown(object sender, KeyEventArgs e);
         List<Arrow> GetArrows();
+        void SetArrows(List<Arrow> arrows);
     }
 }

@@ -18,5 +18,6 @@ namespace MarkingUpDrawingTool.View.ViewInteraface
         void DrawSymbol(Graphics g);
         void Symbol_KeyDown(object sender, KeyEventArgs e);
         List<Symbol> GetSymbols();
+        void SetSymbols(List<Symbol> symbols);
     }
 }

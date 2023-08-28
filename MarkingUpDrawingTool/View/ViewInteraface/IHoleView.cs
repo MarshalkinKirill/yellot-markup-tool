@@ -20,5 +20,6 @@ namespace MarkingUpDrawingTool.View.ViewInteraface
         void DrawHole(Graphics g);
         void Hole_KeyDown(object sender, KeyEventArgs e);
         List<Hole> GetHoles();
+        void SetHoles(List<Hole> holes);
     }
 }

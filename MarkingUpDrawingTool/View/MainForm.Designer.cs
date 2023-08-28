@@ -71,6 +71,8 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.jsonLoadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openJsonFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -93,7 +95,8 @@
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.открытьToolStripMenuItem,
-            this.ToolStripMenuSaveAs});
+            this.ToolStripMenuSaveAs,
+            this.jsonLoadToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
@@ -101,14 +104,14 @@
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
             // 
             // ToolStripMenuSaveAs
             // 
             this.ToolStripMenuSaveAs.Name = "ToolStripMenuSaveAs";
-            this.ToolStripMenuSaveAs.Size = new System.Drawing.Size(157, 22);
+            this.ToolStripMenuSaveAs.Size = new System.Drawing.Size(187, 22);
             this.ToolStripMenuSaveAs.Text = "Сохранить как ";
             this.ToolStripMenuSaveAs.Click += new System.EventHandler(this.ToolStripMenuSaveAs_Click);
             // 
@@ -426,6 +429,18 @@
             this.panel1.Size = new System.Drawing.Size(1443, 806);
             this.panel1.TabIndex = 3;
             // 
+            // jsonLoadToolStripMenuItem
+            // 
+            this.jsonLoadToolStripMenuItem.Name = "jsonLoadToolStripMenuItem";
+            this.jsonLoadToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.jsonLoadToolStripMenuItem.Text = "Загрузить json-файл";
+            this.jsonLoadToolStripMenuItem.Click += new System.EventHandler(this.jsonLoadToolStripMenuItem_Click);
+            // 
+            // openJsonFileDialog
+            // 
+            this.openJsonFileDialog.FileName = "openJsonFileDialog";
+            this.openJsonFileDialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -492,5 +507,7 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuChamferArrow;
         private System.Windows.Forms.ToolStripButton toolStripButtonSymbol;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxSymbol;
+        private System.Windows.Forms.ToolStripMenuItem jsonLoadToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openJsonFileDialog;
     }
 }

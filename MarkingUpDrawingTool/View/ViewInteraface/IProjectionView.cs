@@ -21,5 +21,6 @@ namespace MarkingUpDrawingTool.View.ViewInteraface
         void DrawProjection(Graphics g);
         void Projection_KeyDown(object sender, KeyEventArgs e);
         List<Projection> GetProjections();
+        void SetProjections(List<Projection> projections);
     }
 }

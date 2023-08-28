@@ -15,22 +15,6 @@ namespace MarkingUpDrawingTool.Presenter
     {
         private IProjectionView view { get; set; }
 
-        public View.ProjectionView ProjectionView
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public ProjectionModel ProjectionModel
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
         private ProjectionModel model;
 
         public ProjectionPresenter(IProjectionView view)
@@ -73,22 +57,32 @@ namespace MarkingUpDrawingTool.Presenter
         {
             return model.MarkedPoints;
         }
+
         public List<Point> GetOrigins()
         {
             return model.Origins;
         }
+
         public void SetPoints(List<Point> _points)
         {
             model.MarkedPoints = _points;
         }
+
         public void SetOrigins(List<Point> _origins)
         {
             model.Origins = _origins;
         }
+
         public List<Projection> GetProjections()
         {
             return model.Projections;
         }
+
+        public void SetProjections(List<Projection> projections)
+        {
+            model.Projections = projections;
+        }
+
         public Point GetLastPoint()
         {
             return model.MarkedPoints.Last();

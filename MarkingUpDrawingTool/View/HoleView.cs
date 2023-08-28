@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using Emgu.CV;
 using System.Web.Caching;
+using System.Web.Security;
 
 namespace MarkingUpDrawingTool.View
 {
@@ -252,12 +253,19 @@ namespace MarkingUpDrawingTool.View
             return holePresenter.GetHoles();
         }
 
-        public LayerService LayerService1
+        public void SetHoles(List<Hole> holes)
         {
-            get => default;
-            set
+            holePresenter.SetHoles(holes);
+
+            foreach (var _hole in holes)
             {
+                holeComboBox.Items.Add(_hole);
+                Console.WriteLine(_hole.ToString());
             }
+
+            holeComboBox.ComboBox.DisplayMember = "name";
+            holePresenter.CleanMarkedHole();
+            layerService.Invalidate();
         }
     }
 }

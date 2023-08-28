@@ -235,12 +235,19 @@ namespace MarkingUpDrawingTool.View
             return SymbolPresenter.GetSymbols();
         }
 
-        public LayerService LayerService1
+        public void SetSymbols(List<Symbol> symbols)
         {
-            get => default;
-            set
+            SymbolPresenter.SetSymbols(symbols);
+
+            foreach (var symbol in symbols)
             {
+                Console.WriteLine(symbol.Name);
+                SymbolComboBox.Items.Add(symbol);
             }
+
+            SymbolComboBox.ComboBox.DisplayMember = "name";
+            SymbolPresenter.CleanMarkedSymbol();
+            layerService.Invalidate();
         }
     }
 }

@@ -13,6 +13,9 @@ using System.Web.UI.WebControls;
 using Image = System.Drawing.Image;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Collections.Generic;
+using Size = MarkingUpDrawingTool.Model.Size;
+using Table = MarkingUpDrawingTool.Model.Table;
+using System.Linq;
 
 namespace MarkingUpDrawingTool.View
 {
@@ -362,7 +365,7 @@ namespace MarkingUpDrawingTool.View
                 string gapsJson = JsonConvert.SerializeObject(gapView.GetGaps(), Formatting.Indented);
                 string projectionsJson = JsonConvert.SerializeObject(projectionView.GetProjections(), Formatting.Indented);
                 string projectionsRoiJson = JsonConvert.SerializeObject(projectionRoiView.GetProjectionRois(), Formatting.Indented);
-                string holesJson = JsonConvert.SerializeObject(holeView.GetHoles(), Formatting.Indented);
+                string holesJson = JsonConvert.SerializeObject(holeView.GetHoles());
                 string tablesJson = JsonConvert.SerializeObject(tableView.GetTables(), Formatting.Indented);
                 string symbolsJson = JsonConvert.SerializeObject(symbolView.GetSymbols(), Formatting.Indented);
 
@@ -403,6 +406,58 @@ namespace MarkingUpDrawingTool.View
                 MessageBox.Show("выберите путь сохранения", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void jsonLoadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.openJsonFileDialog.Title = "Загрузить JSON файл";
+
+            DialogResult loadJsonResult = openJsonFileDialog.ShowDialog();
+            if (loadJsonResult == DialogResult.OK)
+            {
+                string jsonFilePath = openJsonFileDialog.FileName;
+
+                try
+                {
+                    if (fileName != null)
+                    {
+                        string jsonContent = File.ReadAllText(jsonFilePath);
+
+                        DeserializeObjects deserializeObjects = JsonConvert.DeserializeObject<DeserializeObjects>(jsonContent);
+
+                        imageLayer = new Layer(Image.FromFile(fileName), new Point(0, 0), Path.GetFileNameWithoutExtension(fileName));
+
+                        layerService.AddLayer(imageLayer);
+                        layerService.Dock = DockStyle.Fill;
+                        layerService.Size = new System.Drawing.Size(imageLayer.Image.Width, imageLayer.Image.Height);
+                        InitDrawLayers();
+                        panel1.Controls.Add(layerService);
+
+                        if (deserializeObjects.Sizes != null) sizeView.SetSizes(deserializeObjects.Sizes.ToList());
+                        if (deserializeObjects.Arrows != null) arrowView.SetArrows(deserializeObjects.Arrows.ToList());
+                        if (deserializeObjects.Border != null) borderView.SetBorders(deserializeObjects.Border.ToList().First());
+                        if (deserializeObjects.Gaps != null) gapView.SetGaps(deserializeObjects.Gaps.ToList());
+                        if (deserializeObjects.Projections != null) projectionView.SetProjections(deserializeObjects.Projections.ToList());
+                        if (deserializeObjects.ProjectionRois != null) projectionRoiView.SetProjectionRois(deserializeObjects.ProjectionRois.ToList());
+                        if (deserializeObjects.Holes != null) holeView.SetHoles(deserializeObjects.Holes.ToList());
+                        if (deserializeObjects.Tables != null) tableView.SetTables(deserializeObjects.Tables.ToList());
+                        if (deserializeObjects.Symbols != null) symbolView.SetSymbols(deserializeObjects.Symbols.ToList());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Откройте изображение!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Откройте изображение!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите json-файл.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+                
+            }
 
         public void MainForm_CheckedChanged()
         {
@@ -633,86 +688,6 @@ namespace MarkingUpDrawingTool.View
         public void DrawBorder(Graphics g)
         {
             borderView.DrawBorder(g);
-        }
-
-        public Presenter.ArrowPresenter ArrowPresenter
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Presenter.TablePresenter TablePresenter
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Presenter.SizePresenter SizePresenter
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Presenter.GapPresenter GapPresenter
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Presenter.BorderPresenter BorderPresenter
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Presenter.ProjectionRoiPresenter ProjectionRoiPresenter
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Presenter.HolePresenter HolePresenter
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Presenter.ProjectionPresenter ProjectionPresenter
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Presenter.SymbolPresenter SymbolPresenter
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public LayerService LayerService1
-        {
-            get => default;
-            set
-            {
-            }
         }
     }
 }

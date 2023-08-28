@@ -21,5 +21,6 @@ namespace MarkingUpDrawingTool.View.ViewInteraface
         void SetTableNote(TableNote note);
         void SaveTableNoteForm(object sender, EventArgs e);
         List<Table> GetTables();
+        void SetTables(List<Table> tables);
     }
 }

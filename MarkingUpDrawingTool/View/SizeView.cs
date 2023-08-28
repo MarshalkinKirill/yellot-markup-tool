@@ -282,20 +282,19 @@ namespace MarkingUpDrawingTool.View
             SizeSaveTool_Click(sender, e);
         }
 
-        public SizeNoteForm SizeNoteForm
+        public void SetSizes(List<Size> sizes)
         {
-            get => default;
-            set
-            {
-            }
-        }
+            sizePresenter.SetSizes(sizes);
 
-        public LayerService LayerService1
-        {
-            get => default;
-            set
+            foreach (var size in sizes)
             {
+                Console.WriteLine(size.Name);
+                sizeComboBox.Items.Add(size);
             }
+
+            sizeComboBox.ComboBox.DisplayMember = "name";
+            sizePresenter.CleanMarkedSize();
+            layerService.Invalidate();
         }
     }
 }

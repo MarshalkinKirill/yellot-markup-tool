@@ -223,5 +223,21 @@ namespace MarkingUpDrawingTool.View
         {
             return projectionPresenter.GetProjections();
         }
+        public void SetProjections(List<Projection> projections)
+        {
+            projectionPresenter.SetProjections(projections);
+
+            var objects = projectionPresenter.GetProjections();
+            foreach (var obj in objects)
+            {
+                projectionComboBox.Items.Add(obj);
+            }
+
+            projectionComboBox.ComboBox.DisplayMember = "name";
+            layerService.StartPoint = Point.Empty;
+            layerService.EndPoint = Point.Empty;
+            projectionPresenter.GetPoints().Clear();
+            projectionPresenter.GetOrigins().Clear();
+        }
     }
 }

@@ -24,22 +24,6 @@ namespace MarkingUpDrawingTool.Presenter
             view.SaveBorder += SaveBorder;
         }
 
-        public BorderView BorderView
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public BorderModel BorderModel
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
         private void SaveBorder(object sender, Border border)
         {
             Console.WriteLine(border.Start.ToString() + "" + border.End.ToString());
@@ -51,6 +35,11 @@ namespace MarkingUpDrawingTool.Presenter
         public Border GetMarkedBorder()
         {
             return model.CurrentBorder;
+        }
+
+        public void SetBorders(Border border)
+        {
+            model.CurrentBorder = border;
         }
 
         public void CleanMarkedBorder()

@@ -26,22 +26,6 @@ namespace MarkingUpDrawingTool.Presenter
             view.DeleteTable += DeleteTable;
         }
 
-        public TableModel TableModel
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public View.TableView TableView
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
         public void AddTable(object sender, Table table)
         {
             model.CurrentTable = table;
@@ -67,6 +51,11 @@ namespace MarkingUpDrawingTool.Presenter
         public List<Table> GetTables()
         {
             return model.Tables;
+        }
+
+        public void SetTables(List<Table> tables)
+        {
+            model.Tables = tables;
         }
 
         public Table GetMarkedTable()

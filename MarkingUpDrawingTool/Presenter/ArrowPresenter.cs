@@ -63,6 +63,11 @@ namespace MarkingUpDrawingTool.Presenter
             return model.Arrows;
         }
 
+        public void SetArrows(List<Arrow> arrows)
+        {
+            model.Arrows = arrows;
+        }
+
         public Arrow GetMarkedArrow()
         {
             return model.CurrentArrow;

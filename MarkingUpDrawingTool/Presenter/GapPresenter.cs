@@ -26,22 +26,6 @@ namespace MarkingUpDrawingTool.Presenter
             view.DeleteGap += DeleteGap;
         }
 
-        public GapView GapView
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public GapModel GapModel
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
         private void AddGap(object sender, Gap Gap)
         {
             model.CurrentGap = Gap;
@@ -61,6 +45,11 @@ namespace MarkingUpDrawingTool.Presenter
         public List<Gap> GetGaps()
         {
             return model.Gaps;
+        }
+
+        public void SetGaps(List<Gap> gaps)
+        {
+            model.Gaps = gaps;
         }
 
         public Gap GetMarkedGap()

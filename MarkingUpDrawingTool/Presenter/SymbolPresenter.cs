@@ -24,22 +24,6 @@ namespace MarkingUpDrawingTool.Presenter
             view.DeleteSymbol += DeleteSymbol;
         }
 
-        public View.SymbolView SymbolView
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public SymbolModel SymbolModel
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
         private void AddSymbol(object sender, Symbol symbol)
         {
             model.CurrentSymbol = symbol;
@@ -58,6 +42,11 @@ namespace MarkingUpDrawingTool.Presenter
         public List<Symbol> GetSymbols()
         {
             return model.Symbols;
+        }
+
+        public void SetSymbols(List<Symbol> symbols)
+        {
+            model.Symbols = symbols;
         }
 
         public Symbol GetMarkedSymbol()

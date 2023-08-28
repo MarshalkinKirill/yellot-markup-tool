@@ -33,14 +33,6 @@ namespace MarkingUpDrawingTool.Model
         private Border currentBorder { get; set; }
         public Border CurrentBorder { get => currentBorder; set => currentBorder = value; }
 
-        public Border Border
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
         public BorderModel()
         {
             currentBorder = new Border();

@@ -15,5 +15,6 @@ namespace MarkingUpDrawingTool.View.ViewInteraface
 
         void DrawBorder(Graphics g);
         List<Border> GetBorder();
+        void SetBorders(Border border);
     }
 }

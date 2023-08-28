@@ -642,12 +642,19 @@ namespace MarkingUpDrawingTool.View
             return arrowPresenter.GetArrows();
         }
 
-        public LayerService LayerService
+        public void SetArrows(List<Arrow> arrows)
         {
-            get => default;
-            set
+            arrowPresenter.SetArrows(arrows);
+
+            foreach (var arrow in arrows)
             {
+                Console.WriteLine(arrow.Name);
+                arrowComboBox.Items.Add(arrow);
             }
+
+            arrowComboBox.ComboBox.DisplayMember = "name";
+            arrowPresenter.CleanMarkedArrow();
+            layerService.Invalidate();
         }
     }
 }

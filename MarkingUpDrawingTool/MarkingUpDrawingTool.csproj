@@ -125,6 +125,7 @@
   <ItemGroup>
     <Compile Include="Model\ArrowModel.cs" />
     <Compile Include="Model\BorderModel.cs" />
+    <Compile Include="Model\DeserializeObjects.cs" />
     <Compile Include="Model\GapModel.cs" />
     <Compile Include="Model\HoleModel.cs" />
     <Compile Include="Model\ProjectionModel.cs" />

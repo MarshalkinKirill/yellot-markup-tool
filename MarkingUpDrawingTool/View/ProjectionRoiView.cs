@@ -235,12 +235,19 @@ namespace MarkingUpDrawingTool.View
             return ProjectionRoiPresenter.GetProjectionRois();
         }
 
-        public LayerService LayerService1
+        public void SetProjectionRois(List<ProjectionRoi> projectionRois)
         {
-            get => default;
-            set
+            ProjectionRoiPresenter.SetProjectionRois(projectionRois);
+
+            foreach (var projectionRoi in projectionRois)
             {
+                Console.WriteLine(projectionRoi.Name);
+                ProjectionRoiComboBox.Items.Add(projectionRoi);
             }
+
+            ProjectionRoiComboBox.ComboBox.DisplayMember = "name";
+            ProjectionRoiPresenter.CleanMarkedProjectionRoi();
+            layerService.Invalidate();
         }
     }
 }

@@ -25,22 +25,6 @@ namespace MarkingUpDrawingTool.Presenter
             view.DeleteProjectionRoi += DeleteProjectionRoi;
         }
 
-        public View.ProjectionRoiView ProjectionRoiView
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public ProjectionRoiModel ProjectionRoiModel
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
         private void AddProjectionRoi(object sender, ProjectionRoi projectionRoi)
         {
             model.CurrentProjectionRoi = projectionRoi;
@@ -59,6 +43,11 @@ namespace MarkingUpDrawingTool.Presenter
         public List<ProjectionRoi> GetProjectionRois()
         {
             return model.ProjectionRois;
+        }
+
+        public void SetProjectionRois(List<ProjectionRoi> projectionRois)
+        {
+            model.ProjectionRois = projectionRois;
         }
 
         public ProjectionRoi GetMarkedProjectionRoi() 
