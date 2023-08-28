@@ -19,6 +19,7 @@ namespace MarkingUpDrawingTool.View.ViewInteraface
         void DrawTable(Graphics g);
         void Table_KeyDown(object sender, KeyEventArgs e);
         void SetTableNote(TableNote note);
+        void SaveTableNoteForm(object sender, EventArgs e);
         List<Table> GetTables();
     }
 }

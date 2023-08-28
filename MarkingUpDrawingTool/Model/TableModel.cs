@@ -105,6 +105,10 @@ namespace MarkingUpDrawingTool.Model
             TableNote note = currentTable.TableNote;
             Point origin = new Point(currentTable.Origin.X, currentTable.Origin.Y);
             Table table = new Table(x, y, note, this.Tables.Count + 1, origin);
+            if (tables.Contains(Table))
+            {
+                tables.Remove(Table);
+            }
             tables.Add(table);
         }
 

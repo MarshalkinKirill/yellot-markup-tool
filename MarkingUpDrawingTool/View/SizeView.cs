@@ -185,8 +185,6 @@ namespace MarkingUpDrawingTool.View
         {
             if ((layerService.DrawSizeMod || layerService.DrawSizeAutoMod))
             {
-                Console.WriteLine(currentSize.Name.ToString() + " " + currentSize.Note + " " + currentSize.Start + currentSize.End);
-
                 SaveSize?.Invoke(sender, e);
                 sizeComboBox.Items.Clear();
                 List<Size> sizes = sizePresenter.GetSizes();
@@ -277,6 +275,11 @@ namespace MarkingUpDrawingTool.View
         public List<Size> GetSizes()
         {
             return sizePresenter.GetSizes();
+        }
+
+        public void SaveSizeNoteForm(object sender, EventArgs e)
+        {
+            SizeSaveTool_Click(sender, e);
         }
 
         public SizeNoteForm SizeNoteForm

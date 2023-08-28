@@ -22,6 +22,7 @@ namespace MarkingUpDrawingTool.View.ViewInteraface
         event EventHandler SaveSize;
         event EventHandler<Size> DeleteSize;
         void SetSizeNote(string sizeNote);
+        void SaveSizeNoteForm(object sender, EventArgs e);
         void DrawRectangle(Graphics g);
         void Size_KeyDown(object sender, KeyEventArgs e);
         List<Size> GetSizes();

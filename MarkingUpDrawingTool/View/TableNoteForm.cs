@@ -22,7 +22,21 @@ namespace MarkingUpDrawingTool.View
             this.KeyDown += TableNoteForm_KeyDown;
             this.nameTextBox.KeyDown += TableNoteForm_KeyDown;
             this.massTextBox.KeyDown += TableNoteForm_KeyDown;
-            this.scaleTextBox.KeyDown += TableNoteForm_KeyDown;
+            this.matirialTextBox.KeyDown += TableNoteForm_KeyDown;
+        }
+
+        public TableNoteForm(ITableView mainForm, string name, string mass, string matirial)
+        {
+            InitializeComponent();
+            this.mainForm = mainForm;
+            this.KeyDown += TableNoteForm_KeyDown;
+            this.nameTextBox.KeyDown += TableNoteForm_KeyDown;
+            this.massTextBox.KeyDown += TableNoteForm_KeyDown;
+            this.matirialTextBox.KeyDown += TableNoteForm_KeyDown;
+            this.nameTextBox.Text = name;
+            this.massTextBox.Text = mass;
+            this.matirialTextBox.Text = matirial;
+            //this.ShowDialog();
         }
 
         private void ScaleLabel_Click(object sender, EventArgs e)
@@ -40,9 +54,10 @@ namespace MarkingUpDrawingTool.View
 
         private void SaveTableNoteButton_Click(object sender, EventArgs e)
         {
-            if (nameTextBox.Text != String.Empty && massTextBox.Text != String.Empty && scaleTextBox.Text != String.Empty)
+            if (nameTextBox.Text != String.Empty && massTextBox.Text != String.Empty && matirialTextBox.Text != String.Empty)
             {
-                mainForm.SetTableNote(new TableNote(nameTextBox.Text, massTextBox.Text, scaleTextBox.Text));
+                mainForm.SetTableNote(new TableNote(nameTextBox.Text, massTextBox.Text, matirialTextBox.Text));
+                mainForm.SaveTableNoteForm(sender, e);
                 this.Close();
             }
             else

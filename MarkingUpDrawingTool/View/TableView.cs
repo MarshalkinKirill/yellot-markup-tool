@@ -140,6 +140,13 @@ namespace MarkingUpDrawingTool.View
                 layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
                 AddTable?.Invoke(this, new Table(layerService.StartPoint, layerService.EndPoint, layerService.Origin));
 
+                if (tablePresenter.GetMarkedTable() == null)
+                {
+                    AddTable?.Invoke(this, new Table(layerService.StartPoint, layerService.EndPoint, layerService.Origin));
+                } else
+                {
+                    //AddTable?.Invoke(this, new Table(layerService.StartPoint, layerService.EndPoint, layerService.Origin));
+                }
                 if (layerService.DrawMainTableMod)
                 {
                     TableNoteForm noteForm = new TableNoteForm(this);
@@ -178,6 +185,7 @@ namespace MarkingUpDrawingTool.View
 
                 tableComboBox.ComboBox.DisplayMember = "name";
                 tablePresenter.CleanMarkedTable();
+                currentTable = null;
             }
         }
 
@@ -204,11 +212,12 @@ namespace MarkingUpDrawingTool.View
             ToolStripComboBox comboBox = (ToolStripComboBox)sender;
             var selectedObject = (Table)comboBox.SelectedItem;
             currentTable = selectedObject;
-            // Обработка выбранного объекта
-            Console.WriteLine("Выбрана " + selectedObject.TableNote.Name);
-            Console.WriteLine(selectedObject.Start.ToString() + " - " + selectedObject.End.ToString());
             //TablePresenter
             layerService.Invalidate();
+            MouseEventArgs mouseEvent = new MouseEventArgs(MouseButtons.Left, 1,1,1,1);
+            layerServiceTable_MouseMove(sender, mouseEvent);
+            //TableNoteForm noteForm = new TableNoteForm(this, currentTable.TableNote.Name, currentTable.TableNote.Mass, currentTable.TableNote.Scale);
+            //noteForm.ShowDialog();
         }
 
         public void DrawTable(Graphics g)
@@ -265,6 +274,10 @@ namespace MarkingUpDrawingTool.View
             return tablePresenter.GetTables();
         }
 
+        public void SaveTableNoteForm(object sender, EventArgs e)
+        {
+            TableSaveTool_Click(sender, e);
+        }
         public TableNoteForm TableNoteForm
         {
             get => default;

@@ -45,12 +45,23 @@ namespace MarkingUpDrawingTool.View
             if (this.SizeTextBox.Text != String.Empty)
             {
                 sizeView.SetSizeNote(SizeTextBox.Text);
+                sizeView.SaveSizeNoteForm(sender, e);
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Заполните все поля!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void buttonDegree_Click(object sender, EventArgs e)
+        {
+            this.SizeTextBox.Text += " \u00B0";
+        }
+
+        private void buttonDiameter_Click(object sender, EventArgs e)
+        {
+            this.SizeTextBox.Text += " \u2300" ;
         }
     }
 }

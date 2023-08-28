@@ -172,6 +172,7 @@ namespace MarkingUpDrawingTool.View
             Console.WriteLine("Кол-во точек " + selectedObject.Points.Count);
             projectionPresenter.SetPoints(selectedObject.Points);
             projectionPresenter.SetOrigins(selectedObject.Origins);
+            layerService.StartPoint = selectedObject.Points[selectedObject.Points.Count - 1];
             layerService.Invalidate();
         }
 

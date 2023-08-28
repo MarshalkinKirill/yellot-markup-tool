@@ -280,8 +280,6 @@ namespace MarkingUpDrawingTool.View
                 //panel1.Controls.Add(layerServiceControl);
                 panel1.Controls.Add(layerService);
 
-                Console.WriteLine(imageLayer.Image.Size.ToString());
-
             } else
             {
                 MessageBox.Show("Выберите чертеж.","", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -340,7 +338,7 @@ namespace MarkingUpDrawingTool.View
         {
             this.saveFileDialog.Filter = "JSON файлы (*.json)|*.json|Все файлы (*.*)|*.*";
             this.saveFileDialog.Title = "Сохранить JSON файл";
-            this.saveFileDialog.FileName = "Новый файл.json";
+            this.saveFileDialog.FileName = Path.GetFileNameWithoutExtension(fileName) + ".json";
 
             DialogResult saveResult = saveFileDialog.ShowDialog();
             if (saveResult == DialogResult.OK)
@@ -348,16 +346,15 @@ namespace MarkingUpDrawingTool.View
                 string filePath = saveFileDialog.FileName;
                 // Создание отдельной директории
                 string directoryPath = Path.GetDirectoryName(filePath);
-                if (imageLayer != null && imageLayer.Name != string.Empty)
+                /*if (imageLayer != null && imageLayer.Name != string.Empty)
                 {
                     directoryPath += "\\" + imageLayer.Name;
-                    Console.WriteLine(directoryPath);
                     Directory.CreateDirectory(directoryPath);
                 }
                 else
                 {
                     Directory.CreateDirectory(directoryPath);
-                }
+                }*/
 
                 string sizesJson = JsonConvert.SerializeObject(sizeView.GetSizes(), Formatting.Indented);
                 string arrowsJson = JsonConvert.SerializeObject(arrowView.GetArrows(), Formatting.Indented);
@@ -393,7 +390,6 @@ namespace MarkingUpDrawingTool.View
                 if (holesJson != "[]") combinedJson.Add("Holes", JArray.Parse(holesJson)); 
                 if (tablesJson != "[]") combinedJson.Add("Tables", JArray.Parse(tablesJson)); 
                 if (symbolsJson != "[]") combinedJson.Add("Symbols", JArray.Parse(symbolsJson));
-                Console.WriteLine(sizesJson);
                 // Сохранение JSON-строки в файл
                 string fileName = Path.GetFileName(filePath);
                 string fullPath = Path.Combine(directoryPath, fileName);

@@ -33,7 +33,7 @@
             this.ScaleLabel = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.massTextBox = new System.Windows.Forms.TextBox();
-            this.scaleTextBox = new System.Windows.Forms.TextBox();
+            this.matirialTextBox = new System.Windows.Forms.TextBox();
             this.SaveTableNoteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -60,9 +60,9 @@
             this.ScaleLabel.AutoSize = true;
             this.ScaleLabel.Location = new System.Drawing.Point(27, 93);
             this.ScaleLabel.Name = "ScaleLabel";
-            this.ScaleLabel.Size = new System.Drawing.Size(91, 13);
+            this.ScaleLabel.Size = new System.Drawing.Size(95, 13);
             this.ScaleLabel.TabIndex = 2;
-            this.ScaleLabel.Text = "Масштаб детали";
+            this.ScaleLabel.Text = "Материал детали";
             this.ScaleLabel.Click += new System.EventHandler(this.ScaleLabel_Click);
             // 
             // nameTextBox
@@ -79,12 +79,12 @@
             this.massTextBox.Size = new System.Drawing.Size(100, 20);
             this.massTextBox.TabIndex = 4;
             // 
-            // scaleTextBox
+            // matirialTextBox
             // 
-            this.scaleTextBox.Location = new System.Drawing.Point(150, 90);
-            this.scaleTextBox.Name = "scaleTextBox";
-            this.scaleTextBox.Size = new System.Drawing.Size(100, 20);
-            this.scaleTextBox.TabIndex = 5;
+            this.matirialTextBox.Location = new System.Drawing.Point(150, 90);
+            this.matirialTextBox.Name = "matirialTextBox";
+            this.matirialTextBox.Size = new System.Drawing.Size(100, 20);
+            this.matirialTextBox.TabIndex = 5;
             // 
             // SaveTableNoteButton
             // 
@@ -102,7 +102,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(289, 178);
             this.Controls.Add(this.SaveTableNoteButton);
-            this.Controls.Add(this.scaleTextBox);
+            this.Controls.Add(this.matirialTextBox);
             this.Controls.Add(this.massTextBox);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.ScaleLabel);
@@ -122,7 +122,7 @@
         private System.Windows.Forms.Label ScaleLabel;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.TextBox massTextBox;
-        private System.Windows.Forms.TextBox scaleTextBox;
+        private System.Windows.Forms.TextBox matirialTextBox;
         private System.Windows.Forms.Button SaveTableNoteButton;
     }
 }
