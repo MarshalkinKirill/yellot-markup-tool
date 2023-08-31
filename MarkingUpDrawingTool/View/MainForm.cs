@@ -61,6 +61,7 @@ namespace MarkingUpDrawingTool.View
             this.toolStripComboBoxGap.KeyDown += mainForm_KeyDown;
             this.toolStripComboBoxProjectionRoi.KeyDown += mainForm_KeyDown;
             this.toolStripComboBoxSymbol.KeyDown += mainForm_KeyDown;
+            this.Resize += mainForm_Resize;
 
             //Views
             sizeView = new SizeView(this);
@@ -73,6 +74,42 @@ namespace MarkingUpDrawingTool.View
             projectionRoiView = new ProjectionRoiView(this);
             symbolView = new SymbolView(this);
 
+        }
+
+        private void mainForm_Resize(object sender, EventArgs e)
+        {
+            if (imageLayer != null)
+            {
+                panel1.Controls.Remove(vScrollBar);
+                vScrollBar = new VScrollBar();
+                vScrollBar.Dock = DockStyle.Right;
+                vScrollBar.Maximum = imageLayer.Image.Height + 40 - panel1.Height;
+                if (vScrollBar.Maximum > 0)
+                {
+                    vScrollBar.Scroll += VScrollBar_Scroll;
+                    panel1.Controls.Add(vScrollBar);
+                }
+                else
+                {
+                    vScrollBar.Maximum = 0;
+                    vScrollBar.Minimum = 0;
+                }
+                // Создание горизонтального скролла
+                panel1.Controls.Remove(hScrollBar);
+                hScrollBar = new HScrollBar();
+                hScrollBar.Dock = DockStyle.Bottom;
+                hScrollBar.Maximum = imageLayer.Image.Width + 40 - panel1.Width;
+                if (hScrollBar.Maximum > 0)
+                {
+                    hScrollBar.Scroll += HScrollBar_Scroll;
+                    panel1.Controls.Add(hScrollBar);
+                }
+                else
+                {
+                    hScrollBar.Maximum = 0;
+                    hScrollBar.Minimum = 0;
+                }
+            }
         }
 
 
@@ -118,19 +155,31 @@ namespace MarkingUpDrawingTool.View
             // Создание вертикального скролла
             vScrollBar = new VScrollBar();
             vScrollBar.Dock = DockStyle.Right;
-            vScrollBar.Maximum = imageLayer.Image.Height - panel1.Height;
-            vScrollBar.Scroll += VScrollBar_Scroll;
+            vScrollBar.Maximum = imageLayer.Image.Height + 40 - panel1.Height;
+            if (vScrollBar.Maximum > 0)
+            {
+                vScrollBar.Scroll += VScrollBar_Scroll;
+                panel1.Controls.Add(vScrollBar);
+            } else
+            {
+                vScrollBar.Maximum = 0;
+                vScrollBar.Minimum = 0;
+            }
             // Создание горизонтального скролла
             hScrollBar = new HScrollBar();
             hScrollBar.Dock = DockStyle.Bottom;
-            hScrollBar.Maximum = imageLayer.Image.Width - panel1.Width;
-            hScrollBar.Scroll += HScrollBar_Scroll;
-            // Добавление скролла на панель
-            panel1.Controls.Add(vScrollBar);
-            panel1.Controls.Add(hScrollBar);
-
-            // Добавление метода 
-
+            hScrollBar.Maximum = imageLayer.Image.Width + 40 - panel1.Width;
+            if (hScrollBar.Maximum > 0)
+            {
+                hScrollBar.Scroll += HScrollBar_Scroll;
+                panel1.Controls.Add(hScrollBar);
+            } else
+            {
+                hScrollBar.Maximum = 0;
+                hScrollBar.Minimum = 0;
+            }
+            
+            
             panel1.AutoScroll = true;
             panel1.Controls.Add(layerService);
         }
@@ -145,11 +194,16 @@ namespace MarkingUpDrawingTool.View
 
             if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
             {
-                layerService.Top += scrollValue;
-            }
-            else if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)
-            {
-                layerService.Left += scrollValue;
+                // Проверка на превышение максимального значения
+                if (layerService.Top + scrollValue >= vScrollBar.Maximum)
+                {
+                    // Установка максимального значения, если превышение
+                    layerService.Top = vScrollBar.Maximum;
+                }
+                else
+                {
+                    layerService.Top += scrollValue;
+                }
             }
             layerService.vPanel_Scroll(this, e);
 
@@ -164,13 +218,20 @@ namespace MarkingUpDrawingTool.View
             // Получение значения прокрутки с инверсией
             int scrollValue = -e.NewValue + e.OldValue;
 
-            if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
+            if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)
             {
-                layerService.Top += scrollValue;
-            }
-            else if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)
-            {
-                layerService.Left += scrollValue;
+                // Проверка на превышение максимального значения
+                if (layerService.Left + scrollValue >= hScrollBar.Maximum)
+                {
+                    // Установка максимального значения, если превышение
+                    layerService.Left = hScrollBar.Maximum;
+                    Console.WriteLine(hScrollBar.Maximum);
+                }
+                else
+                {
+                    layerService.Left += scrollValue;
+                    Console.WriteLine(scrollValue);
+                }
             }
             layerService.hPanel_Scroll(this, e);
 
@@ -229,25 +290,33 @@ namespace MarkingUpDrawingTool.View
         {
             if (e.Button == MouseButtons.Right || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
-                // Вертикальный Scroll
-                int deltaY = e.Y - layerService.MainFormStartPoint.Y; 
-                int newValue = vScrollBar.Value - deltaY; 
+                int newValue;
+                Console.WriteLine(imageLayer.Image.Height.ToString() + " " +  panel1.Height.ToString());
+                Console.WriteLine(imageLayer.Image.Width.ToString() + " " + panel1.Width.ToString());
+                if (true/*imageLayer.Image.Height > panel1.Height*/)
+                {
+                    // Вертикальный Scroll
+                    int deltaY = e.Y - layerService.MainFormStartPoint.Y;
+                    newValue = vScrollBar.Value - deltaY;
 
-                // Ограничиваем новое значение скролла в пределах минимального и максимального
-                newValue = Math.Max(vScrollBar.Minimum, Math.Min(vScrollBar.Maximum, newValue));
+                    // Ограничиваем новое значение скролла в пределах минимального и максимального
+                    newValue = Math.Max(vScrollBar.Minimum, Math.Min(vScrollBar.Maximum, newValue));
 
-                vScrollBar.Value = newValue; 
-                layerService.LastVScrollEventArgs = new ScrollEventArgs(ScrollEventType.ThumbPosition, newValue);
+                    vScrollBar.Value = newValue;
+                    layerService.LastVScrollEventArgs = new ScrollEventArgs(ScrollEventType.ThumbPosition, newValue);
+                }
+                if (true/*imageLayer.Image.Width > panel1.Width*/)
+                {
+                    // Горизонтальный Scroll
+                    int deltaX = e.X - layerService.MainFormStartPoint.X;
+                    newValue = hScrollBar.Value - deltaX;
 
-                // Горизонтальный Scroll
-                int deltaX = e.X - layerService.MainFormStartPoint.X;
-                newValue = hScrollBar.Value - deltaX;
+                    // Ограничиваем новое значение скролла в пределах минимального и максимального
+                    newValue = Math.Max(hScrollBar.Minimum, Math.Min(hScrollBar.Maximum, newValue));
 
-                // Ограничиваем новое значение скролла в пределах минимального и максимального
-                newValue = Math.Max(hScrollBar.Minimum, Math.Min(hScrollBar.Maximum, newValue));
-
-                hScrollBar.Value = newValue;
-                layerService.LastHScrollEventArgs = new ScrollEventArgs(ScrollEventType.ThumbPosition, newValue);
+                    hScrollBar.Value = newValue;
+                    layerService.LastHScrollEventArgs = new ScrollEventArgs(ScrollEventType.ThumbPosition, newValue);
+                }
 
                 scrollTimer.Stop();
                 scrollTimer.Start();
@@ -270,7 +339,7 @@ namespace MarkingUpDrawingTool.View
                 
                 layerService.AddLayer(imageLayer);
                 layerService.Dock = DockStyle.Fill;
-                layerService.Size = new System.Drawing.Size(imageLayer.Image.Width, imageLayer.Image.Height);
+                layerService.Size = new System.Drawing.Size(imageLayer.Image.Width + 40, imageLayer.Image.Height + 40);
 
                 //layerService.Show();
                 /*layerServiceControl.AddLayer(imageLayer);

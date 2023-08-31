@@ -33,6 +33,7 @@
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.jsonLoadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.правкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuSaveObject = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuDeleteObject = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +72,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.jsonLoadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openJsonFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -87,7 +87,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1443, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1438, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -114,6 +114,13 @@
             this.ToolStripMenuSaveAs.Size = new System.Drawing.Size(187, 22);
             this.ToolStripMenuSaveAs.Text = "Сохранить как ";
             this.ToolStripMenuSaveAs.Click += new System.EventHandler(this.ToolStripMenuSaveAs_Click);
+            // 
+            // jsonLoadToolStripMenuItem
+            // 
+            this.jsonLoadToolStripMenuItem.Name = "jsonLoadToolStripMenuItem";
+            this.jsonLoadToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.jsonLoadToolStripMenuItem.Text = "Загрузить json-файл";
+            this.jsonLoadToolStripMenuItem.Click += new System.EventHandler(this.jsonLoadToolStripMenuItem_Click);
             // 
             // правкаToolStripMenuItem
             // 
@@ -160,7 +167,7 @@
             this.toolStripComboBoxSymbol});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1443, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1438, 27);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -408,7 +415,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 51);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1443, 806);
+            this.pictureBox1.Size = new System.Drawing.Size(1438, 806);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -417,7 +424,7 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Image Files (*.img;*.jpg)|*.img;*.jpg|All Files (*.*)|*.*";
+            this.openFileDialog1.Filter = "Image Files (*.img;*.jpg;*.jpeg)|*.img;*.jpg;*.jpeg|All Files (*.*)|*.*";
             // 
             // panel1
             // 
@@ -426,15 +433,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 51);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1443, 806);
+            this.panel1.Size = new System.Drawing.Size(1438, 806);
             this.panel1.TabIndex = 3;
-            // 
-            // jsonLoadToolStripMenuItem
-            // 
-            this.jsonLoadToolStripMenuItem.Name = "jsonLoadToolStripMenuItem";
-            this.jsonLoadToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.jsonLoadToolStripMenuItem.Text = "Загрузить json-файл";
-            this.jsonLoadToolStripMenuItem.Click += new System.EventHandler(this.jsonLoadToolStripMenuItem_Click);
             // 
             // openJsonFileDialog
             // 
@@ -445,7 +445,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1443, 857);
+            this.ClientSize = new System.Drawing.Size(1438, 857);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.toolStrip1);
