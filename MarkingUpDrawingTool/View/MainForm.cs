@@ -225,12 +225,10 @@ namespace MarkingUpDrawingTool.View
                 {
                     // Установка максимального значения, если превышение
                     layerService.Left = hScrollBar.Maximum;
-                    Console.WriteLine(hScrollBar.Maximum);
                 }
                 else
                 {
                     layerService.Left += scrollValue;
-                    Console.WriteLine(scrollValue);
                 }
             }
             layerService.hPanel_Scroll(this, e);
@@ -291,8 +289,8 @@ namespace MarkingUpDrawingTool.View
             if (e.Button == MouseButtons.Right || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 int newValue;
-                Console.WriteLine(imageLayer.Image.Height.ToString() + " " +  panel1.Height.ToString());
-                Console.WriteLine(imageLayer.Image.Width.ToString() + " " + panel1.Width.ToString());
+                /*Console.WriteLine(imageLayer.Image.Height.ToString() + " " +  panel1.Height.ToString());
+                Console.WriteLine(imageLayer.Image.Width.ToString() + " " + panel1.Width.ToString());*/
                 if (true/*imageLayer.Image.Height > panel1.Height*/)
                 {
                     // Вертикальный Scroll
