@@ -508,7 +508,7 @@ namespace MarkingUpDrawingTool.View
             g.TranslateTransform(-arrow.Origin.X, -arrow.Origin.Y);
         }
 
-        private void DrawAngularArrow(Graphics g, Arrow arrow, Pen pen)
+        /*private void DrawAngularArrow(Graphics g, Arrow arrow, Pen pen)
         {
             Point start = new Point(arrow.Start.X - (arrow.Origin.X), arrow.Start.Y - (arrow.Origin.Y));
             Point end = new Point(arrow.End.X - (arrow.Origin.X), arrow.End.Y - (arrow.Origin.Y));
@@ -534,46 +534,96 @@ namespace MarkingUpDrawingTool.View
 
                 g.TranslateTransform(-arrow.Origin.X, -arrow.Origin.Y);
             }
-        }
-        /*private void DrawAngularArrow(Graphics g, Arrow arrow, Pen pen)
-        {
-            Point start = new Point(arrow.Start.X - arrow.Origin.X, arrow.Start.Y - arrow.Origin.Y);
-            Point end = new Point(arrow.End.X - arrow.Origin.X, arrow.End.Y - arrow.Origin.Y);
-            Point center = new Point(arrow.Center.X - arrow.Origin.X, arrow.Center.Y - arrow.Origin.Y);
-
-            if (arrow.Start != Point.Empty && arrow.End != Point.Empty)
-            {
-                g.TranslateTransform(arrow.Origin.X, arrow.Origin.Y);
-
-                float radius = (float)Math.Sqrt(Math.Pow(start.X - center.X, 2) + Math.Pow(start.Y - center.Y, 2));
-
-                // Вычисление углов начала и конца дуги в радианах
-                float startAngleRadians = (float)Math.Atan2(start.Y - center.Y, start.X - center.X);
-                float endAngleRadians = (float)Math.Atan2(end.Y - center.Y, end.X - center.X);
-
-                // Вычисление разницы между углами
-                double angleDifference = endAngleRadians - startAngleRadians;
-
-                if (angleDifference < 0)
-                    angleDifference += 2 * Math.PI;
-
-                // Используйте соответствующий угол в зависимости от разницы между углами
-                double drawAngle = angleDifference < Math.PI ? startAngleRadians : endAngleRadians;
-
-                float drawAngleDegrees = (float)(drawAngle * 180 / Math.PI);
-
-                Point[] points = GetPointsOnArc(center, radius, startAngleRadians, endAngleRadians, 1000);
-                g.DrawLines(pen, points);
-
-                GraphicsPath path1 = GetAnglePath(points[70], points[0]);
-                GraphicsPath path2 = GetAnglePath(points[points.Length - 70], points[points.Length - 1]);
-
-                g.DrawPath(pen, path1);
-                g.DrawPath(pen, path2);
-
-                g.TranslateTransform(-arrow.Origin.X, -arrow.Origin.Y);
-            }
         }*/
+        private float CalculateAngle(Point center, Point point)
+        {
+            float angle = (float)Math.Atan2(point.Y - center.Y, point.X - center.X) * 180 / (float)Math.PI;
+
+            // Перевести угол в диапазон [0, 360)
+            if (angle < 0)
+            {
+                angle += 360;
+            }
+
+            return angle;
+        }
+
+        private void DrawAngularArrow(Graphics g, Arrow arrow, Pen pen)
+        {
+            if (arrow.Center.X > arrow.Start.X)
+            {
+                Point start = new Point(arrow.Start.X - arrow.Center.X, arrow.Start.Y - arrow.Center.Y);
+                Point end = new Point(arrow.End.X - arrow.Center.X, arrow.End.Y - arrow.Center.Y);
+                if (arrow.Start != Point.Empty && arrow.End != Point.Empty)
+                {
+                    g.TranslateTransform(arrow.Center.X, arrow.Center.Y);
+
+                    // Вычисление радиуса окружности
+                    float radius = (float)Math.Sqrt(Math.Pow(start.X, 2) + Math.Pow(start.Y, 2));
+
+                    // Угол точки, равной точке начала плюс 180 градусов
+                    float oppositeAngle = (CalculateAngle(Point.Empty, start) + 180) % 360;
+
+                    // Вычисление разницы между углами
+                    float angleDifference = CalculateAngle(Point.Empty, end) - CalculateAngle(Point.Empty, start);
+
+                    if (angleDifference < 0)
+                        angleDifference += 360;
+
+                    // Определение, в какую сторону отрисовывать дугу
+                    bool clockwise = angleDifference <= 180;
+
+                    Point[] points;
+
+                    if (clockwise)
+                    {
+                        points = GetPointsOnArc(Point.Empty, radius, CalculateAngle(Point.Empty, start), CalculateAngle(Point.Empty, end), 1000);
+                    }
+                    else
+                    {
+                        // Если нужно отрисовать дугу против часовой стрелки, меняем местами начальный и конечный углы
+                        points = GetPointsOnArc(Point.Empty, radius, CalculateAngle(Point.Empty, end), CalculateAngle(Point.Empty, start), 1000);
+                    }
+
+                    g.DrawLines(pen, points);
+                    GraphicsPath path1 = GetAnglePath(points[70], points[0]);
+                    GraphicsPath path2 = GetAnglePath(points[points.Length - 70], points[points.Length - 1]);
+
+                    g.DrawPath(pen, path1);
+                    g.DrawPath(pen, path2);
+
+                    g.TranslateTransform(-arrow.Center.X, -arrow.Center.Y);
+                }
+            }
+            else
+            {
+                Point start = new Point(arrow.Start.X - (arrow.Origin.X), arrow.Start.Y - (arrow.Origin.Y));
+                Point end = new Point(arrow.End.X - (arrow.Origin.X), arrow.End.Y - (arrow.Origin.Y));
+                Point center = new Point(arrow.Center.X - (arrow.Origin.X), arrow.Center.Y - (arrow.Origin.Y));
+                if (arrow.Start != Point.Empty && arrow.End != Point.Empty)
+                {
+                    g.TranslateTransform(arrow.Origin.X, arrow.Origin.Y);
+                    // Вычисление радиуса окружности
+                    float radius = (float)Math.Sqrt(Math.Pow(start.X - center.X, 2) + Math.Pow(start.Y - center.Y, 2));
+
+                    // Вычисление углов начала и конца дуги
+                    float startAngle = (float)(Math.Atan2(start.Y - center.Y, start.X - center.X) * 180 / Math.PI);
+                    float endAngle = (float)(Math.Atan2(end.Y - center.Y, end.X - center.X) * 180 / Math.PI);
+
+                    Point[] points = GetPointsOnArc(center, radius, startAngle, endAngle, 1000);
+                    g.DrawLines(pen, points);
+                    GraphicsPath path1 = GetAnglePath(points[70], points[0]);
+
+                    GraphicsPath path2 = GetAnglePath(points[points.Count() - 70], points.Last());
+
+                    g.DrawPath(pen, path1);
+                    g.DrawPath(pen, path2);
+
+                    g.TranslateTransform(-arrow.Origin.X, -arrow.Origin.Y);
+                }
+            }
+
+        }
 
         private void DrawRadialArrow(Graphics g, Arrow arrow, Pen pen)
         {
