@@ -239,8 +239,9 @@
             // 
             // ToolStripMenuHoleSearch
             // 
+            this.ToolStripMenuHoleSearch.Enabled = false;
             this.ToolStripMenuHoleSearch.Name = "ToolStripMenuHoleSearch";
-            this.ToolStripMenuHoleSearch.Size = new System.Drawing.Size(168, 22);
+            this.ToolStripMenuHoleSearch.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuHoleSearch.Text = "Поиск отверстий";
             // 
             // toolStripComboBoxHole

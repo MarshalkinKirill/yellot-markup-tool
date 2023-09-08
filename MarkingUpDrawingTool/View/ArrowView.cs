@@ -404,8 +404,6 @@ namespace MarkingUpDrawingTool.View
 
         private void ArrowDeleteTool_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(currentArrow.Name.ToString() + " " + currentArrow.Start + currentArrow.End + currentArrow.NoteStart + currentArrow.NoteEnd);
-
             DeleteArrow?.Invoke(sender, currentArrow);
             currentArrow = new Arrow();
             arrowComboBox.Items.Clear();
@@ -515,9 +513,6 @@ namespace MarkingUpDrawingTool.View
             Point start = new Point(arrow.Start.X - (arrow.Origin.X), arrow.Start.Y - (arrow.Origin.Y));
             Point end = new Point(arrow.End.X - (arrow.Origin.X), arrow.End.Y - (arrow.Origin.Y));
             Point center = new Point(arrow.Center.X - (arrow.Origin.X), arrow.Center.Y - (arrow.Origin.Y));
-            Console.WriteLine(start.ToString());
-            Console.WriteLine(end.ToString());
-            Console.WriteLine(center.ToString());
             if (arrow.Start != Point.Empty && arrow.End != Point.Empty)
             {
                 g.TranslateTransform(arrow.Origin.X, arrow.Origin.Y);
@@ -528,13 +523,10 @@ namespace MarkingUpDrawingTool.View
                 float startAngle = (float)(Math.Atan2(start.Y - center.Y, start.X - center.X) * 180 / Math.PI);
                 float endAngle = (float)(Math.Atan2(end.Y - center.Y, end.X - center.X) * 180 / Math.PI);
 
-                // Отрисовка дуги окружности
-                //g.DrawArc(pen, center.X - radius, center.Y - radius, radius * 2, radius * 2, Math.Abs(startAngle), Math.Abs(endAngle - startAngle));
-
                 Point[] points = GetPointsOnArc(center, radius, startAngle, endAngle, 1000);
                 g.DrawLines(pen, points);
-                GraphicsPath path1 = GetAnglePath(points[70],points[0]);
-                
+                GraphicsPath path1 = GetAnglePath(points[70], points[0]);
+
                 GraphicsPath path2 = GetAnglePath(points[points.Count() - 70], points.Last());
 
                 g.DrawPath(pen, path1);
@@ -543,6 +535,45 @@ namespace MarkingUpDrawingTool.View
                 g.TranslateTransform(-arrow.Origin.X, -arrow.Origin.Y);
             }
         }
+        /*private void DrawAngularArrow(Graphics g, Arrow arrow, Pen pen)
+        {
+            Point start = new Point(arrow.Start.X - arrow.Origin.X, arrow.Start.Y - arrow.Origin.Y);
+            Point end = new Point(arrow.End.X - arrow.Origin.X, arrow.End.Y - arrow.Origin.Y);
+            Point center = new Point(arrow.Center.X - arrow.Origin.X, arrow.Center.Y - arrow.Origin.Y);
+
+            if (arrow.Start != Point.Empty && arrow.End != Point.Empty)
+            {
+                g.TranslateTransform(arrow.Origin.X, arrow.Origin.Y);
+
+                float radius = (float)Math.Sqrt(Math.Pow(start.X - center.X, 2) + Math.Pow(start.Y - center.Y, 2));
+
+                // Вычисление углов начала и конца дуги в радианах
+                float startAngleRadians = (float)Math.Atan2(start.Y - center.Y, start.X - center.X);
+                float endAngleRadians = (float)Math.Atan2(end.Y - center.Y, end.X - center.X);
+
+                // Вычисление разницы между углами
+                double angleDifference = endAngleRadians - startAngleRadians;
+
+                if (angleDifference < 0)
+                    angleDifference += 2 * Math.PI;
+
+                // Используйте соответствующий угол в зависимости от разницы между углами
+                double drawAngle = angleDifference < Math.PI ? startAngleRadians : endAngleRadians;
+
+                float drawAngleDegrees = (float)(drawAngle * 180 / Math.PI);
+
+                Point[] points = GetPointsOnArc(center, radius, startAngleRadians, endAngleRadians, 1000);
+                g.DrawLines(pen, points);
+
+                GraphicsPath path1 = GetAnglePath(points[70], points[0]);
+                GraphicsPath path2 = GetAnglePath(points[points.Length - 70], points[points.Length - 1]);
+
+                g.DrawPath(pen, path1);
+                g.DrawPath(pen, path2);
+
+                g.TranslateTransform(-arrow.Origin.X, -arrow.Origin.Y);
+            }
+        }*/
 
         private void DrawRadialArrow(Graphics g, Arrow arrow, Pen pen)
         {

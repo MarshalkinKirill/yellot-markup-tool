@@ -243,7 +243,7 @@ namespace MarkingUpDrawingTool.View
 
                 g.TranslateTransform(-table.Origin.X, -table.Origin.Y);
             }
-            if (layerService.DrawTableMod || LayerService.DrawMainTableMod && currentTable != null)
+            if ((layerService.DrawTableMod || LayerService.DrawMainTableMod) && currentTable != null)
             {
                 pen.Color = Color.Purple;
 
