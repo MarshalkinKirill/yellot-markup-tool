@@ -32,10 +32,12 @@ namespace MarkingUpDrawingTool.Model
     {
         private Border currentBorder { get; set; }
         public Border CurrentBorder { get => currentBorder; set => currentBorder = value; }
-
+        private Border border { get; set; }
+        public Border Border { get => border; set => border = value; }
         public BorderModel()
         {
             currentBorder = new Border();
+            border = new Border();
         }
 
         public void SaveBorder(Border border)
@@ -44,6 +46,13 @@ namespace MarkingUpDrawingTool.Model
             Point end = new Point(border.End.X, border.End.Y);
             Point origin = new Point(border.Origin.X, border.Origin.Y);
             currentBorder = new Border(start, end, origin);
+        }
+        public void AddBorder(Border border)
+        {
+            Point start = new Point(border.Start.X, border.Start.Y);
+            Point end = new Point(border.End.X, border.End.Y);
+            Point origin = new Point(border.Origin.X, border.Origin.Y);
+            this.border = new Border(start, end, origin);
         }
     }
 }

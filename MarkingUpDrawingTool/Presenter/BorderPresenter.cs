@@ -22,21 +22,26 @@ namespace MarkingUpDrawingTool.Presenter
 
             // Подписываемся на события
             view.SaveBorder += SaveBorder;
+            view.AddBorder += AddBorder;
         }
 
         private void SaveBorder(object sender, Border border)
         {
-            Console.WriteLine(border.Start.ToString() + "" + border.End.ToString());
-
             model.SaveBorder(border);
-            Console.WriteLine(model.CurrentBorder.Start.ToString() + "" + model.CurrentBorder.End.ToString());
+        }
+        private void AddBorder(object sender, Border border)
+        {
+            model.AddBorder(border);
+        }
+        public Border GetMarkedBorder()
+        {
+            return model.Border;
         }
 
-        public Border GetMarkedBorder()
+        public Border GetCurrentBorder()
         {
             return model.CurrentBorder;
         }
-
         public void SetBorders(Border border)
         {
             model.CurrentBorder = border;
@@ -44,7 +49,7 @@ namespace MarkingUpDrawingTool.Presenter
 
         public void CleanMarkedBorder()
         {
-            model.CurrentBorder = new Border();
+            model.Border = new Border();
         }
     }
 }

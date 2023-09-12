@@ -184,7 +184,7 @@ namespace MarkingUpDrawingTool.View
                 var origins = projectionPresenter.GetOrigins();
                 Point firstPoint, secondPoint;
 
-                Pen pen = new Pen(Color.Red, 3);
+                Pen pen = new Pen(Color.Purple, 3);
                 if (points.Count > 1)
                 {
 
@@ -215,6 +215,49 @@ namespace MarkingUpDrawingTool.View
                     secondPoint = new Point(layerService.EndPoint.X - (startOrigin.X), layerService.EndPoint.Y - (startOrigin.Y));
                     g.DrawLine(pen, firstPoint, secondPoint);
                     g.TranslateTransform(-startOrigin.X, -startOrigin.Y);
+                }
+            }
+            var projectionList = projectionPresenter.GetProjections();
+            foreach (var projection in projectionList)
+            {
+                if (projection != null)
+                {
+                    var points = projection.Points;
+                    var origins = projection.Origins;
+                    Point firstPoint, secondPoint;
+
+                    Pen pen = new Pen(Color.Red, 3);
+                    if (points.Count > 1)
+                    {
+
+                        for (int i = 0; i < points.Count - 1; i++)
+                        {
+                            if (origins[i] == origins[i + 1])
+                            {
+                                g.TranslateTransform(origins[i].X, origins[i].Y);
+                                firstPoint = new Point(points[i].X - (origins[i].X), points[i].Y - (origins[i].Y));
+                                secondPoint = new Point(points[i + 1].X - (origins[i + 1].X), points[i + 1].Y - (origins[i + 1].Y));
+                                g.DrawLine(pen, firstPoint, secondPoint);
+                                g.TranslateTransform(-origins[i].X, -origins[i].Y);
+                            }
+                            else
+                            {
+                                g.TranslateTransform(origins[i].X, origins[i].Y);
+                                firstPoint = new Point(points[i].X - (origins[i].X), points[i].Y - (origins[i].Y));
+                                secondPoint = new Point(points[i + 1].X - (origins[i].X), points[i + 1].Y - (origins[i].Y));
+                                g.DrawLine(pen, firstPoint, secondPoint);
+                                g.TranslateTransform(-origins[i].X, -origins[i].Y);
+                            }
+                        }
+                    }
+                    if (layerService.DrawProjectionMod)
+                    {
+                        g.TranslateTransform(startOrigin.X, startOrigin.Y);
+                        firstPoint = new Point(layerService.StartPoint.X - (startOrigin.X), layerService.StartPoint.Y - (startOrigin.Y));
+                        secondPoint = new Point(layerService.EndPoint.X - (startOrigin.X), layerService.EndPoint.Y - (startOrigin.Y));
+                        g.DrawLine(pen, firstPoint, secondPoint);
+                        g.TranslateTransform(-startOrigin.X, -startOrigin.Y);
+                    }
                 }
             }
         }

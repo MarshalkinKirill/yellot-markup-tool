@@ -246,6 +246,7 @@ namespace MarkingUpDrawingTool.View
             sizeView.Size_KeyDown(sender, e);
             gapView.Gap_KeyDown(sender, e);
             symbolView.Symbol_KeyDown(sender, e);
+            borderView.Border_KeyDown(sender, e);
 
             if (e.KeyCode == Keys.ShiftKey)
             {

@@ -241,7 +241,7 @@
             // 
             this.ToolStripMenuHoleSearch.Enabled = false;
             this.ToolStripMenuHoleSearch.Name = "ToolStripMenuHoleSearch";
-            this.ToolStripMenuHoleSearch.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuHoleSearch.Size = new System.Drawing.Size(168, 22);
             this.ToolStripMenuHoleSearch.Text = "Поиск отверстий";
             // 
             // toolStripComboBoxHole
@@ -377,7 +377,7 @@
             // 
             this.toolStripComboBoxArrow.Enabled = false;
             this.toolStripComboBoxArrow.Name = "toolStripComboBoxArrow";
-            this.toolStripComboBoxArrow.Size = new System.Drawing.Size(75, 27);
+            this.toolStripComboBoxArrow.Size = new System.Drawing.Size(100, 27);
             // 
             // ToolStripButtonGap
             // 
@@ -425,7 +425,8 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Image Files (*.img;*.jpg;*.jpeg)|*.img;*.jpg;*.jpeg|All Files (*.*)|*.*";
+            this.openFileDialog1.Filter = "Image Files (*.img;*.jpg;*.jpeg;*.png;*.tiff)|*.img;*.jpg;*.jpeg;*.png;*.tiff|All" +
+    " Files (*.*)|*.*";
             // 
             // panel1
             // 

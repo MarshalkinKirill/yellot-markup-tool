@@ -11,6 +11,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Caching;
 using System.Windows.Forms;
 
 namespace MarkingUpDrawingTool.View
@@ -21,22 +22,45 @@ namespace MarkingUpDrawingTool.View
         private BorderPresenter borderPresenter;
         private LayerService layerService { get; set; }
         public LayerService LayerService { get => layerService; set => layerService = value; }
-        private Border currentBorder { get; set; }
+        private Border currentBorder { get; set; } 
         public Border CurrentBorder { get => currentBorder; set => currentBorder = value; }
 
         private ToolStripButton borderTool;
+        private ToolStripMenuItem borderSaveTool;
+        private ToolStripMenuItem borderDeleteTool;
 
         public event EventHandler<Border> SaveBorder;
+        public event EventHandler<Border> AddBorder;
 
         public BorderView(IView mainForm)
         {
             this.mainForm = mainForm;
             borderPresenter = new BorderPresenter(this);
             layerService = mainForm.LayerService;
+            currentBorder = new Border(new Point(0, 0), new Point(0, 0), new Point(0, 0));
 
             borderTool = mainForm.GetBorderTool();
+            borderDeleteTool = mainForm.GetDeleteTool();
+            borderSaveTool = mainForm.GetSaveTool();
 
             borderTool.Click += BorderTool_Click;
+            borderDeleteTool.Click += BorderDeleteTool_Click;
+            borderSaveTool.Click += BorderSaveTool_Click;
+        }
+
+        public void Border_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (layerService.DrawBorderMod)
+            {
+                if (e.Control && e.KeyCode == Keys.S)
+                {
+                    BorderSaveTool_Click(this, e);
+                }
+                if (e.Control && e.KeyCode == Keys.D)
+                {
+                    BorderDeleteTool_Click(this, e);
+                }
+            }
         }
 
         private void BorderTool_Click(object sender, EventArgs e)
@@ -84,8 +108,7 @@ namespace MarkingUpDrawingTool.View
             if (layerService.DrawBorderMod && layerService.StartPoint != Point.Empty && e.Button == MouseButtons.Left || e.Button == (MouseButtons.Left | MouseButtons.Right))
             {
                 layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
-                SaveBorder?.Invoke(this, new Border(layerService.StartPoint, layerService.EndPoint, layerService.Origin));
-
+                AddBorder?.Invoke(this, new Border(layerService.StartPoint, layerService.EndPoint, layerService.Origin));
                 currentBorder = borderPresenter.GetMarkedBorder();
 
                 layerService.Invalidate();
@@ -99,17 +122,70 @@ namespace MarkingUpDrawingTool.View
             if (layerService.DrawBorderMod && layerService.StartPoint != Point.Empty)
             {
                 layerService.EndPoint = new Point(Math.Abs(layerService.Origin.X) + e.Location.X, Math.Abs(layerService.Origin.Y) + e.Location.Y);
-                SaveBorder?.Invoke(this, new Border(layerService.StartPoint, layerService.EndPoint, layerService.Origin));
+                AddBorder?.Invoke(this, new Border(layerService.StartPoint, layerService.EndPoint, layerService.Origin));
                 currentBorder = borderPresenter.GetMarkedBorder();
+                Console.WriteLine(currentBorder.Start.ToString() + currentBorder.End.ToString() + currentBorder.Origin.ToString());
                 layerService.Invalidate();
             }
         }
 
+        private void BorderSaveTool_Click(object sender, EventArgs e)
+        {
+            if (layerService.DrawBorderMod)
+            {
+                SaveBorder?.Invoke(this, borderPresenter.GetMarkedBorder());
+                currentBorder = borderPresenter.GetCurrentBorder();
+            }
+        }
+
+        private void BorderDeleteTool_Click(object sender, EventArgs e)
+        {
+            currentBorder = null;
+
+            layerService.Invalidate();
+        }
+
         public void DrawBorder(Graphics g)
         {
-            Pen pen = new Pen(Color.Red, 3);
+            Pen pen;
+            if (currentBorder != null)
+            {
+                pen = new Pen(Color.Purple, 3);
+                pen.DashStyle = DashStyle.Dot;
+                //currentBorder = borderPresenter.GetMarkedBorder();
+                if (!layerService.DrawBorderMod)
+                {
+                    g.TranslateTransform(currentBorder.Origin.X, currentBorder.Origin.Y);
+                    Point start = new Point(currentBorder.Start.X - (currentBorder.Origin.X), currentBorder.Start.Y - (currentBorder.Origin.Y));
+                    Point end = new Point(currentBorder.End.X - (currentBorder.Origin.X), currentBorder.End.Y - (currentBorder.Origin.Y));
+                    int width = Math.Abs(start.X - end.X);
+                    int height = Math.Abs(start.Y - end.Y);
+                    int x = Math.Min(start.X, end.X);
+                    int y = Math.Min(start.Y, end.Y);
+                    pen.DashStyle = DashStyle.Dot;
+                    // Рисование прямоугольника с пунктирными границами
+                    g.DrawRectangle(pen, x, y, width, height);
+                    g.TranslateTransform(-currentBorder.Origin.X, -currentBorder.Origin.Y);
+                }
+                else
+                {
+                    g.TranslateTransform(currentBorder.Origin.X, currentBorder.Origin.Y);
+                    pen.Color = Color.Purple;
+                    Point start = new Point(currentBorder.Start.X - (currentBorder.Origin.X), currentBorder.Start.Y - (currentBorder.Origin.Y));
+                    Point end = new Point(currentBorder.End.X - (currentBorder.Origin.X), currentBorder.End.Y - (currentBorder.Origin.Y));
+                    int width = Math.Abs(start.X - end.X);
+                    int height = Math.Abs(start.Y - end.Y);
+                    int x = Math.Min(start.X, end.X);
+                    int y = Math.Min(start.Y, end.Y);
+                    pen.DashStyle = DashStyle.Dot;
+                    // Рисование прямоугольника с пунктирными границами
+                    g.DrawRectangle(pen, x, y, width, height);
+                    g.TranslateTransform(-currentBorder.Origin.X, -currentBorder.Origin.Y);
+                }
+            }
+            pen = new Pen(Color.Red, 3);
             pen.DashStyle = DashStyle.Dot;
-            currentBorder = borderPresenter.GetMarkedBorder();
+            currentBorder = borderPresenter.GetCurrentBorder();
             if (!layerService.DrawBorderMod)
             {
                 g.TranslateTransform(currentBorder.Origin.X, currentBorder.Origin.Y);
