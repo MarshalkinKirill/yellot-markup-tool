@@ -505,7 +505,7 @@ namespace MarkingUpDrawingTool.View
                         if (deserializeObjects.Border != null) borderView.SetBorders(deserializeObjects.Border.ToList().First());
                         if (deserializeObjects.Gaps != null) gapView.SetGaps(deserializeObjects.Gaps.ToList());
                         if (deserializeObjects.Projections != null) projectionView.SetProjections(deserializeObjects.Projections.ToList());
-                        if (deserializeObjects.ProjectionRois != null) projectionRoiView.SetProjectionRois(deserializeObjects.ProjectionRois.ToList());
+                        if (deserializeObjects.ProjectionsRoi != null) projectionRoiView.SetProjectionRois(deserializeObjects.ProjectionsRoi.ToList());
                         if (deserializeObjects.Holes != null) holeView.SetHoles(deserializeObjects.Holes.ToList());
                         if (deserializeObjects.Tables != null) tableView.SetTables(deserializeObjects.Tables.ToList());
                         if (deserializeObjects.Symbols != null) symbolView.SetSymbols(deserializeObjects.Symbols.ToList());

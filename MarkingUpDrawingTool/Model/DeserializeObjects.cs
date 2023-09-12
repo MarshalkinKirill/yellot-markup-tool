@@ -13,7 +13,7 @@ namespace MarkingUpDrawingTool.Model
         public List<Gap> Gaps;
         public List<Hole> Holes;
         public List<Projection> Projections;
-        public List<ProjectionRoi> ProjectionRois;
+        public List<ProjectionRoi> ProjectionsRoi;
         public List<Size> Sizes;
         public List<Symbol> Symbols;
         public List<Table> Tables;
