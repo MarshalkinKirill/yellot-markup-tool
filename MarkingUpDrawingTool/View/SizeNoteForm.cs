@@ -17,19 +17,28 @@ namespace MarkingUpDrawingTool.View
         public SizeNoteForm(ISizeView _sizeView)
         {
             InitializeComponent();
+            Load += Form_Load;
             sizeView = _sizeView;
-
-            this.KeyDown += SizeNoteForm_KeyDown;
-            this.SizeTextBox.KeyDown += SizeNoteForm_KeyDown;
+            KeyDown += SizeNoteForm_KeyDown;
+            SizeTextBox.KeyDown += SizeNoteForm_KeyDown;
+            
         }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            SizeTextBox.Text = "";
+            SizeTextBox.Select(0, 0);
+        }
+
         public SizeNoteForm(ISizeView _sizeView, string note)
         {
             InitializeComponent();
             sizeView = _sizeView;
-            this.SizeTextBox.Text = note;
+            SizeTextBox.Text = note;
 
-            this.KeyDown += SizeNoteForm_KeyDown;
-            this.SizeTextBox.KeyDown += SizeNoteForm_KeyDown;
+            KeyDown += SizeNoteForm_KeyDown;
+            SizeTextBox.KeyDown += SizeNoteForm_KeyDown;
+            SizeTextBox.Focus();
         }
 
         private void SizeNoteForm_KeyDown(object sender, KeyEventArgs e)
@@ -37,16 +46,20 @@ namespace MarkingUpDrawingTool.View
             if (e.KeyCode == Keys.Enter)
             {
                 SaveSizeButton_Click(sender, e);
+            } else
+            {
+                SizeTextBox.Focus();
+                SizeTextBox.Select(SizeTextBox.Text.Length, 0);
             }
         }
 
         private void SaveSizeButton_Click(object sender, EventArgs e)
         {
-            if (this.SizeTextBox.Text != String.Empty)
+            if (SizeTextBox.Text != String.Empty)
             {
                 sizeView.SetSizeNote(SizeTextBox.Text);
                 sizeView.SaveSizeNoteForm(sender, e);
-                this.Close();
+                Close();
             }
             else
             {
@@ -56,12 +69,16 @@ namespace MarkingUpDrawingTool.View
 
         private void buttonDegree_Click(object sender, EventArgs e)
         {
-            this.SizeTextBox.Text += " \u00B0";
+            SizeTextBox.Text += " \u00B0";
+            SizeTextBox.Focus();
+            SizeTextBox.Select(SizeTextBox.Text.Length, 0);
         }
 
         private void buttonDiameter_Click(object sender, EventArgs e)
         {
-            this.SizeTextBox.Text += " \u2300" ;
+            SizeTextBox.Text += " \u2300" ;
+            SizeTextBox.Focus();
+            SizeTextBox.Select(SizeTextBox.Text.Length, 0);
         }
     }
 }

@@ -42,7 +42,8 @@ namespace MarkingUpDrawingTool.View
             this.SizeTextBox.Location = new System.Drawing.Point(77, 31);
             this.SizeTextBox.Name = "SizeTextBox";
             this.SizeTextBox.Size = new System.Drawing.Size(100, 20);
-            this.SizeTextBox.TabIndex = 0;
+            this.SizeTextBox.TabIndex = 2;
+            this.SizeTextBox.TabStop = false;
             // 
             // Sizelabel
             // 
@@ -58,7 +59,8 @@ namespace MarkingUpDrawingTool.View
             this.SaveSizeButton.Location = new System.Drawing.Point(89, 65);
             this.SaveSizeButton.Name = "SaveSizeButton";
             this.SaveSizeButton.Size = new System.Drawing.Size(75, 23);
-            this.SaveSizeButton.TabIndex = 2;
+            this.SaveSizeButton.TabIndex = 3;
+            this.SaveSizeButton.TabStop = false;
             this.SaveSizeButton.Text = "Применить";
             this.SaveSizeButton.UseVisualStyleBackColor = true;
             this.SaveSizeButton.Click += new System.EventHandler(this.SaveSizeButton_Click);
@@ -68,7 +70,8 @@ namespace MarkingUpDrawingTool.View
             this.buttonDegree.Location = new System.Drawing.Point(183, 31);
             this.buttonDegree.Name = "buttonDegree";
             this.buttonDegree.Size = new System.Drawing.Size(21, 20);
-            this.buttonDegree.TabIndex = 3;
+            this.buttonDegree.TabIndex = 1;
+            this.buttonDegree.TabStop = false;
             this.buttonDegree.Text = "°";
             this.buttonDegree.UseVisualStyleBackColor = true;
             this.buttonDegree.Click += new System.EventHandler(this.buttonDegree_Click);
@@ -78,7 +81,8 @@ namespace MarkingUpDrawingTool.View
             this.buttonDiameter.Location = new System.Drawing.Point(210, 31);
             this.buttonDiameter.Name = "buttonDiameter";
             this.buttonDiameter.Size = new System.Drawing.Size(22, 20);
-            this.buttonDiameter.TabIndex = 4;
+            this.buttonDiameter.TabIndex = 2;
+            this.buttonDiameter.TabStop = false;
             this.buttonDiameter.Text = "⌀";
             this.buttonDiameter.UseVisualStyleBackColor = true;
             this.buttonDiameter.Click += new System.EventHandler(this.buttonDiameter_Click);
