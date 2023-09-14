@@ -154,8 +154,6 @@ namespace MarkingUpDrawingTool.View
 
         private void GapDeleteTool_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(currentGap.Name.ToString() + " " + currentGap.Start + currentGap.End);
-
             DeleteGap?.Invoke(sender, currentGap);
             currentGap = new Gap();
             gapComboBox.Items.Clear();

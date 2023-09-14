@@ -424,8 +424,6 @@ namespace MarkingUpDrawingTool.View
             ToolStripComboBox comboBox = (ToolStripComboBox)sender;
             var selectedObject = (Arrow)comboBox.SelectedItem;
             currentArrow = selectedObject;
-            Console.WriteLine("Выбрана " + selectedObject.Name);
-            Console.WriteLine(currentArrow.Name.ToString() + " " + currentArrow.Start + currentArrow.End + currentArrow.Center);
             AddArrow?.Invoke(sender, currentArrow);
             layerService.Invalidate();
         }

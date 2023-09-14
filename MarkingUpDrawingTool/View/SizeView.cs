@@ -220,8 +220,6 @@ namespace MarkingUpDrawingTool.View
             ToolStripComboBox comboBox = (ToolStripComboBox)sender;
             var selectedObject = (Size)comboBox.SelectedItem;
             currentSize = selectedObject;
-            Console.WriteLine("Выбрана " + selectedObject.Name);
-            Console.WriteLine(currentSize.Name.ToString() + " " + currentSize.Note + " " + currentSize.Start + currentSize.End);
 
             layerService.Invalidate();
         }
